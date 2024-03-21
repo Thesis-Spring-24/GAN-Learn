@@ -86,55 +86,6 @@ const preprocess = async (cb) => {
     };
 };
 
-const drawPie = (top3) => {
-    const probs = [];
-    const labels = [];
-
-    for (const pred of top3) {
-        const prop = +pred.probability.toPrecision(2);
-        probs.push(prop);
-        labels.push(`${pred.className} (${prop})`);
-    }
-
-    const others = +(
-        1 - probs.reduce((prev, prob) => prev + prob, 0)
-    ).toPrecision(2);
-    probs.push(others);
-    labels.push(`Others (${others})`);
-
-    if (pieChart) pieChart.destroy();
-
-    const ctx = document.getElementById("predictions").getContext("2d");
-    pieChart = new Chart(ctx, {
-        type: "pie",
-        options: {
-            plugins: {
-                legend: {
-                    position: "bottom",
-                },
-                title: {
-                    display: true,
-                    text: "Top 3 Predictions",
-                },
-            },
-        },
-        data: {
-            labels,
-            datasets: [
-                {
-                    label: "Top 3 predictions",
-                    data: probs,
-                    backgroundColor: [
-                        "rgb(255, 99, 132)",
-                        "rgb(54, 162, 235)",
-                        "rgb(255, 205, 86)",
-                        "rgb(97,96,96)",
-                    ],
-                },
-            ],
-        },
-    });
-};
 
 const getMinimumCoordinates = () => {
     let min_x = Number.MAX_SAFE_INTEGER;
@@ -238,19 +189,63 @@ const predict = async () => {
         predictionDisplay.innerHTML = `Probability: ${labelPrediction.probability}`;
 
 
+        const trueOrFalse = document.getElementById("true-or-false");
+
         if (labelPrediction.probability > 0.5) {
-            const trueOrFalse = document.getElementById("true-or-false");
             trueOrFalse.innerHTML = "Sandt";
         } else {
-            const trueOrFalse = document.getElementById("true-or-false");
             trueOrFalse.innerHTML = "Falsk";
         }
+
+        // Array to store history of drawing attempts
+        let drawingHistory = [];
+
+        // Save the drawing strokes and prediction details to the history
+        drawingHistory.push({ image: imageStrokes, prediction: labelPrediction });
+
+        // Display the drawing history
+        const historyDisplay = document.getElementById("drawing-history");
+        historyDisplay.innerHTML = "";
+        drawingHistory.forEach((attempt, index) => {
+            const image = createImageFromStrokes(attempt.image);
+            const probability = attempt.prediction.probability;
+            const status = probability > 0.5 ? "Sandt" : "Falsk";
+
+            historyDisplay.innerHTML += `<div>Attempt ${index + 1}: <img src="${image}" /><br>Probability: ${probability}<br>Status: ${status}</div>`;
+        });
 
 
         // Log the label prediction to the console
         console.log(labelPrediction);
     });
 };
+
+
+// Function to create image from strokes
+function createImageFromStrokes(strokes) {
+    // Create a new canvas element
+    const canvas = document.createElement('canvas');
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+
+    const ctx = canvas.getContext('2d');
+
+    // Draw each stroke on the canvas
+    strokes.forEach(stroke => {
+        for (let i = 0; i < stroke[0].length; i++) {
+            ctx.beginPath();
+            ctx.moveTo(stroke[0][i], stroke[1][i]);
+            ctx.lineTo(stroke[0][i + 1], stroke[1][i + 1]);
+            ctx.stroke();
+        }
+    });
+
+    // Convert the canvas content to a data URL representing the image
+    const imageDataURL = canvas.toDataURL();
+
+    return imageDataURL;
+}
+
 
 const clearCanvas = () => {
     clear();
