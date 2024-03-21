@@ -59,7 +59,7 @@ const loadModel = async () => {
 };
 
 const preprocess = async (cb) => {
-    const {min, max} = getBoundingBox();
+    const { min, max } = getBoundingBox();
 
     // Resize to 28x28 pixel & crop
     const imageBlob = await fetch("/transform", {
@@ -210,22 +210,45 @@ const repositionImage = () => {
 
 const predict = async () => {
     if (!imageStrokes.length) return;
-    if (!LABELS.length) throw new Error("No labels found!");
+
+    // Label to predict
+    const label = "bicycle";
+
+    // Find the index of the label in the LABELS array
+    const labelIndex = LABELS.indexOf(label);
+
+    // Throw an error if the label is not found
+    if (labelIndex === -1) throw new Error(`Label '${label}' not found!`);
 
     preprocess((tensor) => {
         const predictions = model.predict(tensor).dataSync();
 
-        const top3 = Array.from(predictions)
-            .map((p, i) => ({
-                probability: p,
-                className: LABELS[i],
-                index: i,
-            }))
-            .sort((a, b) => b.probability - a.probability)
-            .slice(0, 3);
+        // Retrieve the probability of the label
+        const labelProbability = predictions[labelIndex] || 0;
 
-        drawPie(top3);
-        console.log(top3)
+        // Create an object with the label and its probability
+        const labelPrediction = {
+            probability: labelProbability,
+            className: label,
+            index: labelIndex,
+        };
+
+        // Display the prediction for the label on the user interface
+        const predictionDisplay = document.getElementById("prediction-display");
+        predictionDisplay.innerHTML = `Probability: ${labelPrediction.probability}`;
+
+
+        if (labelPrediction.probability > 0.5) {
+            const trueOrFalse = document.getElementById("true-or-false");
+            trueOrFalse.innerHTML = "Sandt";
+        } else {
+            const trueOrFalse = document.getElementById("true-or-false");
+            trueOrFalse.innerHTML = "Falsk";
+        }
+
+
+        // Log the label prediction to the console
+        console.log(labelPrediction);
     });
 };
 
