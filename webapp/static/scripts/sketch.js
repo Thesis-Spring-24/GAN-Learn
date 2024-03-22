@@ -4,9 +4,13 @@ const STROKE_WEIGHT = 3;
 const CROP_PADDING = (REPOS_PADDING = 2);
 
 let model;
-let pieChart;
 let clicked = false;
 let mousePosition = []
+
+// ----------------------------------------------------------------
+const labelToPredict = "bicycle"; // Label to predict
+const probabilityThreshold = 0.5; // Threshold of when to consider a prediction as true
+// ----------------------------------------------------------------
 
 // Coordinates of the current drawn stroke [[x1, x2, ..., xn], [y1, y2, ..., yn]]
 let strokePixels = [[], []];
@@ -162,64 +166,71 @@ const repositionImage = () => {
 const predict = async () => {
     if (!imageStrokes.length) return;
 
-    // Label to predict
-    const label = "bicycle";
-
     // Find the index of the label in the LABELS array
-    const labelIndex = LABELS.indexOf(label);
+    const labelIndex = LABELS.indexOf(labelToPredict);
 
     // Throw an error if the label is not found
-    if (labelIndex === -1) throw new Error(`Label '${label}' not found!`);
+    if (labelIndex === -1) throw new Error(`Label '${labelToPredict}' not found!`);
 
     preprocess((tensor) => {
         const predictions = model.predict(tensor).dataSync();
 
         // Retrieve the probability of the label
-        const labelProbability = predictions[labelIndex] || 0;
+        let labelProbability = predictions[labelIndex] || 0;
+
+        // Round the probability to 5 decimal places
+        labelProbability = parseFloat(labelProbability.toFixed(5));
 
         // Create an object with the label and its probability
         const labelPrediction = {
             probability: labelProbability,
-            className: label,
+            className: labelToPredict,
             index: labelIndex,
         };
 
         // Display the prediction for the label on the user interface
-        const predictionDisplay = document.getElementById("prediction-display");
-        predictionDisplay.innerHTML = `Probability: ${labelPrediction.probability}`;
+        displayPrediction(labelPrediction);
 
-
-        const trueOrFalse = document.getElementById("true-or-false");
-
-        if (labelPrediction.probability > 0.5) {
-            trueOrFalse.innerHTML = "Sandt";
-        } else {
-            trueOrFalse.innerHTML = "Falsk";
-        }
-
-        // Array to store history of drawing attempts
-        let drawingHistory = [];
-
-        // Save the drawing strokes and prediction details to the history
-        drawingHistory.push({ image: imageStrokes, prediction: labelPrediction });
-
-        // Display the drawing history
-        const historyDisplay = document.getElementById("drawing-history");
-        historyDisplay.innerHTML = "";
-        drawingHistory.forEach((attempt, index) => {
-            const image = createImageFromStrokes(attempt.image);
-            const probability = attempt.prediction.probability;
-            const status = probability > 0.5 ? "Sandt" : "Falsk";
-
-            historyDisplay.innerHTML += `<div>Attempt ${index + 1}: <img src="${image}" /><br>Probability: ${probability}<br>Status: ${status}</div>`;
-        });
-
+        // Display the history of drawing attempts
+        attemptsHistory(labelPrediction);
 
         // Log the label prediction to the console
         console.log(labelPrediction);
     });
 };
 
+
+function attemptsHistory(labelPrediction) {
+
+    // Array to store history of drawing attempts
+    let drawingHistory = [];
+
+    // Save the drawing strokes and prediction details to the history
+    drawingHistory.push({ image: imageStrokes, prediction: labelPrediction });
+
+    // Display the drawing history
+    const historyDisplay = document.getElementById("drawing-history");
+    historyDisplay.innerHTML = "";
+    drawingHistory.forEach((attempt, index) => {
+        const image = createImageFromStrokes(attempt.image);
+        const probability = attempt.prediction.probability;
+        const status = probability > probabilityThreshold ? "Sandt" : "Falsk";
+
+        historyDisplay.innerHTML += `<div>Attempt ${index + 1}: <img src="${image}" /><br>Probability: ${probability}<br>Status: ${status}</div>`;
+    });
+}
+
+function displayPrediction(labelPrediction) {
+    const predictionDisplay = document.getElementById("prediction-display");
+    predictionDisplay.innerHTML = `Probability: ${labelPrediction.probability}`;
+    const trueOrFalse = document.getElementById("true-or-false");
+
+    if (labelPrediction.probability > probabilityThreshold) {
+        trueOrFalse.innerHTML = `Sandt! Transportmidlet er: ${labelToPredict}`;
+    } else {
+        trueOrFalse.innerHTML = "Falsk";
+    }
+}
 
 // Function to create image from strokes
 function createImageFromStrokes(strokes) {
@@ -249,7 +260,6 @@ function createImageFromStrokes(strokes) {
 
 const clearCanvas = () => {
     clear();
-    if (pieChart) pieChart.destroy();
     background("#FFFFFF");
     imageStrokes = [];
     strokePixels = [[], []];
