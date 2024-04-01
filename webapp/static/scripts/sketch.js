@@ -200,26 +200,26 @@ const predict = async () => {
     });
 };
 
-
+// Display the history of drawing attempts
 function attemptsHistory(labelPrediction) {
 
-    // Array to store history of drawing attempts
-    let drawingHistory = [];
+    // Get the canvas element
+    const canvas = document.getElementById("defaultCanvas0");
 
-    // Save the drawing strokes and prediction details to the history
-    drawingHistory.push({ image: imageStrokes, prediction: labelPrediction });
-
-    // Display the drawing history
+    // Get the drawing history container element
     const historyDisplay = document.getElementById("drawing-history");
-    historyDisplay.innerHTML = "";
-    drawingHistory.forEach((attempt, index) => {
-        const image = createImageFromStrokes(attempt.image);
-        const probability = attempt.prediction.probability;
-        const status = probability > probabilityThreshold ? "Sandt" : "Falsk";
 
-        historyDisplay.innerHTML += `<div>Attempt ${index + 1}: <img src="${image}" /><br>Probability: ${probability}<br>Status: ${status}</div>`;
-    });
+    // Create a new image element
+    const image = new Image();
+
+    // Set the source of the image to the data URL representing the content of the canvas
+    image.src = canvas.toDataURL();
+
+    // Append the image element to the drawing history container
+    historyDisplay.innerHTML = `<div>Probability: ${labelPrediction.probability}</div>`;
+    historyDisplay.appendChild(image);
 }
+
 
 function displayPrediction(labelPrediction) {
     const predictionDisplay = document.getElementById("prediction-display");
@@ -231,31 +231,6 @@ function displayPrediction(labelPrediction) {
     } else {
         trueOrFalse.innerHTML = "Falsk";
     }
-}
-
-// Function to create image from strokes
-function createImageFromStrokes(strokes) {
-    // Create a new canvas element
-    const canvas = document.createElement('canvas');
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
-
-    const ctx = canvas.getContext('2d');
-
-    // Draw each stroke on the canvas
-    strokes.forEach(stroke => {
-        for (let i = 0; i < stroke[0].length; i++) {
-            ctx.beginPath();
-            ctx.moveTo(stroke[0][i], stroke[1][i]);
-            ctx.lineTo(stroke[0][i + 1], stroke[1][i + 1]);
-            ctx.stroke();
-        }
-    });
-
-    // Convert the canvas content to a data URL representing the image
-    const imageDataURL = canvas.toDataURL();
-
-    return imageDataURL;
 }
 
 
