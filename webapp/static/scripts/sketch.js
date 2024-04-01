@@ -200,24 +200,39 @@ const predict = async () => {
     });
 };
 
+// Store the drawing attempts
+let drawingAttempts = [];
+
 // Display the history of drawing attempts
 function attemptsHistory(labelPrediction) {
-
     // Get the canvas element
     const canvas = document.getElementById("defaultCanvas0");
+
+    // Store the current drawing attempt
+    drawingAttempts.push({
+        image: canvas.toDataURL(),
+        probability: labelPrediction.probability
+    });
 
     // Get the drawing history container element
     const historyDisplay = document.getElementById("drawing-history");
 
-    // Create a new image element
-    const image = new Image();
+    // Clear the drawing history container
+    historyDisplay.innerHTML = "";
 
-    // Set the source of the image to the data URL representing the content of the canvas
-    image.src = canvas.toDataURL();
+    // Iterate through each drawing attempt and display it
+    drawingAttempts.forEach((attempt, index) => {
+        const image = new Image();
+        image.src = attempt.image;
 
-    // Append the image element to the drawing history container
-    historyDisplay.innerHTML = `<div>Probability: ${labelPrediction.probability}</div>`;
-    historyDisplay.appendChild(image);
+        // Create a div to display probability
+        const div = document.createElement("div");
+        div.textContent = `Attempt ${index + 1}: Probability: ${attempt.probability}`;
+
+        // Append the image and div to the drawing history container
+        historyDisplay.appendChild(div);
+        historyDisplay.appendChild(image);
+    });
 }
 
 
