@@ -8,8 +8,8 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "helicopter"; // Label to predict
-const probabilityThreshold = 0.5; // Threshold of when to consider a prediction as true
+const labelToPredict = "airplane"; // Label to predict
+const probabilityThreshold = 0.75; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
 // Coordinates of the current drawn stroke [[x1, x2, ..., xn], [y1, y2, ..., yn]]
@@ -32,6 +32,7 @@ function setup() {
 function mouseDown() {
     clicked = true;
     mousePosition = [mouseX, mouseY];
+    startTimer();
 }
 
 function mouseMoved() {
@@ -200,6 +201,10 @@ const predict = async () => {
         // Clear the canvas
         clearCanvas();
 
+        // Stop the timer if the probability is greater than the threshold
+        if (labelPrediction.probability > probabilityThreshold) {
+            stopTimer();
+        }
     });
 };
 
@@ -285,4 +290,3 @@ window.onload = () => {
     $submit.addEventListener("click", () => predict($canvas));
     $clear.addEventListener("click", clearCanvas);
 };
-
