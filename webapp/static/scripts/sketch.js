@@ -224,27 +224,32 @@ function attemptsHistory(labelPrediction) {
     drawingAttempts.forEach((attempt, index) => {
         const image = new Image();
         image.src = attempt.image;
+        image.width = 250; // Set the width of the image
+        image.height = 250; // Set the height of the image
 
         // Create a div to display probability
-        const div = document.createElement("div");
-        div.textContent = `Attempt ${index + 1}: Probability: ${attempt.probability}`;
+        const attemptDiv = document.createElement("div");
+        attemptDiv.textContent = `Forsøg ${index + 1}: Sandsynlighed: ${attempt.probability}`;
+        attemptDiv.className = "attempt";
+        attemptDiv.appendChild(image);
+
 
         // Append the image and div to the drawing history container
-        historyDisplay.appendChild(div);
-        historyDisplay.appendChild(image);
+        historyDisplay.appendChild(attemptDiv);
+        // historyDisplay.appendChild(image);
     });
 }
 
 
 function displayPrediction(labelPrediction) {
     const predictionDisplay = document.getElementById("prediction-display");
-    predictionDisplay.innerHTML = `Probability: ${labelPrediction.probability}`;
+    predictionDisplay.innerHTML = `Sandsynlighed: ${labelPrediction.probability}`;
     const trueOrFalse = document.getElementById("true-or-false");
 
     if (labelPrediction.probability > probabilityThreshold) {
-        trueOrFalse.innerHTML = `Sandt! Transportmidlet er: ${labelToPredict}`;
+        trueOrFalse.innerHTML = `Vurdering: Sandt! Transportmidlet er: ${labelToPredict}`;
     } else {
-        trueOrFalse.innerHTML = "Falsk";
+        trueOrFalse.innerHTML = `Vurdering: Falsk`;
     }
 }
 

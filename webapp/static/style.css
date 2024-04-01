@@ -17,10 +17,25 @@ button {
   font-size: 16px;
 }
 
+#predict, #clear {
+  width: 31em;
+}
+
 .buttons-container {
   margin-top: 15px;
 }
 
 #defaultCanvas0 {
   border: 1px solid black;
+}
+
+.attempt {
+  display: flex;
+  border: 1px solid black;
+  margin: 1em;
+}
+
+#drawing-history {
+  display: flex;
+  flex-direction: row;
 }
