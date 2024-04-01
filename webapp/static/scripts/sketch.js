@@ -8,7 +8,7 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "bicycle"; // Label to predict
+const labelToPredict = "helicopter"; // Label to predict
 const probabilityThreshold = 0.5; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
@@ -60,6 +60,9 @@ const loadModel = async () => {
     model.predict(tf.zeros([1, 28, 28, 1])); // warmup
 
     console.log(`Model loaded! (${LABELS.length} classes)`);
+
+    // Log the label prediction to the console
+    console.log(`Label to predict: ${labelToPredict}`);
 };
 
 const preprocess = async (cb) => {
@@ -194,8 +197,6 @@ const predict = async () => {
         // Display the history of drawing attempts
         attemptsHistory(labelPrediction);
 
-        // Log the label prediction to the console
-        console.log(labelPrediction);
     });
 };
 
