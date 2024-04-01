@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/larswaechter/quickdraw-cnn" target="_blank">GitHub</a>
+            <!-- <a class="nav-link" href="https://github.com/larswaechter/quickdraw-cnn" target="_blank">GitHub</a> -->
           </li>
         </ul>
       </div>
@@ -28,6 +28,10 @@
 
     <div class="content py-3">
       <h3>Overordnede kategori: Transportmidler</h3>
+      <div>
+        <h2 id="prediction-display">Sandsynlighed: N/A</h2>
+        <h2 id="true-or-false">Vurdering: N/A</h2>
+      </div>
 
       <div class="row">
         <div class="col-12 col-md-auto">
@@ -39,16 +43,14 @@
             <button class="btn btn-light btn-block" id="clear">Clear</button>
           </div>
           <div class="drawing-history-container">
-            <div id="drawing-history"></div>
+            <div id="drawing-history">
+            </div>
           </div>
         </div>
-        <div class="col-12 col-md-auto">
-          <div>
-            <h2 id="prediction-display">Predicted: None</h2>
-            <h2 id="true-or-false">Vurdering: None</h2>
-          </div>
+        <!-- <div class="col-12 col-md-auto">
+
           <canvas id="predictions" role="img" aria-label="Top 3 predictions" height="500" width="500"></canvas>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
