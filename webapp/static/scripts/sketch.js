@@ -197,6 +197,9 @@ const predict = async () => {
         // Display the history of drawing attempts
         attemptsHistory(labelPrediction);
 
+        // Clear the canvas
+        clearCanvas();
+
     });
 };
 
@@ -233,11 +236,20 @@ function attemptsHistory(labelPrediction) {
         attemptDiv.className = "attempt";
         attemptDiv.appendChild(image);
 
-
         // Append the image and div to the drawing history container
         historyDisplay.appendChild(attemptDiv);
-        // historyDisplay.appendChild(image);
     });
+
+    discriminatorImageDiv = document.querySelector(".discriminator-image")
+
+    discriminatorImageDiv.innerHTML = "";
+
+    // Append the latest image attempt to the discriminator image container
+    const latestImage = new Image();
+    latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
+    latestImage.width = 350;
+    latestImage.height = 350;
+    discriminatorImageDiv.appendChild(latestImage);
 }
 
 
@@ -273,3 +285,4 @@ window.onload = () => {
     $submit.addEventListener("click", () => predict($canvas));
     $clear.addEventListener("click", clearCanvas);
 };
+
