@@ -8,8 +8,8 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "airplane"; // Label to predict
-const probabilityThreshold = 0.75; // Threshold of when to consider a prediction as true
+const labelToPredict = "helicopter"; // Label to predict
+const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
 // Coordinates of the current drawn stroke [[x1, x2, ..., xn], [y1, y2, ..., yn]]
@@ -27,12 +27,25 @@ function setup() {
     strokeWeight(STROKE_WEIGHT);
     stroke("black");
     background("#FFFFFF");
+    drawCanvasTitle();
+}
+
+function drawCanvasTitle() {
+    fill("black");
+    textSize(60);
+    textAlign(CENTER, CENTER);
+    text("Tegn her!", width / 2, height / 2);
 }
 
 function mouseDown() {
     clicked = true;
     mousePosition = [mouseX, mouseY];
     startTimer();
+    clearCanvasTitle();
+}
+
+function clearCanvasTitle() {
+    background("#FFFFFF"); // Clear canvas background
 }
 
 function mouseMoved() {

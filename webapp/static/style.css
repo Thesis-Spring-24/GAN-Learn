@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #F8F6E3;
 }
 
 a {
@@ -22,12 +23,14 @@ button {
 
 #defaultCanvas0 {
   border: 1px solid black;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
 }
 
 .attempt {
   display: flex;
   border: 1px solid black;
   margin: 1em;
+  background-color: white;
 }
 
 #drawing-history {
@@ -38,8 +41,12 @@ button {
 
 #discriminator {
   border: 1px solid black;
-  width: 30em;
-  height: 30em;
+  min-width: 350px;
+  width: fit-content;
+  min-height: 350px;
+  height: fit-content;
+  background-color: white;
+
 }
 
 .generator-and-discriminator-container{
@@ -78,4 +85,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.role-header {
+  display: flex;
+  justify-content: center;
 }

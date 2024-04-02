@@ -15,7 +15,7 @@ Switch to the `cnn` directory, create a new virtual environment and install the 
 ```
 python -m venv ./venv
 source ./venv/bin/activate
-source /venv/Scripts/activate
+source venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
