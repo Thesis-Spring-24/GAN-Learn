@@ -81,6 +81,10 @@ button {
   font-size: 6em;
 }
 
+.external-link{
+  font-size: 30px;
+}
+
 #startTimer{
   width: 20em;
 }
