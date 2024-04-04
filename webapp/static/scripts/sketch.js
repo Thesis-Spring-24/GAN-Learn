@@ -27,25 +27,12 @@ function setup() {
     strokeWeight(STROKE_WEIGHT);
     stroke("black");
     background("#FFFFFF");
-    drawCanvasTitle();
-}
-
-function drawCanvasTitle() {
-    fill("black");
-    textSize(60);
-    textAlign(CENTER, CENTER);
-    text("Tegn her!", width / 2, height / 2);
 }
 
 function mouseDown() {
     clicked = true;
     mousePosition = [mouseX, mouseY];
     startTimer();
-    clearCanvasTitle();
-}
-
-function clearCanvasTitle() {
-    background("#FFFFFF"); // Clear canvas background
 }
 
 function mouseMoved() {
@@ -217,9 +204,29 @@ const predict = async () => {
         // Stop the timer if the probability is greater than the threshold
         if (labelPrediction.probability > probabilityThreshold) {
             stopTimer();
+            showModal();
+
         }
     });
 };
+
+function showModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Close the modal when the close button is clicked
+    const closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    }
+}
 
 // Store the drawing attempts
 let drawingAttempts = [];
