@@ -70,7 +70,7 @@ const preprocess = async (cb) => {
     const { min, max } = getBoundingBox();
 
     // Resize to 28x28 pixel & crop
-    const imageBlob = await fetch("/transform", {
+    const imageBlob = await fetch("http://127.0.0.1:8000/transform", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

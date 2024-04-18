@@ -6,6 +6,8 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import FileResponse
 from starlette.background import BackgroundTask
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 class ImageData(BaseModel):
@@ -15,9 +17,22 @@ class ImageData(BaseModel):
 
 app = FastAPI()
 
+# Allow all origins and headers for CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.options("/transform")
+async def options_transform():
+    return {"allow": "POST"}
 
 @app.post("/transform")
 async def transform(image_data: ImageData):
+    print("TEST")
     filepath = "./images/" + str(uuid4()) + ".png"
     img = transform_img(image_data.strokes, image_data.box)
     img.save(filepath)
