@@ -1,0 +1,40 @@
+:root {
+  --background: white;
+  --elements-background: rgb(218, 218, 218);
+
+}
+
+.discriminator-lower-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--background);
+  border : 1px solid black;
+
+  height: 50em;
+  margin: 5em;
+}
+
+.lower-left-container{
+  height: 100%;
+  width: 20%;  
+}
+
+.lower-middle-container{
+  height: 100%;
+  width: 20%;  
+}
+
+.lower-right-container{
+  height: 100%;
+  width: 20%;  
+}
+
+.discriminator-probability-container{
+  background-color: var(--elements-background);
+  border : 1px solid black;
+  border-radius: 1em;
+  height: 40em;
+  
+
+}
