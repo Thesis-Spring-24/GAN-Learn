@@ -17,6 +17,18 @@ class ImageData(BaseModel):
 
 app = FastAPI()
 
+@app.get("/generator")
+async def generator():
+    return FileResponse("./static/pages/generator.html")
+
+@app.get("/discriminator")
+async def discriminator():
+    return FileResponse("./static/pages/discriminator.html")
+
+@app.get("/overview")
+async def overview():
+    return FileResponse("./static/pages/overview.html")
+
 # Allow all origins and headers for CORS
 app.add_middleware(
     CORSMiddleware,
@@ -32,7 +44,6 @@ async def options_transform():
 
 @app.post("/transform")
 async def transform(image_data: ImageData):
-    print("TEST")
     filepath = "./images/" + str(uuid4()) + ".png"
     img = transform_img(image_data.strokes, image_data.box)
     img.save(filepath)
@@ -40,7 +51,7 @@ async def transform(image_data: ImageData):
     return FileResponse(filepath, background=BackgroundTask(remove, path=filepath))
 
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="static/pages", html=True), name="static")
 
 
 def transform_img(strokes, box):
