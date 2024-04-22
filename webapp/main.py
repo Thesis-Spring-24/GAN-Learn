@@ -19,15 +19,15 @@ app = FastAPI()
 
 @app.get("/generator")
 async def generator():
-    return FileResponse("./static/pages/generator.html")
+    return FileResponse("./static/generator.html")
 
 @app.get("/discriminator")
 async def discriminator():
-    return FileResponse("./static/pages/discriminator.html")
+    return FileResponse("./static/discriminator.html")
 
 @app.get("/overview")
 async def overview():
-    return FileResponse("./static/pages/overview.html")
+    return FileResponse("./static/overview.html")
 
 # Allow all origins and headers for CORS
 app.add_middleware(
@@ -51,7 +51,7 @@ async def transform(image_data: ImageData):
     return FileResponse(filepath, background=BackgroundTask(remove, path=filepath))
 
 
-app.mount("/", StaticFiles(directory="static/pages", html=True), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 
 def transform_img(strokes, box):

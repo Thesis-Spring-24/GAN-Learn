@@ -27,6 +27,7 @@ function setup() {
     strokeWeight(STROKE_WEIGHT);
     stroke("black");
     background("#FFFFFF");
+    console.log("Canvas setup!");
 }
 
 function mouseDown() {
@@ -304,8 +305,10 @@ window.onload = () => {
     const $canvas = document.getElementById("defaultCanvas0");
 
     loadModel();
-    $canvas.addEventListener("mousedown", (e) => mouseDown(e));
-    $canvas.addEventListener("mousemove", (e) => mouseMoved(e));
+    if ($canvas != null) {
+        $canvas.addEventListener("mousedown", (e) => mouseDown(e));
+        $canvas.addEventListener("mousemove", (e) => mouseMoved(e));
+    }
 
     $submit.addEventListener("click", () => predict($canvas));
     $clear.addEventListener("click", clearCanvas);
