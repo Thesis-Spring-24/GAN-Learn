@@ -7,6 +7,9 @@
   <title>Discriminator aktivitet</title>
   <link rel="stylesheet" href="discriminator.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="/scripts/discriminator/discriminator.js" defer></script>
+  <script src="/scripts/discriminator/textContent.js" defer></script>
+  <script src="/scripts/discriminator/images.js" defer></script>
 
 
 </head>
@@ -34,7 +37,9 @@
       <div class="lower-middle-container">
         2
         <div class="image-container">
-          <img src="../images/discriminator_test_image.png" alt="" width="150px">
+          <img src="" width="150px" class="current-discriminator-image">
+
+
         </div>
       </div>
 
@@ -42,10 +47,14 @@
         3
         <div class="discriminator-probability-container">
           <h3>Sandsynlighed</h3>
-          <button class="zero-button">0</button>
-          <button class="one-button">1</button>
-
-
+          <button class="zero-button" onclick="handleZeroButton()">0</button>
+          <button class="one-button" onclick="handleOneButton()">1</button>
+          <p class="chosen-probability">Valgt: </p>
+          <button class="check-answer-button" onclick="handleAnswerButton()">Tjek svar</button>
+          <div>
+            <p class="feedback-on-answer"></p>
+          </div>
+          <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
         </div>
 
       </div>
