@@ -2,15 +2,55 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="overview.css">
+
   <title>My Web Page</title>
 </head>
 
 <body>
-  <h1>Overview</h1>
+  <h1>GAN</h1>
+  <p class="page-text">Her kan du udforske forskellige dele af et netværk, der kan generere billeder</p>
 
-  <p>This is a sample paragraph.</p>
+  <div class="overview-container">
+
+    <div class="activity-button-container">
+      <div class="activity-button">
+        <button class="activity-btn" id="gen-btn">Generator Aktivitet</button>
+      </div>
+      <div class="activity-button">
+        <button class="activity-btn" id="dis-btn">Diskriminator Aktivitet</button>
+      </div>
+    </div>
+
+    <div class="process-activity-container">
+
+      <div class="training-img-container">
+        <button class="training-btn">
+
+        </button>
+
+        <button class="training-btn">
+
+        </button>
+
+        <button class="training-btn">
+
+        </button>
+      </div>
+      <div class="line"></div>
+
+      <div class="process-container">
+
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
+
+<script src="/scripts/overview.js"></script>
 
 </html>

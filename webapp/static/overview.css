@@ -1,0 +1,98 @@
+:root {
+    --borderRadius: 2em;
+    --networkHeight: 7em;
+    --networkWidth: 11em;
+    --genBorderColor: rgb(240, 159, 54);
+    --disBorderColor: rgb(81, 188, 250);
+    --imgBorderColor: #C11B7F;
+    --borderWidth: 0.3em;
+    --boxShadow: 0.2em 0.2em grey;
+}
+
+h1 {
+    text-align: center;
+}
+
+.page-text {
+    text-align: center;
+}
+
+.overview-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.activity-button-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5em;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+}
+
+.activity-button {
+    background-color: white;
+    width: 20em;
+    height: 18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+}
+
+.activity-btn {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+}
+
+#gen-btn {
+    border-color: var(--genBorderColor);
+    border-width: var(--borderWidth);
+    box-shadow: var(--boxShadow);
+}
+
+#dis-btn {
+    border-color: var(--disBorderColor);
+    border-width: var(--borderWidth);
+    box-shadow: var(--boxShadow);
+}
+
+.process-activity-container {
+    background-color: white;
+    height: 42em;
+    width: 75em;
+    border-radius: var(--borderRadius);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.training-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 40em;
+    width: 15em;
+}
+
+.training-btn {
+    height: 6em;
+    width: 10em;
+    border-color: var(--imgBorderColor);
+    border-width: var(--borderWidth);
+}
+
+.line {
+    height: 40em;
+    width: 0.2em;
+    background-color: #eceaea;
+}
+
+.process-container {
+    /* background-color: blue; */
+    height: 40em;
+    width: 58em;
+}

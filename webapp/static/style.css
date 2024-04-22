@@ -1,6 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #E8EAED;
+  background-color: #eceaea;
 }
 
 a {
@@ -13,7 +13,8 @@ button {
   font-size: 16px;
 }
 
-#predict, #clear {
+#predict,
+#clear {
   width: 31em;
 }
 
@@ -36,7 +37,7 @@ button {
 #drawing-history {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;  
+  overflow-x: auto;
 }
 
 #discriminator {
@@ -49,47 +50,47 @@ button {
 
 }
 
-.generator-and-discriminator-container{
+.generator-and-discriminator-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.wrapper-div{
+.wrapper-div {
   display: flex;
   flex-direction: column;
 }
 
-.upper-container{
+.upper-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.prediction-container{
+.prediction-container {
   display: flex;
   flex-direction: column;
   width: 30em;
 }
 
-.header{
+.header {
   text-align: center;
   margin-bottom: 2em;
 }
 
-.page-header{
+.page-header {
   font-size: 6em;
 }
 
-.external-link{
+.external-link {
   font-size: 30px;
 }
 
-#startTimer{
+#startTimer {
   width: 20em;
 }
 
-.timer-container{
+.timer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -138,4 +139,3 @@ button {
   text-decoration: none;
   cursor: pointer;
 }
-
