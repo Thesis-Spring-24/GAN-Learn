@@ -2,6 +2,8 @@
     --borderRadius: 2em;
     --networkHeight: 7em;
     --networkWidth: 11em;
+    --imgHeight: 6em;
+    --imgWidth: 10em;
     --genBorderColor: rgb(240, 159, 54);
     --disBorderColor: rgb(81, 188, 250);
     --imgBorderColor: #C11B7F;
@@ -60,7 +62,7 @@ h1 {
 
 .process-activity-container {
     background-color: white;
-    height: 42em;
+    height: 52em;
     width: 75em;
     border-radius: var(--borderRadius);
     display: flex;
@@ -72,27 +74,99 @@ h1 {
 .training-img-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    row-gap: 2em;
     align-items: center;
     height: 40em;
     width: 15em;
 }
 
-.training-btn {
-    height: 6em;
-    width: 10em;
+.training-img-btn {
+    height: var(--imgHeight);
+    width: var(--imgWidth);
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
 }
 
+#flower-img {
+    height: 2em;
+}
+
 .line {
-    height: 40em;
+    height: 48em;
     width: 0.2em;
     background-color: #eceaea;
 }
 
 .process-container {
     /* background-color: blue; */
-    height: 40em;
+    height: 52em;
     width: 58em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+}
+
+.model-overview {
+    width: 55em;
+    height: 20em;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.left-side {
+    height: 20em;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.gen-box {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+    border-color: var(--genBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+}
+
+.img-box {
+    height: var(--imgHeight);
+    width: var(--imgWidth);
+    border-color: var(--imgBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+}
+
+.right-side {
+    height: 16em;
+    align-content: center;
+}
+
+.dis-box {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+    border-color: var(--disBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+}
+
+.training-overview {
+    width: 55em;
+    height: 12em;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+}
+
+.train-btn {
+    height: 3em;
+    width: 6em;
+}
+
+.generating-overview {
+    width: 55em;
+    height: 12em;
+    background-color: grey;
 }
