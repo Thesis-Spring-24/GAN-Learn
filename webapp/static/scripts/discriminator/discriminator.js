@@ -5,6 +5,7 @@ let imageNumber = null;
 let answerSubmitted = false;
 
 const computerGenerated = 0;
+const thresholdLevelTwo = 4;
 
 function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
@@ -55,6 +56,10 @@ function handleNextButton() {
 
   // Update LocalStorage with the new imageNumber
   localStorage.setItem("imageNumber", imageNumber);
+
+  if (imageNumber === thresholdLevelTwo) {
+    document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
+  }
 }
 
 function updateFeedbackOnAnswer() {
@@ -70,7 +75,6 @@ function updateProbability() {
 function resetLocalStorage() {
   localStorage.clear();
   location.reload();
-
 }
 
 window.onload = function () {
@@ -86,9 +90,17 @@ window.onload = function () {
     imageMap = JSON.parse(storedImageMap);
   }
 
+  if (imageNumber === thresholdLevelTwo) {
+    document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
+  } else {
+    document.querySelector(".discriminator-lower-container").innerHTML = levelOneContent;
+  }
+
 
   let imageElement = document.querySelector(".current-discriminator-image");
+  if (imageElement !== null) {
+    imageElement.src = imageMap["image" + imageNumber].path; // Set image path
+    correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
+  }
 
-  imageElement.src = imageMap["image" + imageNumber].path; // Set image path
-  correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
 }
