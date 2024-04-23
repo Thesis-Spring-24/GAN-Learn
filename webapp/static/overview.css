@@ -182,3 +182,19 @@ h1 {
     width: 12em;
     height: 12em;
 }
+
+.displayLevelImg {
+    width: 10em;
+    height: 10em;
+    background-color: red;
+}
+
+#flowerLeve1 {
+    width: 2em;
+}
+
+.displayGeneratedImg {
+    width: 10em;
+    height: 10em;
+    background-color: red;
+}
