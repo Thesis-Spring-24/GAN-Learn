@@ -17,3 +17,6 @@ var flowerLevel1Generated = [fl1g1, fl1g2];
 var imageMap = new Map();
 
 imageMap.set(flowerLevel1, [flowerLevel1Generated]);
+
+//get flowerLevel1 image
+

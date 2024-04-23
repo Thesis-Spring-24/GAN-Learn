@@ -43,6 +43,8 @@ function trainModel() {
     if (currentDataset == null) {
         alert("Træk et træningsbilleder over for at træne modellen");
     }
+    else {
 
+    }
 
 }
