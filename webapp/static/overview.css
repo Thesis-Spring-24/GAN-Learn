@@ -83,8 +83,13 @@ h1 {
 .training-img-btn {
     height: var(--imgHeight);
     width: var(--imgWidth);
+    border: solid;
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
+}
+
+.training-img-btn:hover {
+    cursor: pointer;
 }
 
 #flower-img {
@@ -131,13 +136,14 @@ h1 {
     pointer-events: none;
 }
 
-.img-box {
+/* .img-box {
     height: var(--imgHeight);
     width: var(--imgWidth);
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
-}
+
+} */
 
 .right-side {
     height: 16em;
@@ -169,4 +175,10 @@ h1 {
     width: 55em;
     height: 12em;
     background-color: grey;
+}
+
+.div1 {
+    background-color: red;
+    width: 12em;
+    height: 12em;
 }

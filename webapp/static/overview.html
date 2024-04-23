@@ -14,7 +14,6 @@
   <p class="page-text">Her kan du udforske forskellige dele af et netværk, der kan generere billeder</p>
 
   <div class="overview-container">
-
     <div class="activity-button-container">
       <div class="activity-button">
         <button class="activity-btn" id="gen-btn">Generator Aktivitet</button>
@@ -27,9 +26,13 @@
     <div class="process-activity-container">
 
       <div class="training-img-container">
-        <button class="training-img-btn" id="flower-btn">
-          <img src="/assets/flowerBtn.png" alt="Blomster">
-        </button>
+
+
+        <div class="training-img-btn" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+          onclick='window.location.href = "/flowers"'>
+          <img id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
+            ondragstart="dragStart(event)" width="120" height="80">
+        </div>
 
         <button class="training-img-btn">
         </button>
@@ -41,10 +44,12 @@
 
       <div class="process-container">
         <div class="model-overview">
+
           <div class="left-side">
             <button class="gen-box"> Generator </button>
-            <button class="img-box">Træningsbilleder</button>
+            <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
           </div>
+
           <div class="right-side">
             <button class="dis-box">Diskriminator</button>
           </div>
@@ -62,11 +67,11 @@
 
         </div>
 
+
+
       </div>
 
     </div>
-
-  </div>
 
 </body>
 
