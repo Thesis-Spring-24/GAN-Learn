@@ -1,63 +1,41 @@
 let chosenProbability = null;
 let correctAnswer = null;
 let feedbackOnAnswer = null;
-
-const computerGenerated = 0;
-const trainingPicture = 1;
 let imageNumber = 1;
 let answerSubmitted = false;
 
-function handleZeroButton() {
-  if (answerSubmitted) return;
-  chosenProbability = computerGenerated;
-  handleProbabilityChange();
-}
+const computerGenerated = 0;
+const trainingPicture = 1;
 
-function handleOneButton() {
+function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
-  chosenProbability = trainingPicture;
-  handleProbabilityChange();
-}
-
-function handleProbabilityChange() {
-  if (chosenProbability === null) return;
+  chosenProbability = probability;
   updateProbability();
 }
 
 function handleAnswerButton() {
-  if (chosenProbability === null || correctAnswer === null) return;
-
-  if (chosenProbability === correctAnswer) {
-    setCorrectAnswer();
-  } else {
-    setWrongAnswer();
-  }
-  updateFeedbackOnAnswer();
-  answerSubmitted = true;
-}
-
-function setCorrectAnswer() {
-  if (correctAnswer === computerGenerated) {
-    feedbackOnAnswer = generatorCorrectText;
-  } else {
-    feedbackOnAnswer = trainingCorrectText;
+  if (chosenProbability !== null && correctAnswer !== null) {
+    feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
+    updateFeedbackOnAnswer();
+    answerSubmitted = true;
   }
 }
 
-function setWrongAnswer() {
-  if (correctAnswer === computerGenerated) {
-    feedbackOnAnswer = generatorWrongText;
-  } else {
-    feedbackOnAnswer = trainingWrongText;
-  }
+/**
+ * Returns the feedback text based on the correctness of the answer.
+ *
+ * @param {boolean} isCorrect - Indicates whether the answer is correct or not.
+ * @returns {string} - The feedback text based on the correctness of the answer.
+ */
+function getFeedbackText(isCorrect) {
+  return isCorrect ? (correctAnswer === computerGenerated ? generatorCorrectText : trainingCorrectText) :
+    (correctAnswer === computerGenerated ? generatorWrongText : trainingWrongText);
 }
 
 function handleNextButton() {
-  if (imageNumber >= Object.keys(imageMap).length) return;
-  if (!answerSubmitted) return;
+  if (imageNumber >= Object.keys(imageMap).length || !answerSubmitted) return;
 
   imageNumber++;
-
   feedbackOnAnswer = "";
 
   let imageElement = document.querySelector(".current-discriminator-image");
@@ -76,11 +54,7 @@ function updateFeedbackOnAnswer() {
 
 function updateProbability() {
   let documentChosenProbabilty = document.querySelector(".chosen-probability");
-  if (chosenProbability === null) {
-    documentChosenProbabilty.innerHTML = "Valgt: ";
-    return;
-  }
-  documentChosenProbabilty.innerHTML = `Valgt: ${chosenProbability}`;
+  documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${chosenProbability}`;
 }
 
 window.onload = function () {
