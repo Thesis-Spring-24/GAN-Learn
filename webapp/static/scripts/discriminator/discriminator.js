@@ -1,11 +1,10 @@
 let chosenProbability = null;
 let correctAnswer = null;
 let feedbackOnAnswer = null;
-let imageNumber = 1;
+let imageNumber = null;
 let answerSubmitted = false;
 
 const computerGenerated = 0;
-const trainingPicture = 1;
 
 function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
@@ -18,7 +17,15 @@ function handleAnswerButton() {
     feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
     updateFeedbackOnAnswer();
     answerSubmitted = true;
+
+    // Update submittedAnswer value for the current image in imageMap
+    imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
+    updateLocalStorage();
   }
+}
+
+function updateLocalStorage() {
+  localStorage.setItem("imageMap", JSON.stringify(imageMap));
 }
 
 /**
@@ -45,6 +52,9 @@ function handleNextButton() {
   answerSubmitted = false;
   chosenProbability = null;
   updateProbability();
+
+  // Update LocalStorage with the new imageNumber
+  localStorage.setItem("imageNumber", imageNumber);
 }
 
 function updateFeedbackOnAnswer() {
@@ -57,8 +67,28 @@ function updateProbability() {
   documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${chosenProbability}`;
 }
 
+function resetLocalStorage() {
+  localStorage.clear();
+  location.reload();
+
+}
+
 window.onload = function () {
+  // Get the imageNumber from LocalStorage
+  let storedImageNumber = localStorage.getItem("imageNumber") || 1;
+  if (storedImageNumber !== null) {
+    imageNumber = parseInt(storedImageNumber);
+  }
+
+  // Get the imageMap from LocalStorage
+  let storedImageMap = localStorage.getItem("imageMap");
+  if (storedImageMap !== null) {
+    imageMap = JSON.parse(storedImageMap);
+  }
+
+
   let imageElement = document.querySelector(".current-discriminator-image");
+
   imageElement.src = imageMap["image" + imageNumber].path; // Set image path
   correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
 }
