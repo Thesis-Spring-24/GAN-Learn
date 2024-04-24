@@ -97,7 +97,6 @@ window.onload = function () {
   // Get the contentLevelTwoLoaded from LocalStorage
   contentLevelTwoLoaded = localStorage.getItem("contentLevelTwoLoaded") === "true" ? true : false;
 
-
   if (imageNumber === thresholdLevelTwo && contentLevelTwoLoaded === true) {
     document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
     handleLevelSummary();
