@@ -3,7 +3,7 @@ const generatorWrongText = "Forkert! Det rigtige svar er 0, fordi billedet er ge
 const trainingCorrectText = "Rigtigt! Det er et træningsbillede";
 const trainingWrongText = "Forkert! Det rigtige svar er 1, fordi det er et træningsbillede"
 
-const levelOneContent = `
+const mainContent = `
 <div class="lower-left-container">1</div>
 <div class="lower-middle-container">
   2
@@ -30,7 +30,7 @@ const levelOneContent = `
 
 
 
-const levelTwoContent = `<div class="level-two-container">
+const summaryContent = `<div class="level-two-container">
   <h2>Niveau 1 resultat</h2>
   <table id="imageTable">
     <tr id="headerRow">

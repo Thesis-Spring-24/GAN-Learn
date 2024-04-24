@@ -1,6 +1,6 @@
 function handleLevelSummary() {
 
-  if (contentLevelTwoLoaded === true) {
+  if (contentSummaryLoaded === true) {
 
     Object.keys(imageMap).forEach((key, index) => {
       let row = document.createElement('tr');
@@ -20,12 +20,12 @@ function handleLevelSummary() {
 
       // Column 3: Correct Answer
       let cell3 = document.createElement('td');
-      cell3.textContent = imageMap[key].correctAnswer;
+      cell3.textContent = getAnswerType(imageMap[key].correctAnswer);
       row.appendChild(cell3);
 
       // Column 4: Submitted Answer
       let cell4 = document.createElement('td');
-      cell4.textContent = imageMap[key].submittedAnswer === null ? '-' : imageMap[key].submittedAnswer;
+      cell4.textContent = getAnswerType(imageMap[key].submittedAnswer);
       row.appendChild(cell4);
 
       tableBody.appendChild(row);
@@ -33,6 +33,14 @@ function handleLevelSummary() {
     });
   }
 
+}
+
+function getAnswerType(answer) {
+  if (answer === computerGenerated) {
+    return "Computergenereret";
+  } else if (answer === trainingPicture) {
+    return "Træningsbillede";
+  }
 }
 
 

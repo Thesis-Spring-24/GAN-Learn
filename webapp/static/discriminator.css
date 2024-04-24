@@ -1,6 +1,8 @@
 :root {
   --background: white;
   --elements-background: rgb(218, 218, 218);
+  --borderRadius: 2em;
+
 }
 
 .discriminator-lower-container{
@@ -11,6 +13,7 @@
   border : 1px solid black;
   height: 50em;
   margin: 5em;
+  border-radius: var(--borderRadius);
 }
 
 .lower-left-container{
@@ -31,8 +34,9 @@
 .discriminator-probability-container{
   background-color: var(--elements-background);
   border : 1px solid black;
-  border-radius: 1em;
+  border-radius: var(--borderRadius);
   height: 40em;
+  padding: 1em;
 }
 
 .level-two-container{

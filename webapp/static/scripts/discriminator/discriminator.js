@@ -3,10 +3,11 @@ let correctAnswer = null;
 let feedbackOnAnswer = null;
 let imageNumber = null;
 let answerSubmitted = false;
-let contentLevelTwoLoaded;
+let contentSummaryLoaded;
 
 const computerGenerated = 0;
-const thresholdLevelTwo = 4;
+const trainingPicture = 1;
+const thresholdLevelTwo = 5; // TODO: Ændre til ønsket antal billeder før level 2
 
 function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
@@ -45,14 +46,13 @@ function handleNextButton() {
   // if (imageNumber >= Object.keys(imageMap).length || !answerSubmitted) return;
   if (!answerSubmitted) return; // TODO: Måske det andet tjek også skal være her
 
-  updateImageNumber();
+  increaseImageNumber();
 
   console.log(imageNumber);
   if (imageNumber > thresholdLevelTwo) {
-    console.log("Level 2 content loaded");
-    document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
-    contentLevelTwoLoaded = true;
-    localStorage.setItem("contentLevelTwoLoaded", contentLevelTwoLoaded);
+    loadSummaryContent();
+    contentSummaryLoaded = true;
+    localStorage.setItem("contentSummaryLoaded", contentSummaryLoaded);
     handleLevelSummary();
     return;
   }
@@ -67,7 +67,15 @@ function handleNextButton() {
   updateProbability();
 }
 
-function updateImageNumber() {
+function loadSummaryContent() {
+  document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
+}
+
+function loadMainContent() {
+  document.querySelector(".discriminator-lower-container").innerHTML = mainContent;
+}
+
+function increaseImageNumber() {
   imageNumber++;
   localStorage.setItem("imageNumber", imageNumber);
 }
@@ -101,15 +109,14 @@ window.onload = function () {
     imageMap = JSON.parse(storedImageMap);
   }
 
-  // Get the contentLevelTwoLoaded from LocalStorage
-  contentLevelTwoLoaded = localStorage.getItem("contentLevelTwoLoaded") === "true" ? true : false;
+  // Get the contentSummaryLoaded from LocalStorage
+  contentSummaryLoaded = localStorage.getItem("contentSummaryLoaded") === "true" ? true : false;
 
-  if (imageNumber > thresholdLevelTwo && contentLevelTwoLoaded === true) {
-    document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
+  if (imageNumber > thresholdLevelTwo && contentSummaryLoaded === true) {
+    loadSummaryContent();
     handleLevelSummary();
-    console.log(contentLevelTwoLoaded);
   } else {
-    document.querySelector(".discriminator-lower-container").innerHTML = levelOneContent;
+    loadMainContent();
   }
 
 
@@ -119,8 +126,10 @@ window.onload = function () {
     correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
   }
 
-
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
 }
+
+
+
