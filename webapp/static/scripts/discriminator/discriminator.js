@@ -42,28 +42,34 @@ function getFeedbackText(isCorrect) {
 }
 
 function handleNextButton() {
-  if (imageNumber >= Object.keys(imageMap).length || !answerSubmitted) return;
+  // if (imageNumber >= Object.keys(imageMap).length || !answerSubmitted) return;
+  if (!answerSubmitted) return; // TODO: Måske det andet tjek også skal være her
 
-  imageNumber++;
-  feedbackOnAnswer = "";
+  updateImageNumber();
 
-  let imageElement = document.querySelector(".current-discriminator-image");
-  imageElement.src = imageMap["image" + imageNumber].path;
-  correctAnswer = imageMap["image" + imageNumber].correctAnswer;
-  updateFeedbackOnAnswer();
-  answerSubmitted = false;
-  chosenProbability = null;
-  updateProbability();
-
-  // Update LocalStorage with the new imageNumber
-  localStorage.setItem("imageNumber", imageNumber);
-
-  if (imageNumber === thresholdLevelTwo) {
+  console.log(imageNumber);
+  if (imageNumber > thresholdLevelTwo) {
+    console.log("Level 2 content loaded");
     document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
     contentLevelTwoLoaded = true;
     localStorage.setItem("contentLevelTwoLoaded", contentLevelTwoLoaded);
     handleLevelSummary();
+    return;
   }
+
+  let imageElement = document.querySelector(".current-discriminator-image");
+  imageElement.src = imageMap["image" + imageNumber].path;
+  correctAnswer = imageMap["image" + imageNumber].correctAnswer;
+  answerSubmitted = false;
+  feedbackOnAnswer = "";
+  chosenProbability = null;
+  updateFeedbackOnAnswer();
+  updateProbability();
+}
+
+function updateImageNumber() {
+  imageNumber++;
+  localStorage.setItem("imageNumber", imageNumber);
 }
 
 function updateFeedbackOnAnswer() {
@@ -79,6 +85,7 @@ function updateProbability() {
 function resetLocalStorage() {
   localStorage.clear();
   location.reload();
+  console.log("LocalStorage cleared");
 }
 
 window.onload = function () {
@@ -97,7 +104,7 @@ window.onload = function () {
   // Get the contentLevelTwoLoaded from LocalStorage
   contentLevelTwoLoaded = localStorage.getItem("contentLevelTwoLoaded") === "true" ? true : false;
 
-  if (imageNumber === thresholdLevelTwo && contentLevelTwoLoaded === true) {
+  if (imageNumber > thresholdLevelTwo && contentLevelTwoLoaded === true) {
     document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
     handleLevelSummary();
     console.log(contentLevelTwoLoaded);
