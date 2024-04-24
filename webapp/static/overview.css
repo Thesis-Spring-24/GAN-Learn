@@ -1,7 +1,7 @@
 :root {
     --borderRadius: 2em;
-    --networkHeight: 8em;
-    --networkWidth: 12em;
+    --networkHeight: 9em;
+    --networkWidth: 14em;
     --imgHeight: 6em;
     --imgWidth: 10em;
     --genBorderColor: rgb(240, 159, 54);
@@ -9,6 +9,8 @@
     --imgBorderColor: #C11B7F;
     --borderWidth: 0.3em;
     --boxShadow: 0.2em 0.2em grey;
+    --arrowColor: grey;
+    --backGroundColorElements: white;
 }
 
 h1 {
@@ -52,12 +54,14 @@ h1 {
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
     box-shadow: var(--boxShadow);
+    background-color: var(--backGroundColorElements);
 }
 
 #dis-btn {
     border-color: var(--disBorderColor);
     border-width: var(--borderWidth);
     box-shadow: var(--boxShadow);
+    background-color: var(--backGroundColorElements);
 }
 
 .process-activity-container {
@@ -86,6 +90,7 @@ h1 {
     border: solid;
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
+    background-color: var(--backGroundColorElements);
 }
 
 .training-img-btn:hover {
@@ -110,7 +115,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2em;
+    row-gap: 1.5em;
 }
 
 .model-overview {
@@ -129,23 +134,22 @@ h1 {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    background-color: purple;
+    row-gap: 1em;
 }
 
 .gen-box {
     height: var(--networkHeight);
     width: var(--networkWidth);
-    /* width: 100%; */
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
+    background-color: var(--backGroundColorElements);
 }
 
 
 .right-side {
-    height: 16em;
+    height: 20em;
     align-content: center;
-    background-color: blue;
 }
 
 .dis-box {
@@ -154,24 +158,31 @@ h1 {
     border-color: var(--disBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
-}
-
-.arrow-container-gen-dis {
-    position: absolute;
-    top: 35%;
-    left: calc(50% - 50px);
-    /* Adjust the position of the arrow container */
-    transform: translateY(-50%);
-    background-color: green;
+    background-color: var(--backGroundColorElements);
 }
 
 .arrow-container-dis-gen {
     position: absolute;
-    top: 25%;
+    top: 30%;
     left: calc(50% - 50px);
     /* Adjust the position of the arrow container */
     transform: translateY(-50%);
-    background-color: green;
+}
+
+.arrow-container-gen-dis {
+    position: absolute;
+    top: 45%;
+    left: calc(50% - 50px);
+    /* Adjust the position of the arrow container */
+    transform: translateY(-50%);
+}
+
+.arrow-container-img-dis {
+    position: absolute;
+    top: 70%;
+    left: calc(50% - 50px);
+    /* Adjust the position of the arrow container */
+    transform: translateY(-50%);
 }
 
 .arrow-line {
@@ -179,15 +190,16 @@ h1 {
     /* Adjust the length of the line */
     height: 2px;
     /* Adjust the thickness of the line */
-    background-color: black;
+    background-color: var(--arrowColor);
     /* Adjust the color of the line */
     position: absolute;
     left: -4.8em;
     /* Align the line with the start of the container */
+
 }
 
 .arrow-line.dis-to-gen {
-    background-color: red;
+    background-color: var(--arrowColor);
     left: -4.2em;
 }
 
@@ -204,12 +216,16 @@ h1 {
 }
 
 .arrow-head.gen-to-dis {
-    border-left: 15px solid black;
+    border-left: 15px solid var(--arrowColor);
 }
 
 .arrow-head.dis-to-gen {
-    border-right: 15px solid red;
+    border-right: 15px solid var(--arrowColor);
     left: -5em;
+}
+
+.arrow-head.img-to-dis {
+    border-left: 15px solid var(--arrowColor);
 }
 
 .training-overview {
@@ -244,9 +260,19 @@ h1 {
 
 
 .generating-overview {
-    width: 55em;
-    height: 12em;
-    background-color: grey;
+    width: 10em;
+    height: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1em;
+
+}
+
+.generate-btn {
+    height: 3em;
+    width: 6em;
+    align-self: center;
 }
 
 
@@ -255,7 +281,11 @@ h1 {
 }
 
 .displayGeneratedImg {
-    width: 10em;
+    width: 100%;
     height: 10em;
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eceaea;
+    border-radius: var(--borderRadius);
 }

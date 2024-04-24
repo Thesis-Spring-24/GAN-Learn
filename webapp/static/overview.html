@@ -46,12 +46,12 @@
         <div class="model-overview">
 
           <div class="left-side">
-            <button class="gen-box"> Generator </button>
+            <button class="gen-box" id="gen-box"> Generator </button>
             <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
           </div>
 
           <div class="right-side">
-            <button class="dis-box">Diskriminator</button>
+            <button class="dis-box" id="dis-box">Diskriminator</button>
           </div>
 
           <div class="arrow-container-gen-dis">
@@ -60,9 +60,15 @@
           </div>
 
           <div class="arrow-container-dis-gen">
-            <div class="arrow-line dis-to-gen"></div>
+            <div class="arrow-line dis-to-gen arrow-line-test"></div>
             <div class="arrow-head dis-to-gen"></div>
           </div>
+
+          <div class="arrow-container-img-dis">
+            <div class="arrow-line img-to-dis" id="arrow-line-image-to-dis"></div>
+            <div class="arrow-head img-to-dis" id="arrow-head-image-to-dis"></div>
+          </div>
+
         </div>
 
         <div class="training-overview">

@@ -85,8 +85,10 @@ function displayFlowerTraining(flowerCount) {
 }
 
 
+
+
 function trainModel() {
-    if (currentDataset == null) {
+    if (currentDataset == null || currentDataset == "null") {
         alert("Træk et træningsbilleder over for at træne modellen");
     }
     if (currentDataset == "flower-dataset") {
