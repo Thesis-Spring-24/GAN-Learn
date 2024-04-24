@@ -3,6 +3,7 @@ let correctAnswer = null;
 let feedbackOnAnswer = null;
 let imageNumber = null;
 let answerSubmitted = false;
+let contentLevelTwoLoaded;
 
 const computerGenerated = 0;
 const thresholdLevelTwo = 4;
@@ -59,6 +60,9 @@ function handleNextButton() {
 
   if (imageNumber === thresholdLevelTwo) {
     document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
+    contentLevelTwoLoaded = true;
+    localStorage.setItem("contentLevelTwoLoaded", contentLevelTwoLoaded);
+    handleLevelSummary();
   }
 }
 
@@ -90,8 +94,14 @@ window.onload = function () {
     imageMap = JSON.parse(storedImageMap);
   }
 
-  if (imageNumber === thresholdLevelTwo) {
+  // Get the contentLevelTwoLoaded from LocalStorage
+  contentLevelTwoLoaded = localStorage.getItem("contentLevelTwoLoaded") === "true" ? true : false;
+
+
+  if (imageNumber === thresholdLevelTwo && contentLevelTwoLoaded === true) {
     document.querySelector(".discriminator-lower-container").innerHTML = levelTwoContent;
+    handleLevelSummary();
+    console.log(contentLevelTwoLoaded);
   } else {
     document.querySelector(".discriminator-lower-container").innerHTML = levelOneContent;
   }
@@ -102,5 +112,9 @@ window.onload = function () {
     imageElement.src = imageMap["image" + imageNumber].path; // Set image path
     correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
   }
+
+
+  let tableBody = document.querySelector("#tableBody");
+  let headerRow = document.querySelector("#headerRow");
 
 }

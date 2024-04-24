@@ -28,6 +28,20 @@ const levelOneContent = `
   </div>
 </div>`;
 
-const levelTwoContent = "<p> Level summary </p> ";
+
+
+const levelTwoContent = `<div class="level-two-container">
+  <h2>Niveau 1 resultat</h2>
+  <table id="imageTable">
+    <tr id="headerRow">
+      <th>Nr.</th>
+      <th>Billede</th>
+      <th>Det korrekte svar</th>
+      <th>Jeres svar</th>
+    </tr>
+    <tbody id="tableBody">
+    </tbody>
+  </table>
+</div>`;
 
 

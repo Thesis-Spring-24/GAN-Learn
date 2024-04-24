@@ -34,3 +34,16 @@
   border-radius: 1em;
   height: 40em;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table, th, td {
+  border: 1px solid black;
+  width: 40em;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+}
