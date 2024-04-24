@@ -96,21 +96,28 @@ function resetLocalStorage() {
   console.log("LocalStorage cleared");
 }
 
-window.onload = function () {
-  // Get the imageNumber from LocalStorage
-  let storedImageNumber = localStorage.getItem("imageNumber") || 1;
-  if (storedImageNumber !== null) {
-    imageNumber = parseInt(storedImageNumber);
-  }
+function updateContentSummaryLoaded() {
+  contentSummaryLoaded = localStorage.getItem("contentSummaryLoaded") === "true" ? true : false;
+}
 
-  // Get the imageMap from LocalStorage
+function updateImageMap() {
   let storedImageMap = localStorage.getItem("imageMap");
   if (storedImageMap !== null) {
     imageMap = JSON.parse(storedImageMap);
   }
+}
 
-  // Get the contentSummaryLoaded from LocalStorage
-  contentSummaryLoaded = localStorage.getItem("contentSummaryLoaded") === "true" ? true : false;
+function updateImageNumber() {
+  let storedImageNumber = localStorage.getItem("imageNumber") || 1;
+  if (storedImageNumber !== null) {
+    imageNumber = parseInt(storedImageNumber);
+  }
+}
+
+window.onload = function () {
+  updateImageNumber();
+  updateImageMap();
+  updateContentSummaryLoaded();
 
   if (imageNumber > thresholdLevelTwo && contentSummaryLoaded === true) {
     loadSummaryContent();
@@ -130,6 +137,7 @@ window.onload = function () {
   let headerRow = document.querySelector("#headerRow");
 
 }
+
 
 
 

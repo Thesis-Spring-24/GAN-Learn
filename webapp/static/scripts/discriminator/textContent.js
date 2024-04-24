@@ -3,8 +3,8 @@ const generatorWrongText = "Forkert! Det rigtige svar er 0, fordi billedet er ge
 const trainingCorrectText = "Rigtigt! Det er et træningsbillede";
 const trainingWrongText = "Forkert! Det rigtige svar er 1, fordi det er et træningsbillede"
 
-const mainContent = `
-<div class="lower-left-container">1</div>
+const mainContent =
+  `<div class="lower-left-container">1</div>
 <div class="lower-middle-container">
   2
   <div class="image-container">
@@ -30,8 +30,10 @@ const mainContent = `
 
 
 
-const summaryContent = `<div class="level-two-container">
+const summaryContent =
+  `<div class="summary-content-container">
   <h2>Niveau 1 resultat</h2>
+  <p class="percentage-correct"></p>
   <table id="imageTable">
     <tr id="headerRow">
       <th>Nr.</th>

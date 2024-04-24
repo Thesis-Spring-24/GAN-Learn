@@ -29,10 +29,27 @@ function handleLevelSummary() {
       row.appendChild(cell4);
 
       tableBody.appendChild(row);
-
     });
+
+    calculatePercentageCorrect();
   }
 
+}
+
+function calculatePercentageCorrect() {
+  let correctCount = 0;
+  let totalCount = Object.keys(imageMap).length; // Todo: Skal ændres til antal billeder i level 1
+
+  Object.keys(imageMap).forEach((key) => {
+    if (imageMap[key].correctAnswer === imageMap[key].submittedAnswer) {
+      correctCount++;
+    }
+  });
+
+  let percentageCorrect = (correctCount / totalCount) * 100;
+
+  let documentPercentageCorrect = document.querySelector(".percentage-correct");
+  documentPercentageCorrect.textContent = `Procent rigtige: ${percentageCorrect}%`;
 }
 
 function getAnswerType(answer) {

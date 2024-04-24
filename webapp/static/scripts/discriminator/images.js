@@ -4,5 +4,4 @@ let imageMap = {
   "image3": { path: "../../assets/Helicopter_3.png", correctAnswer: 0, submittedAnswer: null },
   "image4": { path: "../../assets/Helicopter_4.png", correctAnswer: 1, submittedAnswer: null },
   "image5": { path: "../../assets/Helicopter_4.png", correctAnswer: 1, submittedAnswer: null }
-
 };
