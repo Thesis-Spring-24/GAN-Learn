@@ -160,16 +160,34 @@ h1 {
 
 .training-overview {
     width: 55em;
-    height: 12em;
-    background-color: grey;
+    height: 13em;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    row-gap: 1em;
 }
 
 .train-btn {
     height: 3em;
     width: 6em;
+    align-self: center;
 }
+
+.display-training-img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #eceaea;
+    border-radius: var(--borderRadius);
+}
+
+.displayLevelImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8em;
+    height: 8em;
+}
+
 
 .generating-overview {
     width: 55em;
@@ -177,17 +195,6 @@ h1 {
     background-color: grey;
 }
 
-.div1 {
-    background-color: red;
-    width: 12em;
-    height: 12em;
-}
-
-.displayLevelImg {
-    width: 10em;
-    height: 10em;
-    background-color: red;
-}
 
 #flowerLeve1 {
     width: 2em;
