@@ -1,7 +1,7 @@
 :root {
     --borderRadius: 2em;
-    --networkHeight: 7em;
-    --networkWidth: 11em;
+    --networkHeight: 8em;
+    --networkWidth: 12em;
     --imgHeight: 6em;
     --imgWidth: 10em;
     --genBorderColor: rgb(240, 159, 54);
@@ -117,14 +117,15 @@ h1 {
     width: 55em;
     height: 20em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
+    column-gap: 15em;
     position: relative;
 }
 
 .left-side {
     height: 20em;
-    width: 20em;
+    width: var(--networkWidth);
     display: flex;
     align-items: flex-end;
     flex-direction: column;
@@ -133,8 +134,8 @@ h1 {
 
 .gen-box {
     height: var(--networkHeight);
-    /* width: var(--networkWidth); */
-    width: 100%;
+    width: var(--networkWidth);
+    /* width: 100%; */
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
@@ -155,25 +156,39 @@ h1 {
     pointer-events: none;
 }
 
-.arrow-container {
+.arrow-container-gen-dis {
     position: absolute;
-    top: 20%;
+    top: 35%;
     left: calc(50% - 50px);
     /* Adjust the position of the arrow container */
     transform: translateY(-50%);
+    background-color: green;
+}
+
+.arrow-container-dis-gen {
+    position: absolute;
+    top: 25%;
+    left: calc(50% - 50px);
+    /* Adjust the position of the arrow container */
+    transform: translateY(-50%);
+    background-color: green;
 }
 
 .arrow-line {
-    width: 22em;
+    width: 14.5em;
     /* Adjust the length of the line */
     height: 2px;
     /* Adjust the thickness of the line */
     background-color: black;
     /* Adjust the color of the line */
     position: absolute;
-    top: 20%;
-    left: -4em;
+    left: -4.8em;
     /* Align the line with the start of the container */
+}
+
+.arrow-line.dis-to-gen {
+    background-color: red;
+    left: -4.2em;
 }
 
 .arrow-head {
@@ -181,13 +196,20 @@ h1 {
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left: 15px solid black;
-    /* Adjust the size and color of the arrow head */
     position: absolute;
     top: calc(50% - 10px);
     /* Center the arrow head vertically */
-    right: -18.5em;
+    right: -10.2em;
     /* Position the arrow head at the end of the line */
+}
+
+.arrow-head.gen-to-dis {
+    border-left: 15px solid black;
+}
+
+.arrow-head.dis-to-gen {
+    border-right: 15px solid red;
+    left: -5em;
 }
 
 .training-overview {
