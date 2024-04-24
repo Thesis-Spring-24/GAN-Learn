@@ -1,5 +1,3 @@
-// import { getFlowerLevelImage } from "./dataMaps.js";
-
 var currentDataset;
 let flowerCount;
 let generatorCount;
@@ -8,6 +6,7 @@ document.getElementById("gen-btn").addEventListener("click", navigateToGenerator
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
 document.getElementById("train-btn").addEventListener("click", trainModel);
 document.getElementById("generate-btn").addEventListener("click", retrieveImg);
+document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
 
 function navigateToGenerator() {
     window.location.href = "/generator";
@@ -19,6 +18,19 @@ function navigateToDiscriminator() {
 
 function navigateToFlowers() {
     window.location.href = "/flowers";
+}
+
+function clearTrainingOverview(flowerCount) {
+    for (let i = flowerCount; i > 0; i--) {
+        let preName = "displayFlowerLevel";
+        let number = i.toString();
+        var id = preName.concat(number);
+        document.getElementById(id).innerHTML = "";
+    }
+}
+
+function clearGeneratedImage() {
+    document.getElementById("displayGeneratedImg").innerHTML = "";
 }
 
 function allowDrop(event) {
@@ -37,15 +49,26 @@ function dragDrop(event) {
     if (event.target.id == "dataset-div") {
         var draggedElementId = draggedElement.id;
         currentDataset = draggedElementId;
+        //save in local storage
+        localStorage.setItem("currentDataset", currentDataset);
     }
     else {
+        //når træningsbillederne bliver trukket tilbage fra modellen, så skal billederne i training-overview fjernes
+        clearTrainingOverview(flowerCount);
+        clearGeneratedImage();
         currentDataset = null;
+        flowerCount = null;
+        localStorage.setItem("currentDataset", currentDataset);
+        localStorage.setItem("flowerCount", flowerCount);
+
     }
-    console.log(currentDataset);
+    console.log("current Dataset", currentDataset);
+    console.log("flower count", flowerCount);
 }
 
-
+//when pressing train a flower image is displayed in the training overview
 function displayFlowerTraining(flowerCount) {
+    console.log("in the display flower training method")
     //get the path of the image
     var path = flowerLevelList[flowerCount - 1];
     console.log(path)
@@ -67,7 +90,8 @@ function trainModel() {
         alert("Træk et træningsbilleder over for at træne modellen");
     }
     if (currentDataset == "flower-dataset") {
-        if (flowerCount == null) {
+        flowerCountString = localStorage.getItem("flowerCount");
+        if (flowerCount === null || flowerCount === "null") {
             flowerCount = 1;
         }
         else {
@@ -79,7 +103,7 @@ function trainModel() {
         if (flowerCount == 2) {
             displayFlowerTraining(2);
         }
-        console.log(flowerCount);
+        localStorage.setItem("flowerCount", flowerCount);
     }
 }
 
@@ -117,3 +141,49 @@ function retrieveImg() {
     }
 }
 
+function clearLocalStorage() {
+    localStorage.clear();
+    location.reload();
+}
+
+window.onload = function () {
+    //get the current dataset from local storage
+    currentDataset = localStorage.getItem("currentDataset");
+    flowerCount = localStorage.getItem("flowerCount");
+    console.log("data to be shown", currentDataset);
+    console.log("flower count from on load", flowerCount);
+    updateTrainingSet(currentDataset);
+    updateTrainingOverview(flowerCount, currentDataset);
+    updateGeneratedImage(flowerCount);
+}
+
+//place the correct image in 'training images' in the model overview
+function updateTrainingSet(currentDataSet) {
+    if (currentDataSet == "flower-dataset") {
+        document.getElementById("dataset-div").appendChild(document.getElementById("flower-dataset"));
+    }
+}
+
+function updateTrainingOverview(flowerCount, currentDataSet) {
+    if (flowerCount == 1) {
+        console.log("knows that flower count is 1")
+        displayFlowerTraining(1);
+    }
+    if (flowerCount == 2) {
+        displayFlowerTraining(1);
+        displayFlowerTraining(2);
+    }
+}
+
+//noget der ikke er håndteret: hvis man opdatere siden bliver der vist et nyt genereret billede og ikke det samme som før
+function updateGeneratedImage(flowerCount) {
+    console.log("type of flowercount", typeof flowerCount)
+    console.log("flower count", flowerCount)
+    if (flowerCount == "null" || flowerCount == null) {
+        return;
+    }
+    else {
+        displayImg(flowerCount);
+    }
+
+}
