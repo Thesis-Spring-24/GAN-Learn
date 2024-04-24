@@ -1,3 +1,6 @@
+
+// Håndtere når man trykker på continue-button
+
 function handleLevelSummary() {
 
   if (contentSummaryLoaded === true) {

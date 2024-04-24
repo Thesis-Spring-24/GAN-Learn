@@ -7,7 +7,7 @@ let contentSummaryLoaded;
 
 const computerGenerated = 0;
 const trainingPicture = 1;
-const thresholdLevelTwo = 5; // TODO: Ændre til ønsket antal billeder før level 2
+const thresholdLevelTwo = 3; // TODO: Ændre til ønsket antal billeder før level 2
 
 function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
@@ -48,7 +48,8 @@ function handleNextButton() {
 
   increaseImageNumber();
 
-  console.log(imageNumber);
+  console.log(`ImageNumber: ${imageNumber}`);
+
   if (imageNumber > thresholdLevelTwo) {
     loadSummaryContent();
     contentSummaryLoaded = true;
@@ -73,7 +74,22 @@ function loadSummaryContent() {
 
 function loadMainContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = mainContent;
+  loadImage();
 }
+
+function loadTrainingContent() {
+  document.querySelector(".discriminator-lower-container").innerHTML = trainingContent;
+}
+
+function handleContinueButton(nextContent) {
+  if (nextContent == "trainingContent") {
+    loadTrainingContent();
+  }
+  if (nextContent == "mainContent") {
+    loadMainContent();
+  }
+}
+
 
 function increaseImageNumber() {
   imageNumber++;
@@ -114,6 +130,14 @@ function updateImageNumber() {
   }
 }
 
+function loadImage() {
+  let imageElement = document.querySelector(".current-discriminator-image");
+  if (imageElement !== null) {
+    imageElement.src = imageMap["image" + imageNumber].path; // Set image path
+    correctAnswer = imageMap["image" + imageNumber].correctAnswer;
+  }
+}
+
 window.onload = function () {
   updateImageNumber();
   updateImageMap();
@@ -126,17 +150,14 @@ window.onload = function () {
     loadMainContent();
   }
 
-
-  let imageElement = document.querySelector(".current-discriminator-image");
-  if (imageElement !== null) {
-    imageElement.src = imageMap["image" + imageNumber].path; // Set image path
-    correctAnswer = imageMap["image" + imageNumber].correctAnswer; // Set correct answer
-  }
+  loadImage();
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
 }
+
+
 
 
 

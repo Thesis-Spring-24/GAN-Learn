@@ -28,8 +28,6 @@ const mainContent =
   </div>
 </div>`;
 
-
-
 const summaryContent =
   `<div class="summary-content-container">
   <h2>Niveau 1 resultat</h2>
@@ -44,6 +42,13 @@ const summaryContent =
     <tbody id="tableBody">
     </tbody>
   </table>
+  <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
 </div>`;
+
+const trainingContent =
+  `<div class="training-content-container">
+ HER KAN DU TRÆNE GENERATOREN
+ <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre</button>
+ </div>`;
 
 
