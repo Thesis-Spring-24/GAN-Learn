@@ -29,6 +29,10 @@ async def discriminator():
 async def overview():
     return FileResponse("./static/overview.html")
 
+@app.get("/flowers")
+async def flowers():
+    return FileResponse("./static/flowers.html")
+
 # Allow all origins and headers for CORS
 app.add_middleware(
     CORSMiddleware,

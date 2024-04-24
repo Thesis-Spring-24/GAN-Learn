@@ -1,0 +1,207 @@
+:root {
+    --borderRadius: 2em;
+    --networkHeight: 7em;
+    --networkWidth: 11em;
+    --imgHeight: 6em;
+    --imgWidth: 10em;
+    --genBorderColor: rgb(240, 159, 54);
+    --disBorderColor: rgb(81, 188, 250);
+    --imgBorderColor: #C11B7F;
+    --borderWidth: 0.3em;
+    --boxShadow: 0.2em 0.2em grey;
+}
+
+h1 {
+    text-align: center;
+}
+
+.page-text {
+    text-align: center;
+}
+
+.overview-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.activity-button-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5em;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+}
+
+.activity-button {
+    background-color: white;
+    width: 20em;
+    height: 18em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--borderRadius);
+}
+
+.activity-btn {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+}
+
+#gen-btn {
+    border-color: var(--genBorderColor);
+    border-width: var(--borderWidth);
+    box-shadow: var(--boxShadow);
+}
+
+#dis-btn {
+    border-color: var(--disBorderColor);
+    border-width: var(--borderWidth);
+    box-shadow: var(--boxShadow);
+}
+
+.process-activity-container {
+    background-color: white;
+    height: 52em;
+    width: 75em;
+    border-radius: var(--borderRadius);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.training-img-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+    align-items: center;
+    height: 40em;
+    width: 15em;
+}
+
+.training-img-btn {
+    height: var(--imgHeight);
+    width: var(--imgWidth);
+    border: solid;
+    border-color: var(--imgBorderColor);
+    border-width: var(--borderWidth);
+}
+
+.training-img-btn:hover {
+    cursor: pointer;
+}
+
+#flower-img {
+    height: 2em;
+}
+
+.line {
+    height: 48em;
+    width: 0.2em;
+    background-color: #eceaea;
+}
+
+.process-container {
+    /* background-color: blue; */
+    height: 52em;
+    width: 58em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+}
+
+.model-overview {
+    width: 55em;
+    height: 20em;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.left-side {
+    height: 20em;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.gen-box {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+    border-color: var(--genBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+}
+
+/* .img-box {
+    height: var(--imgHeight);
+    width: var(--imgWidth);
+    border-color: var(--imgBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+
+} */
+
+.right-side {
+    height: 16em;
+    align-content: center;
+}
+
+.dis-box {
+    height: var(--networkHeight);
+    width: var(--networkWidth);
+    border-color: var(--disBorderColor);
+    border-width: var(--borderWidth);
+    pointer-events: none;
+}
+
+.training-overview {
+    width: 55em;
+    height: 13em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.train-btn {
+    height: 3em;
+    width: 6em;
+    align-self: center;
+}
+
+.display-training-img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #eceaea;
+    border-radius: var(--borderRadius);
+}
+
+.displayLevelImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8em;
+    height: 8em;
+}
+
+
+.generating-overview {
+    width: 55em;
+    height: 12em;
+    background-color: grey;
+}
+
+
+#flowerLeve1 {
+    width: 2em;
+}
+
+.displayGeneratedImg {
+    width: 10em;
+    height: 10em;
+    background-color: red;
+}

@@ -2,15 +2,88 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="overview.css">
+
   <title>My Web Page</title>
 </head>
 
 <body>
-  <h1>Overview</h1>
+  <h1>GAN</h1>
+  <p class="page-text">Her kan du udforske forskellige dele af et netværk, der kan generere billeder</p>
 
-  <p>This is a sample paragraph.</p>
+  <div class="overview-container">
+    <div class="activity-button-container">
+      <div class="activity-button">
+        <button class="activity-btn" id="gen-btn">Generator Aktivitet</button>
+      </div>
+      <div class="activity-button">
+        <button class="activity-btn" id="dis-btn">Diskriminator Aktivitet</button>
+      </div>
+    </div>
+
+    <div class="process-activity-container">
+
+      <div class="training-img-container">
+        <button id="local-storage">Clear local storage</button>
+
+        <div class="training-img-btn" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
+          onclick='window.location.href = "/flowers"'>
+          <img id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
+            ondragstart="dragStart(event)" width="120" height="80">
+        </div>
+
+        <button class="training-img-btn">
+        </button>
+
+        <button class="training-img-btn">
+        </button>
+      </div>
+      <div class="line"></div>
+
+      <div class="process-container">
+        <div class="model-overview">
+
+          <div class="left-side">
+            <button class="gen-box"> Generator </button>
+            <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
+          </div>
+
+          <div class="right-side">
+            <button class="dis-box">Diskriminator</button>
+          </div>
+
+        </div>
+
+        <div class="training-overview">
+          <button class="train-btn" id="train-btn">
+            Træn
+          </button>
+          <div class="display-training-img-container">
+            <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
+            <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
+            <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
+            <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
+            <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
+          </div>
+        </div>
+
+        <div class="generating-overview">
+          <button class="generate-btn" id="generate-btn">Generer</button>
+          <div class="displayGeneratedImg" id="displayGeneratedImg"></div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
 
 </body>
+
+<script src="/scripts/overview.js"></script>
+<script src="/scripts/dataMaps.js"></script>
 
 </html>
