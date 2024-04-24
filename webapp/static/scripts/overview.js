@@ -84,9 +84,6 @@ function displayFlowerTraining(flowerCount) {
     document.getElementById(id).appendChild(img);
 }
 
-
-
-
 function trainModel() {
     if (currentDataset == null || currentDataset == "null") {
         alert("Træk et træningsbilleder over for at træne modellen");
