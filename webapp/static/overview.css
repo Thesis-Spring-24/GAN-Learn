@@ -117,37 +117,34 @@ h1 {
     width: 55em;
     height: 20em;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
+    position: relative;
 }
 
 .left-side {
     height: 20em;
+    width: 20em;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    background-color: purple;
 }
 
 .gen-box {
     height: var(--networkHeight);
-    width: var(--networkWidth);
+    /* width: var(--networkWidth); */
+    width: 100%;
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
 }
 
-/* .img-box {
-    height: var(--imgHeight);
-    width: var(--imgWidth);
-    border-color: var(--imgBorderColor);
-    border-width: var(--borderWidth);
-    pointer-events: none;
-
-} */
 
 .right-side {
     height: 16em;
     align-content: center;
+    background-color: blue;
 }
 
 .dis-box {
@@ -156,6 +153,41 @@ h1 {
     border-color: var(--disBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
+}
+
+.arrow-container {
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 50px);
+    /* Adjust the position of the arrow container */
+    transform: translateY(-50%);
+}
+
+.arrow-line {
+    width: 22em;
+    /* Adjust the length of the line */
+    height: 2px;
+    /* Adjust the thickness of the line */
+    background-color: black;
+    /* Adjust the color of the line */
+    position: absolute;
+    top: 20%;
+    left: -4em;
+    /* Align the line with the start of the container */
+}
+
+.arrow-head {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid black;
+    /* Adjust the size and color of the arrow head */
+    position: absolute;
+    top: calc(50% - 10px);
+    /* Center the arrow head vertically */
+    right: -18.5em;
+    /* Position the arrow head at the end of the line */
 }
 
 .training-overview {
