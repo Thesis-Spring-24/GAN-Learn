@@ -2,12 +2,19 @@ let chosenProbability = null;
 let correctAnswer = null;
 let feedbackOnAnswer = null;
 let imageNumber = null;
+
 let answerSubmitted = false;
 let contentSummaryLoaded;
+let currentLevel = 1; // Initialize current level to 1
 
 const computerGenerated = 0;
 const trainingPicture = 1;
-const thresholdLevelTwo = 3; // TODO: Ændre til ønsket antal billeder før level 2
+
+// VARIABLES TO CHANGE //  
+const imagesLevelOne = 3; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 5; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 9; // TODO: Tilpas til ønsket antal billede i level 3
+// ------------------- //
 
 function handleProbabilityButton(probability) {
   if (answerSubmitted) return;
@@ -19,15 +26,16 @@ function handleAnswerButton() {
   if (chosenProbability !== null && correctAnswer !== null) {
     feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
     updateFeedbackOnAnswer();
+    updateProbability();
     answerSubmitted = true;
 
     // Update submittedAnswer value for the current image in imageMap
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
-    updateLocalStorage();
+    updateImageMap();
   }
 }
 
-function updateLocalStorage() {
+function updateImageMap() {
   localStorage.setItem("imageMap", JSON.stringify(imageMap));
 }
 
@@ -50,7 +58,7 @@ function handleNextButton() {
 
   console.log(`ImageNumber: ${imageNumber}`);
 
-  if (imageNumber > thresholdLevelTwo) {
+  if (imageNumber > imagesLevelOne) {
     loadSummaryContent();
     contentSummaryLoaded = true;
     localStorage.setItem("contentSummaryLoaded", contentSummaryLoaded);
@@ -70,6 +78,7 @@ function handleNextButton() {
 
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
+  answerSubmitted = false;
 }
 
 function loadMainContent() {
@@ -89,7 +98,6 @@ function handleContinueButton(nextContent) {
     loadMainContent();
   }
 }
-
 
 function increaseImageNumber() {
   imageNumber++;
@@ -143,7 +151,7 @@ window.onload = function () {
   updateImageMap();
   updateContentSummaryLoaded();
 
-  if (imageNumber > thresholdLevelTwo && contentSummaryLoaded === true) {
+  if (imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
     loadSummaryContent();
     handleLevelSummary();
   } else {
