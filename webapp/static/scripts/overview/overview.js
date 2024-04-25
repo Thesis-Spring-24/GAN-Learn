@@ -2,11 +2,11 @@ var currentDataset;
 let flowerCount;
 let generatorCount;
 let animationRunning = false;
+let dataSetInModel = localStorage.getItem("dataSetInModel");
 
 document.getElementById("gen-btn").addEventListener("click", navigateToGenerator);
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
-
-document.getElementById("generate-btn").addEventListener("click", retrieveImg);
+document.getElementById("generate-btn").addEventListener("click", generateImg);
 document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
 
 function navigateToGenerator() {
@@ -40,6 +40,13 @@ function allowDrop(event) {
 
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
+    dataSetInModel = localStorage.getItem("dataSetInModel")
+    console.log("in drag start, dataSetInModel", dataSetInModel)
+    console.log(typeof dataSetInModel)
+    if (dataSetInModel == false || dataSetInModel == undefined || dataSetInModel == "false") {
+        document.getElementById("dataset-div").style.border = "0.3em dashed  #C11B7F";
+    }
+
 }
 
 function dragDrop(event) {
@@ -47,11 +54,16 @@ function dragDrop(event) {
     var data = event.dataTransfer.getData("text");
     var draggedElement = document.getElementById(data);
     event.target.appendChild(draggedElement);
+    document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
     if (event.target.id == "dataset-div") {
         var draggedElementId = draggedElement.id;
         currentDataset = draggedElementId;
-        //save in local storage
         localStorage.setItem("currentDataset", currentDataset);
+
+        dataSetInModel = true;
+        localStorage.setItem("dataSetInModel", dataSetInModel);
+
+
     }
     else {
         //når træningsbillederne bliver trukket tilbage fra modellen, så skal billederne i training-overview fjernes
@@ -61,6 +73,9 @@ function dragDrop(event) {
         flowerCount = null;
         localStorage.setItem("currentDataset", currentDataset);
         localStorage.setItem("flowerCount", flowerCount);
+
+        dataSetInModel = false;
+        localStorage.setItem("dataSetInModel", dataSetInModel);
 
     }
     console.log("current Dataset", currentDataset);
@@ -87,9 +102,9 @@ function displayImg(level) {
 }
 
 //called when the 'generer' button is pressed, calls the displayImg function
-function retrieveImg() {
+function generateImg() {
     if (currentDataset == null) {
-        alert("Træk et træningsbilleder over for at generere et billede");
+        alert("Du skal vælge træningsbilleder og træne modellen før du kan generere nye billelder");
     }
     if (currentDataset == "flower-dataset") {
         if (flowerCount == null) {
@@ -97,6 +112,21 @@ function retrieveImg() {
         }
         if (flowerCount == 1) {
             displayImg(1);
+        }
+        if (flowerCount == 2) {
+            displayImg(2);
+        }
+        if (flowerCount == 3) {
+            displayImg(3);
+        }
+        if (flowerCount == 4) {
+            displayImg(4);
+        }
+        if (flowerCount == 5) {
+            displayImg(5);
+        }
+        if (flowerCount > 5) {
+            alert("Modellen er færdigtrænet")
         }
     }
 }

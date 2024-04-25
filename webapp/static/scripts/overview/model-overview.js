@@ -20,6 +20,15 @@ function trainModel() {
         if (flowerCount == 2) {
             displayFlowerTraining(2);
         }
+        if (flowerCount == 3) {
+            displayFlowerTraining(3);
+        }
+        if (flowerCount == 4) {
+            displayFlowerTraining(4);
+        }
+        if (flowerCount == 5) {
+            displayFlowerTraining(5);
+        }
         localStorage.setItem("flowerCount", flowerCount);
         startAnimation();
         displayModal();
