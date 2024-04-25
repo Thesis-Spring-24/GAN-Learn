@@ -24,18 +24,19 @@ function handleProbabilityButton(probability) {
 
 function handleAnswerButton() {
   if (chosenProbability !== null && correctAnswer !== null) {
+
     feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
     updateFeedbackOnAnswer();
-    updateProbability();
+    // updateProbability();
     answerSubmitted = true;
 
     // Update submittedAnswer value for the current image in imageMap
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
-    updateImageMap();
+    setImageMap();
   }
 }
 
-function updateImageMap() {
+function setImageMap() {
   localStorage.setItem("imageMap", JSON.stringify(imageMap));
 }
 
