@@ -161,6 +161,7 @@ h1 {
     background-color: var(--backGroundColorElements);
 }
 
+
 .moving-line {
     width: 20em;
     height: 4px;
@@ -328,4 +329,40 @@ h1 {
     align-items: center;
     background-color: #eceaea;
     border-radius: var(--borderRadius);
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 28em;
+}
+
+.training-information-modal {
+    display: none;
+    /* position: fixed; */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 58em;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--borderRadius);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50em;
+    height: 20em;
+    border-radius: var(--borderRadius);
+}
+
+/* Close button */
+.close-btn-modal {
+    width: 9em;
 }

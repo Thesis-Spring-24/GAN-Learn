@@ -61,23 +61,36 @@
           </div>
         </div>
 
-        <div class="training-overview">
+        <div class="bottom-container">
 
-          <button class="train-btn" id="train-btn">
-            Træn
-          </button>
-          <div class="display-training-img-container">
-            <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
+          <div class="training-overview">
+
+            <button class="train-btn" id="train-btn">
+              Træn
+            </button>
+            <div class="display-training-img-container">
+              <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
+            </div>
           </div>
-        </div>
 
-        <div class="generating-overview">
-          <button class="generate-btn" id="generate-btn">Generer</button>
-          <div class="displayGeneratedImg" id="displayGeneratedImg"></div>
+          <div class="training-information-modal">
+            <div class="modal-content">
+              <p>This is the modal content.</p>
+              <button class="close-btn-modal">Færdiggør Træning</button>
+            </div>
+
+          </div>
+
+          <div class="generating-overview">
+            <button class="generate-btn" id="generate-btn">Generer</button>
+            <div class="displayGeneratedImg" id="displayGeneratedImg"></div>
+          </div>
+
+
 
         </div>
 
@@ -89,7 +102,8 @@
 
 </body>
 
-<script src="/scripts/overview.js"></script>
-<script src="/scripts/dataMaps.js"></script>
+<script src="/scripts/overview/overview.js"></script>
+<script src="/scripts/overview/dataMaps.js"></script>
+<script src="/scripts/overview/model-overview.js"></script>
 
 </html>
