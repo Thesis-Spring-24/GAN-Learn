@@ -101,6 +101,14 @@ function displayImg(level) {
     document.getElementById("displayGeneratedImg").appendChild(img);
 }
 
+function displayGeneratingArrow() {
+    document.querySelector(".generating-arrow").style.display = "flex";
+
+    setTimeout(function () {
+        document.querySelector(".generating-arrow").style.display = "none";
+    }, 2000);
+}
+
 //called when the 'generer' button is pressed, calls the displayImg function
 function generateImg() {
     if (currentDataset == null) {
@@ -112,6 +120,7 @@ function generateImg() {
         }
         if (flowerCount == 1) {
             displayImg(1);
+            displayGeneratingArrow();
         }
         if (flowerCount == 2) {
             displayImg(2);
@@ -126,7 +135,7 @@ function generateImg() {
             displayImg(5);
         }
         if (flowerCount > 5) {
-            alert("Modellen er færdigtrænet")
+            displayImg(5);
         }
     }
 }

@@ -75,6 +75,40 @@ h1 {
     align-items: center;
 }
 
+.generating-arrow {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 10.3em;
+    width: 22.5em;
+    height: 39em;
+    background-color: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.generating-arrow::before,
+.generating-arrow::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+}
+
+.generating-arrow::before {
+    top: 34em;
+    left: 3em;
+    width: 19.5em;
+    height: 1em;
+}
+
+.generating-arrow::after {
+    top: 0;
+    left: 3em;
+    width: 1em;
+    height: 34em;
+}
+
 .training-img-container {
     display: flex;
     flex-direction: column;
