@@ -1,6 +1,7 @@
 var currentDataset;
 let flowerCount;
 let generatorCount;
+let animationRunning = false;
 
 document.getElementById("gen-btn").addEventListener("click", navigateToGenerator);
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
@@ -84,6 +85,13 @@ function displayFlowerTraining(flowerCount) {
     document.getElementById(id).appendChild(img);
 }
 
+function startAnimation() {
+    console.log("in animation");
+    document.querySelector('.moving-line.gen-to-dis').classList.add('moveLineRight');
+    document.querySelector('.moving-line.img-to-dis').classList.add('moveLineRight');
+    document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+}
+
 function trainModel() {
     if (currentDataset == null || currentDataset == "null") {
         alert("Træk et træningsbilleder over for at træne modellen");
@@ -103,6 +111,7 @@ function trainModel() {
             displayFlowerTraining(2);
         }
         localStorage.setItem("flowerCount", flowerCount);
+        startAnimation();
     }
 }
 

@@ -124,7 +124,7 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    column-gap: 15em;
+    /* column-gap: 15em; */
     position: relative;
 }
 
@@ -161,72 +161,112 @@ h1 {
     background-color: var(--backGroundColorElements);
 }
 
-.arrow-container-dis-gen {
-    position: absolute;
-    top: 30%;
-    left: calc(50% - 50px);
-    /* Adjust the position of the arrow container */
+.moving-line {
+    width: 20em;
+    height: 4px;
+    position: relative;
     transform: translateY(-50%);
+    /* Center the line vertically */
+    background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 8px;
+    /* Adjust the size of each dash */
 }
 
-.arrow-container-gen-dis {
-    position: absolute;
+.moving-line.gen-to-dis {
     top: 45%;
-    left: calc(50% - 50px);
-    /* Adjust the position of the arrow container */
-    transform: translateY(-50%);
 }
 
-.arrow-container-img-dis {
+/*Adds the arrowhead*/
+.moving-line.gen-to-dis::after {
+    content: '';
     position: absolute;
-    top: 70%;
-    left: calc(50% - 50px);
-    /* Adjust the position of the arrow container */
-    transform: translateY(-50%);
-}
-
-.arrow-line {
-    width: 14.5em;
-    /* Adjust the length of the line */
-    height: 2px;
-    /* Adjust the thickness of the line */
-    background-color: var(--arrowColor);
-    /* Adjust the color of the line */
-    position: absolute;
-    left: -4.8em;
-    /* Align the line with the start of the container */
-
-}
-
-.arrow-line.dis-to-gen {
-    background-color: var(--arrowColor);
-    left: -4.2em;
-}
-
-.arrow-head {
+    top: 50%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
     border-bottom: 10px solid transparent;
+    border-left: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moving-line.img-to-dis {
+    top: 62%;
+}
+
+.moving-line.img-to-dis::after {
+    content: '';
     position: absolute;
-    top: calc(50% - 10px);
-    /* Center the arrow head vertically */
-    right: -10.2em;
-    /* Position the arrow head at the end of the line */
+    top: 50%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
 }
 
-.arrow-head.gen-to-dis {
-    border-left: 15px solid var(--arrowColor);
+.moving-line.dis-to-gen {
+    top: 25%;
 }
 
-.arrow-head.dis-to-gen {
-    border-right: 15px solid var(--arrowColor);
-    left: -5em;
+.moving-line.dis-to-gen::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
 }
 
-.arrow-head.img-to-dis {
-    border-left: 15px solid var(--arrowColor);
+.moveLineRight {
+    animation: moveLineRight 5s linear infinite;
+    /* Adjust the animation duration and timing */
 }
+
+.moveLineLeft {
+    animation: moveLineLeft 9s linear infinite;
+    /* Adjust the animation duration and timing */
+}
+
+
+@keyframes moveLineRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+        /* Adjust the length the line moves */
+    }
+}
+
+@keyframes moveLineLeft {
+    0% {
+        background-position: 100% 0;
+        /* Move from outside the container to the right edge */
+    }
+
+    100% {
+        background-position: -200px 0;
+        /* Move to the left edge */
+    }
+}
+
 
 .training-overview {
     width: 55em;

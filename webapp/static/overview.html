@@ -49,29 +49,20 @@
             <button class="gen-box" id="gen-box"> Generator </button>
             <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
           </div>
+          <div class="line-container">
+            <div class="moving-line gen-to-dis"></div>
+            <div class="moving-line img-to-dis"></div>
+            <div class="moving-line dis-to-gen"></div>
+          </div>
 
           <div class="right-side">
             <button class="dis-box" id="dis-box">Diskriminator</button>
-          </div>
 
-          <div class="arrow-container-gen-dis">
-            <div class="arrow-line gen-to-dis"></div>
-            <div class="arrow-head gen-to-dis"></div>
           </div>
-
-          <div class="arrow-container-dis-gen">
-            <div class="arrow-line dis-to-gen arrow-line-test"></div>
-            <div class="arrow-head dis-to-gen"></div>
-          </div>
-
-          <div class="arrow-container-img-dis">
-            <div class="arrow-line img-to-dis" id="arrow-line-image-to-dis"></div>
-            <div class="arrow-head img-to-dis" id="arrow-head-image-to-dis"></div>
-          </div>
-
         </div>
 
         <div class="training-overview">
+
           <button class="train-btn" id="train-btn">
             Træn
           </button>
