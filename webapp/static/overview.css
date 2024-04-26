@@ -1,5 +1,6 @@
 :root {
     --borderRadius: 2em;
+    --borderRadiusElements: 1em;
     --networkHeight: 9em;
     --networkWidth: 14em;
     --imgHeight: 6em;
@@ -11,6 +12,7 @@
     --boxShadow: 0.2em 0.2em grey;
     --arrowColor: grey;
     --backGroundColorElements: white;
+    --genArrowColor: rgb(27, 179, 27);
 }
 
 h1 {
@@ -48,6 +50,7 @@ h1 {
 .activity-btn {
     height: var(--networkHeight);
     width: var(--networkWidth);
+    border-radius: var(--borderRadiusElements);
 }
 
 #gen-btn {
@@ -66,7 +69,7 @@ h1 {
 
 .process-activity-container {
     background-color: white;
-    height: 52em;
+    height: 56em;
     width: 75em;
     border-radius: var(--borderRadius);
     display: flex;
@@ -92,21 +95,48 @@ h1 {
 .generating-arrow::after {
     content: '';
     position: absolute;
-    background-color: black;
 }
 
 .generating-arrow::before {
     top: 34em;
     left: 3em;
     width: 19.5em;
-    height: 1em;
+    height: 0.5em;
+    /*juster height og sidste værdi af background-size of at ændre størrelse på linjerne*/
+    background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 1em;
+    animation: moveGenLineRight 3s linear infinite;
 }
 
 .generating-arrow::after {
     top: 0;
     left: 3em;
-    width: 1em;
+    width: 0.5em;
     height: 34em;
+    background-image: linear-gradient(to bottom, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 1em;
+    animation: moveGenLineDown 3s linear infinite;
+
+}
+
+@keyframes moveGenLineRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+@keyframes moveGenLineDown {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 200px;
+    }
 }
 
 .training-img-container {
@@ -114,8 +144,9 @@ h1 {
     flex-direction: column;
     row-gap: 2em;
     align-items: center;
-    height: 40em;
+    height: 56em;
     width: 15em;
+    margin-top: 8em;
 }
 
 .training-img-btn {
@@ -124,6 +155,7 @@ h1 {
     border: solid;
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
+    border-radius: var(--borderRadiusElements);
     background-color: var(--backGroundColorElements);
 }
 
@@ -131,8 +163,23 @@ h1 {
     cursor: pointer;
 }
 
-#flower-img {
-    height: 2em;
+.tooltiptext {
+    display: none;
+    white-space: pre-line;
+}
+
+.flower-dataset-div:hover .tooltiptext {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    border-color: black;
+    padding: 5px 0;
+    z-index: 1;
+    width: 10em;
+    margin-left: 1em;
 }
 
 .line {
@@ -143,13 +190,13 @@ h1 {
 
 .process-container {
     /* background-color: blue; */
-    height: 52em;
+    height: 56em;
     width: 58em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 1.5em;
+    /* row-gap: 1.5em; */
 }
 
 .model-overview {
@@ -160,6 +207,7 @@ h1 {
     flex-direction: row;
     /* column-gap: 15em; */
     position: relative;
+
 }
 
 .left-side {
@@ -176,6 +224,7 @@ h1 {
     width: var(--networkWidth);
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
+    border-radius: var(--borderRadiusElements);
     pointer-events: none;
     background-color: var(--backGroundColorElements);
 }
@@ -193,6 +242,7 @@ h1 {
     border-width: var(--borderWidth);
     pointer-events: none;
     background-color: var(--backGroundColorElements);
+    border-radius: var(--borderRadiusElements);
 }
 
 
@@ -308,6 +358,7 @@ h1 {
     display: flex;
     flex-direction: column;
     row-gap: 1em;
+
 }
 
 .train-btn {
@@ -340,6 +391,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     row-gap: 1em;
+    margin-top: 4em;
 
 }
 
@@ -361,6 +413,8 @@ h1 {
     justify-content: center;
     align-items: center;
     background-color: #eceaea;
+    border-width: var(--borderWidth);
+    border-color: var(--genBorderColor);
     border-radius: var(--borderRadius);
 }
 

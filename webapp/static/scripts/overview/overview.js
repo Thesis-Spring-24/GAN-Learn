@@ -93,19 +93,22 @@ function displayImg(level) {
     img.src = path;
     img.width = 100;
 
-    var numberOfChildNodes = document.getElementById("displayGeneratedImg").childNodes.length;
-    if (numberOfChildNodes > 0) {
-        document.getElementById("displayGeneratedImg").removeChild(document.getElementById("displayGeneratedImg").childNodes[0]);
-    }
-
     document.getElementById("displayGeneratedImg").appendChild(img);
 }
 
 function displayGeneratingArrow() {
     document.querySelector(".generating-arrow").style.display = "flex";
+    document.getElementById("displayGeneratedImg").style.border = "0.3em solid rgb(240, 159, 54)";
+    var numberOfChildNodes = document.getElementById("displayGeneratedImg").childNodes.length;
+    if (numberOfChildNodes > 0) {
+        document.getElementById("displayGeneratedImg").removeChild(document.getElementById("displayGeneratedImg").childNodes[0]);
+    }
 
     setTimeout(function () {
         document.querySelector(".generating-arrow").style.display = "none";
+        document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
+        document.getElementById("dis-box").style.border = "0.3em solid rgb(81, 188, 250)";
+        displayImg(flowerCount);
     }, 2000);
 }
 
@@ -118,24 +121,8 @@ function generateImg() {
         if (flowerCount == null) {
             alert("Træn modellen først");
         }
-        if (flowerCount == 1) {
-            displayImg(1);
+        if (flowerCount > 0) {
             displayGeneratingArrow();
-        }
-        if (flowerCount == 2) {
-            displayImg(2);
-        }
-        if (flowerCount == 3) {
-            displayImg(3);
-        }
-        if (flowerCount == 4) {
-            displayImg(4);
-        }
-        if (flowerCount == 5) {
-            displayImg(5);
-        }
-        if (flowerCount > 5) {
-            displayImg(5);
         }
     }
 }
