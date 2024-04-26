@@ -64,20 +64,17 @@ function handleNextButton() {
 
   if (imageNumber > imagesLevelOne && currentLevel === levelOne) {
     increaseLevel();
-    loadSummaryContent();
-    handleLevelSummary();
+    handleSummary();
     return;
   } else if (imageNumber > imagesLevelTwo && currentLevel === levelTwo) {
     increaseLevel();
-    loadSummaryContent();
-    handleLevelSummary();
+    handleSummary();
     return;
   }
 
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
-    loadSummaryContent();
-    handleLevelSummary();
-    // Load final summary page
+    handleSummary();
+    return;
   }
 
   let imageElement = document.querySelector(".current-discriminator-image");
@@ -88,6 +85,11 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
+}
+
+function handleSummary() {
+  loadSummaryContent();
+  handleLevelSummary();
 }
 
 function increaseLevel() {
@@ -102,23 +104,23 @@ function increaseLevel() {
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
   answerSubmitted = false;
-  setContentSummaryLoaded();
+  setContentSummaryLoaded(true);
 }
 
-function setContentSummaryLoaded() {
-  contentSummaryLoaded = true;
+function setContentSummaryLoaded(isLoaded) {
+  contentSummaryLoaded = isLoaded;
   localStorage.setItem("contentSummaryLoaded", contentSummaryLoaded);
 }
 
 function loadMainContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = mainContent;
   loadImage();
-  contentSummaryLoaded = false;
+  setContentSummaryLoaded(false);
 }
 
 function loadTrainingContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = trainingContent;
-  // contentSummaryLoaded = false;
+  setContentSummaryLoaded(false);
 }
 
 function handleContinueButton(nextContent) {
@@ -193,30 +195,18 @@ window.onload = function () {
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
+
   if ((currentLevel - 1) === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
-    loadSummaryContent();
-    handleLevelSummary();
+    handleSummary();
     return;
   } else if ((currentLevel - 1) === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
-    loadSummaryContent();
-    handleLevelSummary();
+    handleSummary();
     return;
   } else if ((currentLevel - 1) === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
-    loadSummaryContent();
-    handleLevelSummary();
-    console.log("Level 3 completed");
-    // Load final summary page
+    handleSummary();
   }
 
-  // } else {
-  //   loadMainContent();
-  // }
-
   loadMainContent();
-
-  // loadImage();
-
-
 
 }
 

@@ -1,7 +1,10 @@
+let documentLevelHeader = document.querySelector(".level-header");
 
 // Håndtere når man trykker på continue-button
 
 function handleLevelSummary() {
+  let documentLevelHeader = document.querySelector(".level-header");
+
 
   if (contentSummaryLoaded === true) {
 
@@ -50,6 +53,7 @@ function calculatePercentageCorrect() {
   });
 
   let percentageCorrect = (correctCount / totalCount) * 100;
+  percentageCorrect = percentageCorrect.toFixed(2); // Round to 2 decimal places
 
   let documentPercentageCorrect = document.querySelector(".percentage-correct");
   documentPercentageCorrect.textContent = `Procent rigtige: ${percentageCorrect}%`;
