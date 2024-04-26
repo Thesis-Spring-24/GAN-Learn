@@ -433,17 +433,19 @@ h1 {
     top: 0;
     width: 58em;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: var(--borderRadius);
     align-items: center;
     justify-content: center;
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 50em;
     height: 20em;
     border-radius: var(--borderRadius);
@@ -452,4 +454,14 @@ h1 {
 /* Close button */
 .close-btn-modal {
     width: 9em;
+    position: absolute;
+    bottom: -5em;
+
+}
+
+p.modal-text {
+    text-align: center;
+    font-style: italic;
+    line-height: 1.6;
+
 }

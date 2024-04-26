@@ -10,28 +10,22 @@ function trainModel() {
         flowerCountString = localStorage.getItem("flowerCount");
         if (flowerCount === null || flowerCount === "null") {
             flowerCount = 1;
+            displayFlowerTraining(flowerCount);
+            localStorage.setItem("flowerCount", flowerCount);
+            startAnimation();
+            displayModal();
         }
-        else {
+        else if (flowerCount < 5) {
             flowerCount++;
+
+            displayFlowerTraining(flowerCount);
+            localStorage.setItem("flowerCount", flowerCount);
+            startAnimation();
+            displayModal();
         }
-        if (flowerCount == 1) {
-            displayFlowerTraining(1);
+        else if (flowerCount == 5) {
+            alert("Modellen er færdigtrænet")
         }
-        if (flowerCount == 2) {
-            displayFlowerTraining(2);
-        }
-        if (flowerCount == 3) {
-            displayFlowerTraining(3);
-        }
-        if (flowerCount == 4) {
-            displayFlowerTraining(4);
-        }
-        if (flowerCount == 5) {
-            displayFlowerTraining(5);
-        }
-        localStorage.setItem("flowerCount", flowerCount);
-        startAnimation();
-        displayModal();
     }
 }
 
@@ -69,6 +63,24 @@ function displayModal() {
     document.querySelector(".training-information-modal").style.display = "flex";
     document.querySelector(".training-overview").style.display = "none";
     document.querySelector(".generating-overview").style.display = "none";
+    flowerCountString = localStorage.getItem("flowerCount");
+    flowerCount = parseInt(flowerCountString);
+    if (flowerCount == 1) {
+        document.querySelector(".modal-text").textContent = flowerCount1;
+    }
+    if (flowerCount == 2) {
+        document.querySelector(".modal-text").textContent = flowerCount2;
+    }
+    if (flowerCount == 3) {
+        document.querySelector(".modal-text").textContent = flowerCount3;
+    }
+    if (flowerCount == 4) {
+        document.querySelector(".modal-text").textContent = flowerCount4;
+    }
+    if (flowerCount == 5) {
+        document.querySelector(".modal-text").textContent = flowerCount5;
+    }
+
 }
 
 function handleClosingModal() {
