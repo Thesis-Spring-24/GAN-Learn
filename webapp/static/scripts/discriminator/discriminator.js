@@ -9,11 +9,14 @@ let currentLevel = 1; // Initialize current level to 1
 
 const computerGenerated = 0;
 const trainingPicture = 1;
+const levelOne = 1;
+const levelTwo = 2;
+const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 3; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 5; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 9; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 2; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 4; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 6; // TODO: Tilpas til ønsket antal billede i level 3
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -59,12 +62,22 @@ function handleNextButton() {
 
   console.log(`ImageNumber: ${imageNumber}`);
 
-  if (imageNumber > imagesLevelOne) {
+  if (imageNumber > imagesLevelOne && currentLevel === levelOne) {
+    increaseLevel();
     loadSummaryContent();
-    contentSummaryLoaded = true;
-    localStorage.setItem("contentSummaryLoaded", contentSummaryLoaded);
     handleLevelSummary();
     return;
+  } else if (imageNumber > imagesLevelTwo && currentLevel === levelTwo) {
+    increaseLevel();
+    loadSummaryContent();
+    handleLevelSummary();
+    return;
+  }
+
+  if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
+    loadSummaryContent();
+    handleLevelSummary();
+    // Load final summary page
   }
 
   let imageElement = document.querySelector(".current-discriminator-image");
@@ -77,18 +90,35 @@ function handleNextButton() {
   updateProbability();
 }
 
+function increaseLevel() {
+  if (currentLevel === levelOne) {
+    currentLevel = levelTwo;
+  } else if (currentLevel === levelTwo) {
+    currentLevel = levelThree;
+  }
+  localStorage.setItem("currentLevel", currentLevel);
+}
+
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
   answerSubmitted = false;
+  setContentSummaryLoaded();
+}
+
+function setContentSummaryLoaded() {
+  contentSummaryLoaded = true;
+  localStorage.setItem("contentSummaryLoaded", contentSummaryLoaded);
 }
 
 function loadMainContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = mainContent;
   loadImage();
+  contentSummaryLoaded = false;
 }
 
 function loadTrainingContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = trainingContent;
+  // contentSummaryLoaded = false;
 }
 
 function handleContinueButton(nextContent) {
@@ -147,22 +177,46 @@ function loadImage() {
   }
 }
 
+function updateCurrentLevel() {
+  let storedCurrentLevel = localStorage.getItem("currentLevel") || 1;
+  if (storedCurrentLevel !== null) {
+    currentLevel = parseInt(storedCurrentLevel);
+  }
+}
+
 window.onload = function () {
   updateImageNumber();
   updateImageMap();
   updateContentSummaryLoaded();
-
-  if (imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
-    loadSummaryContent();
-    handleLevelSummary();
-  } else {
-    loadMainContent();
-  }
-
-  loadImage();
+  updateCurrentLevel();
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
+
+  if ((currentLevel - 1) === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
+    loadSummaryContent();
+    handleLevelSummary();
+    return;
+  } else if ((currentLevel - 1) === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
+    loadSummaryContent();
+    handleLevelSummary();
+    return;
+  } else if ((currentLevel - 1) === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
+    loadSummaryContent();
+    handleLevelSummary();
+    console.log("Level 3 completed");
+    // Load final summary page
+  }
+
+  // } else {
+  //   loadMainContent();
+  // }
+
+  loadMainContent();
+
+  // loadImage();
+
+
 
 }
 
