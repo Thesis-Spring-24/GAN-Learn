@@ -9,11 +9,20 @@
   --imgBorderColor: #C11B7F;
   --borderWidth: 0.3em;
   --boxShadow: 0.2em 0.2em grey;
+  --arrowColor: grey;
+  --backGroundColorElements: white;
+  --genArrowColor: rgb(27, 179, 27);
+  --greyBackgroundColor: #eceaea;
+}
+
+.page-text {
+  text-align: center;
+  width: 50em;
 }
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #eceaea;
+  background-color: var(--greyBackgroundColor);
 }
 
 a {
@@ -26,20 +35,18 @@ button {
   font-size: 16px;
 }
 
-#predict,
-#clear {
-  width: 31em;
-}
 
-.buttons-container {
+/* .buttons-container {
   margin-top: 15px;
-}
+} */
 
 .attempt {
   display: flex;
   border: 1px solid black;
   margin: 1em;
   background-color: white;
+  flex-direction: column;
+  width: 10em;
 }
 
 #drawing-history {
@@ -64,30 +71,9 @@ button {
   justify-content: space-evenly;
 }
 
-.wrapper-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.upper-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.prediction-container {
-  display: flex;
-  flex-direction: column;
-  width: 30em;
-}
-
 .header {
   text-align: center;
   margin-bottom: 2em;
-}
-
-.page-header {
-  font-size: 6em;
 }
 
 .external-link {

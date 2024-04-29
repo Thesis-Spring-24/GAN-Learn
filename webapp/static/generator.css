@@ -1,13 +1,189 @@
+.wrapper-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.activity-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100em;
+    background-color: white;
+    border-radius: var(--borderRadius);
+}
+
+.upper-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100em;
+}
+
+.canvas-container {
+    position: relative;
+}
+
+.clear-btn {
+    position: absolute;
+    top: 0.5em;
+    left: 4em;
+
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 39em;
+}
+
 #defaultCanvas0 {
     border: var(--borderWidth) solid var(--genBorderColor);
-    border-radius: var(--genBorderColor);
+    border-radius: var(--borderRadius);
+}
+
+
+.prediction-container {
+    display: flex;
+    flex-direction: column;
+    width: 22em;
+}
+
+.feedback-container {
+    display: none;
+    border-radius: 20px;
+    border-width: 5px;
+    border-color: black;
+    width: 12em;
+    align-self: end;
+    position: absolute;
+    top: 47%;
+
+}
+
+.moving-line {
+    width: 22em;
+    height: 4px;
+    position: relative;
+    transform: translateY(-50%);
+    /* Center the line vertically */
+    background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 8px;
+    /* Adjust the size of each dash */
+}
+
+.moving-line.gen-to-dis {
+    top: 70%;
+}
+
+/*Adds the arrowhead*/
+.moving-line.gen-to-dis::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moving-line.dis-to-gen {
+    top: 40%;
+}
+
+
+.moving-line.dis-to-gen::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moveLineLeft {
+    animation: moveLineLeft 9s linear infinite;
+    /* Adjust the animation duration and timing */
+}
+
+.moveLineRight {
+    animation: moveLineRight 5s linear infinite;
+}
+
+@keyframes moveLineRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+        /* Adjust the length the line moves */
+    }
+}
+
+@keyframes moveLineLeft {
+    0% {
+        background-position: 100% 0;
+        /* Move from outside the container to the right edge */
+    }
+
+    100% {
+        background-position: -200px 0;
+        /* Move to the left edge */
+    }
+}
+
+.send-btn {
+    position: absolute;
+    top: 75%;
+    width: 5em;
+}
+
+.dis-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 39em;
 }
 
 #discriminator {
     border: var(--borderWidth) solid var(--disBorderColor);
-    border-radius: var(--disBorderColor);
-    min-width: 26em;
-    height: 26em;
+    border-radius: var(--borderRadius);
+    width: 500px;
+    height: 350px;
     background-color: white;
+}
 
+.discriminator-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drawing-history-container {
+    background-color: var(--greyBackgroundColor);
+    width: 90em;
+    align-self: center;
+    border-radius: var(--borderRadius);
 }

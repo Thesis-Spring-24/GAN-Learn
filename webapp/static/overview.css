@@ -13,15 +13,13 @@
     --arrowColor: grey;
     --backGroundColorElements: white;
     --genArrowColor: rgb(27, 179, 27);
-}
+} */
 
 h1 {
     text-align: center;
 }
 
-.page-text {
-    text-align: center;
-}
+
 
 .overview-container {
     display: flex;
@@ -103,9 +101,9 @@ h1 {
     width: 19.5em;
     height: 0.5em;
     /*juster height og sidste værdi af background-size of at ændre størrelse på linjerne*/
-background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
-background-size: 15px 1em;
-animation: moveGenLineRight 3s linear infinite;
+    background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 1em;
+    animation: moveGenLineRight 3s linear infinite;
 }
 
 .generating-arrow::after {
@@ -371,7 +369,7 @@ animation: moveGenLineRight 3s linear infinite;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #eceaea;
+    background-color: var(--greyBackgroundColor);
     border-radius: var(--borderRadius);
 }
 
