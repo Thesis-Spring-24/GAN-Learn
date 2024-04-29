@@ -1,11 +1,12 @@
 var currentDataset;
 let flowerCount;
 let generatorCount;
+let animationRunning = false;
+let dataSetInModel = localStorage.getItem("dataSetInModel");
 
 document.getElementById("gen-btn").addEventListener("click", navigateToGenerator);
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
-document.getElementById("train-btn").addEventListener("click", trainModel);
-document.getElementById("generate-btn").addEventListener("click", retrieveImg);
+document.getElementById("generate-btn").addEventListener("click", generateImg);
 document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
 
 function navigateToGenerator() {
@@ -39,6 +40,13 @@ function allowDrop(event) {
 
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
+    dataSetInModel = localStorage.getItem("dataSetInModel")
+    console.log("in drag start, dataSetInModel", dataSetInModel)
+    console.log(typeof dataSetInModel)
+    if (dataSetInModel == false || dataSetInModel == undefined || dataSetInModel == "false") {
+        document.getElementById("dataset-div").style.border = "0.3em dashed  #C11B7F";
+    }
+
 }
 
 function dragDrop(event) {
@@ -46,11 +54,16 @@ function dragDrop(event) {
     var data = event.dataTransfer.getData("text");
     var draggedElement = document.getElementById(data);
     event.target.appendChild(draggedElement);
+    document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
     if (event.target.id == "dataset-div") {
         var draggedElementId = draggedElement.id;
         currentDataset = draggedElementId;
-        //save in local storage
         localStorage.setItem("currentDataset", currentDataset);
+
+        dataSetInModel = true;
+        localStorage.setItem("dataSetInModel", dataSetInModel);
+
+
     }
     else {
         //når træningsbillederne bliver trukket tilbage fra modellen, så skal billederne i training-overview fjernes
@@ -61,50 +74,12 @@ function dragDrop(event) {
         localStorage.setItem("currentDataset", currentDataset);
         localStorage.setItem("flowerCount", flowerCount);
 
+        dataSetInModel = false;
+        localStorage.setItem("dataSetInModel", dataSetInModel);
+
     }
     console.log("current Dataset", currentDataset);
     console.log("flower count", flowerCount);
-}
-
-//when pressing train a flower image is displayed in the training overview
-function displayFlowerTraining(flowerCount) {
-    console.log("in the display flower training method")
-    //get the path of the image
-    var path = flowerLevelList[flowerCount - 1];
-    console.log(path)
-    var img = document.createElement('img');
-    img.src = path;
-    img.width = 100;
-
-    let preName = "displayFlowerLevel";
-    let number = flowerCount.toString();
-    var id = preName.concat(number);
-
-    //append the image
-    document.getElementById(id).appendChild(img);
-}
-
-
-function trainModel() {
-    if (currentDataset == null) {
-        alert("Træk et træningsbilleder over for at træne modellen");
-    }
-    if (currentDataset == "flower-dataset") {
-        flowerCountString = localStorage.getItem("flowerCount");
-        if (flowerCount === null || flowerCount === "null") {
-            flowerCount = 1;
-        }
-        else {
-            flowerCount++;
-        }
-        if (flowerCount == 1) {
-            displayFlowerTraining(1);
-        }
-        if (flowerCount == 2) {
-            displayFlowerTraining(2);
-        }
-        localStorage.setItem("flowerCount", flowerCount);
-    }
 }
 
 //displays the generated image
@@ -118,25 +93,36 @@ function displayImg(level) {
     img.src = path;
     img.width = 100;
 
+    document.getElementById("displayGeneratedImg").appendChild(img);
+}
+
+function displayGeneratingArrow() {
+    document.querySelector(".generating-arrow").style.display = "flex";
+    document.getElementById("displayGeneratedImg").style.border = "0.3em solid rgb(240, 159, 54)";
     var numberOfChildNodes = document.getElementById("displayGeneratedImg").childNodes.length;
     if (numberOfChildNodes > 0) {
         document.getElementById("displayGeneratedImg").removeChild(document.getElementById("displayGeneratedImg").childNodes[0]);
     }
 
-    document.getElementById("displayGeneratedImg").appendChild(img);
+    setTimeout(function () {
+        document.querySelector(".generating-arrow").style.display = "none";
+        document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
+        document.getElementById("dis-box").style.border = "0.3em solid rgb(81, 188, 250)";
+        displayImg(flowerCount);
+    }, 2000);
 }
 
-//called when the 'træn' button is pressed, calls the displayImg function
-function retrieveImg() {
+//called when the 'generer' button is pressed, calls the displayImg function
+function generateImg() {
     if (currentDataset == null) {
-        alert("Træk et træningsbilleder over for at generere et billede");
+        alert("Du skal vælge træningsbilleder og træne modellen før du kan generere nye billelder");
     }
     if (currentDataset == "flower-dataset") {
         if (flowerCount == null) {
             alert("Træn modellen først");
         }
-        if (flowerCount == 1) {
-            displayImg(1);
+        if (flowerCount > 0) {
+            displayGeneratingArrow();
         }
     }
 }

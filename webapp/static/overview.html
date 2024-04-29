@@ -26,52 +26,82 @@
     <div class="process-activity-container">
 
       <div class="training-img-container">
-        <button id="local-storage">Clear local storage</button>
 
-        <div class="training-img-btn" ondrop="dragDrop(event)" ondragover="allowDrop(event)"
-          onclick='window.location.href = "/flowers"'>
+        <div class="training-img-btn flower-dataset-div" id="flower-dataset-div" ondrop="dragDrop(event)"
+          ondragover="allowDrop(event)" onclick='window.location.href = "/flowers"'>
           <img id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
             ondragstart="dragStart(event)" width="120" height="80">
+          <span class="tooltiptext">Tryk for at se datasættet <br> <br> Træk datasættet over i modellen for at
+            træne</span>
         </div>
 
-        <button class="training-img-btn">
-        </button>
+        <div class="training-img-btn">
 
-        <button class="training-img-btn">
-        </button>
+        </div>
+
+        <div class="training-img-btn"></div>
+
+        <button id="local-storage">Clear local storage</button>
+
       </div>
       <div class="line"></div>
 
       <div class="process-container">
+
+
+
         <div class="model-overview">
 
           <div class="left-side">
-            <button class="gen-box"> Generator </button>
+            <button class="gen-box" id="gen-box"> Generator </button>
             <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
+          </div>
+          <div class="line-container">
+            <div class="moving-line gen-to-dis"></div>
+            <div class="moving-line img-to-dis"></div>
+            <div class="moving-line dis-to-gen"></div>
+          </div>
+
+          <div class="generating-arrow">
+
           </div>
 
           <div class="right-side">
-            <button class="dis-box">Diskriminator</button>
-          </div>
+            <button class="dis-box" id="dis-box">Diskriminator</button>
 
-        </div>
-
-        <div class="training-overview">
-          <button class="train-btn" id="train-btn">
-            Træn
-          </button>
-          <div class="display-training-img-container">
-            <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
-            <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
           </div>
         </div>
 
-        <div class="generating-overview">
-          <button class="generate-btn" id="generate-btn">Generer</button>
-          <div class="displayGeneratedImg" id="displayGeneratedImg"></div>
+        <div class="bottom-container">
+
+          <div class="training-overview">
+
+            <button class="train-btn" id="train-btn">
+              Træn
+            </button>
+            <div class="display-training-img-container">
+              <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
+              <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
+            </div>
+          </div>
+
+          <div class="training-information-modal">
+            <div class="modal-content">
+              <p class="modal-text"></p>
+              <button class="close-btn-modal">Færdiggør Træning</button>
+            </div>
+
+          </div>
+
+          <div class="generating-overview">
+            <button class="generate-btn" id="generate-btn">Generer</button>
+            <div class="displayGeneratedImg" id="displayGeneratedImg"></div>
+          </div>
+
+
 
         </div>
 
@@ -83,7 +113,9 @@
 
 </body>
 
-<script src="/scripts/overview.js"></script>
-<script src="/scripts/dataMaps.js"></script>
+<script src="/scripts/overview/overview.js"></script>
+<script src="/scripts/overview/dataMaps.js"></script>
+<script src="/scripts/overview/model-overview.js"></script>
+<script src="/scripts/overview/textContentModal.js"></script>
 
 </html>
