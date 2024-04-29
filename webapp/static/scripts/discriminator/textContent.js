@@ -28,7 +28,6 @@ const mainContent =
 <div class="lower-right-container">
   <div class="discriminator-probability-container">
   <h2>Discriminator</h2>
-
     <h3>Sandsynlighed</h3>
     <div class="probability-buttons-container">
     <button class="zero-button" onclick="handleProbabilityButton(0)">0</button>
@@ -39,6 +38,7 @@ const mainContent =
     <div>
       <p class="feedback-on-answer"></p>
     </div>
+    <p class="number-of-correct">Antal rigtige:</p>
   </div>
 </div>`;
 

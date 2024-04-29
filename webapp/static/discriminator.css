@@ -106,6 +106,10 @@ body {
   margin: 1em;
 }
 
+.number-of-correct{
+  margin-top: 3em;
+}
+
 .chosen-probability{
   margin: 2em;
 }
