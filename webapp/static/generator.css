@@ -1,0 +1,13 @@
+#defaultCanvas0 {
+    border: var(--borderWidth) solid var(--genBorderColor);
+    border-radius: var(--genBorderColor);
+}
+
+#discriminator {
+    border: var(--borderWidth) solid var(--disBorderColor);
+    border-radius: var(--disBorderColor);
+    min-width: 26em;
+    height: 26em;
+    background-color: white;
+
+}
