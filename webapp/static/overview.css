@@ -1,7 +1,8 @@
 /* :root {
     --borderRadius: 2em;
-    --networkHeight: 7em;
-    --networkWidth: 11em;
+    --borderRadiusElements: 1em;
+    --networkHeight: 9em;
+    --networkWidth: 14em;
     --imgHeight: 6em;
     --imgWidth: 10em;
     --genBorderColor: rgb(240, 159, 54);
@@ -9,7 +10,10 @@
     --imgBorderColor: #C11B7F;
     --borderWidth: 0.3em;
     --boxShadow: 0.2em 0.2em grey;
-} */
+    --arrowColor: grey;
+    --backGroundColorElements: white;
+    --genArrowColor: rgb(27, 179, 27);
+}
 
 h1 {
     text-align: center;
@@ -46,23 +50,26 @@ h1 {
 .activity-btn {
     height: var(--networkHeight);
     width: var(--networkWidth);
+    border-radius: var(--borderRadiusElements);
 }
 
 #gen-btn {
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
     box-shadow: var(--boxShadow);
+    background-color: var(--backGroundColorElements);
 }
 
 #dis-btn {
     border-color: var(--disBorderColor);
     border-width: var(--borderWidth);
     box-shadow: var(--boxShadow);
+    background-color: var(--backGroundColorElements);
 }
 
 .process-activity-container {
     background-color: white;
-    height: 52em;
+    height: 56em;
     width: 75em;
     border-radius: var(--borderRadius);
     display: flex;
@@ -71,13 +78,75 @@ h1 {
     align-items: center;
 }
 
+.generating-arrow {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 10.3em;
+    width: 22.5em;
+    height: 39em;
+    background-color: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.generating-arrow::before,
+.generating-arrow::after {
+    content: '';
+    position: absolute;
+}
+
+.generating-arrow::before {
+    top: 34em;
+    left: 3em;
+    width: 19.5em;
+    height: 0.5em;
+    /*juster height og sidste værdi af background-size of at ændre størrelse på linjerne*/
+background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+background-size: 15px 1em;
+animation: moveGenLineRight 3s linear infinite;
+}
+
+.generating-arrow::after {
+    top: 0;
+    left: 3em;
+    width: 0.5em;
+    height: 34em;
+    background-image: linear-gradient(to bottom, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 1em;
+    animation: moveGenLineDown 3s linear infinite;
+
+}
+
+@keyframes moveGenLineRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+@keyframes moveGenLineDown {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 200px;
+    }
+}
+
 .training-img-container {
     display: flex;
     flex-direction: column;
     row-gap: 2em;
     align-items: center;
-    height: 40em;
+    height: 56em;
     width: 15em;
+    margin-top: 8em;
 }
 
 .training-img-btn {
@@ -86,14 +155,31 @@ h1 {
     border: solid;
     border-color: var(--imgBorderColor);
     border-width: var(--borderWidth);
+    border-radius: var(--borderRadiusElements);
+    background-color: var(--backGroundColorElements);
 }
 
 .training-img-btn:hover {
     cursor: pointer;
 }
 
-#flower-img {
-    height: 2em;
+.tooltiptext {
+    display: none;
+    white-space: pre-line;
+}
+
+.flower-dataset-div:hover .tooltiptext {
+    display: block;
+    position: absolute;
+    background-color: #f9f9f9;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    border-color: black;
+    padding: 5px 0;
+    z-index: 1;
+    width: 10em;
+    margin-left: 1em;
 }
 
 .line {
@@ -104,13 +190,13 @@ h1 {
 
 .process-container {
     /* background-color: blue; */
-    height: 52em;
+    height: 56em;
     width: 58em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    row-gap: 2em;
+    /* row-gap: 1.5em; */
 }
 
 .model-overview {
@@ -119,13 +205,18 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    /* column-gap: 15em; */
+    position: relative;
+
 }
 
 .left-side {
     height: 20em;
+    width: var(--networkWidth);
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+    row-gap: 1em;
 }
 
 .gen-box {
@@ -133,20 +224,14 @@ h1 {
     width: var(--networkWidth);
     border-color: var(--genBorderColor);
     border-width: var(--borderWidth);
+    border-radius: var(--borderRadiusElements);
     pointer-events: none;
+    background-color: var(--backGroundColorElements);
 }
 
-/* .img-box {
-    height: var(--imgHeight);
-    width: var(--imgWidth);
-    border-color: var(--imgBorderColor);
-    border-width: var(--borderWidth);
-    pointer-events: none;
-
-} */
 
 .right-side {
-    height: 16em;
+    height: 20em;
     align-content: center;
 }
 
@@ -156,6 +241,115 @@ h1 {
     border-color: var(--disBorderColor);
     border-width: var(--borderWidth);
     pointer-events: none;
+    background-color: var(--backGroundColorElements);
+    border-radius: var(--borderRadiusElements);
+}
+
+
+.moving-line {
+    width: 20em;
+    height: 4px;
+    position: relative;
+    transform: translateY(-50%);
+    /* Center the line vertically */
+    background-image: linear-gradient(to right, var(--arrowColor) 50%, transparent 50%);
+    background-size: 15px 8px;
+    /* Adjust the size of each dash */
+}
+
+.moving-line.gen-to-dis {
+    top: 45%;
+}
+
+/*Adds the arrowhead*/
+.moving-line.gen-to-dis::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moving-line.img-to-dis {
+    top: 62%;
+}
+
+.moving-line.img-to-dis::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moving-line.dis-to-gen {
+    top: 25%;
+}
+
+.moving-line.dis-to-gen::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid var(--arrowColor);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moveLineRight {
+    animation: moveLineRight 5s linear infinite;
+    /* Adjust the animation duration and timing */
+}
+
+.moveLineLeft {
+    animation: moveLineLeft 9s linear infinite;
+    /* Adjust the animation duration and timing */
+}
+
+
+@keyframes moveLineRight {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+        /* Adjust the length the line moves */
+    }
+}
+
+@keyframes moveLineLeft {
+    0% {
+        background-position: 100% 0;
+        /* Move from outside the container to the right edge */
+    }
+
+    100% {
+        background-position: -200px 0;
+        /* Move to the left edge */
+    }
 }
 
 .training-overview {
@@ -164,6 +358,7 @@ h1 {
     display: flex;
     flex-direction: column;
     row-gap: 1em;
+
 }
 
 .train-btn {
@@ -190,9 +385,20 @@ h1 {
 
 
 .generating-overview {
-    width: 55em;
-    height: 12em;
-    background-color: grey;
+    width: 10em;
+    height: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1em;
+    margin-top: 4em;
+
+}
+
+.generate-btn {
+    height: 3em;
+    width: 6em;
+    align-self: center;
 }
 
 
@@ -201,7 +407,61 @@ h1 {
 }
 
 .displayGeneratedImg {
-    width: 10em;
+    width: 100%;
     height: 10em;
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eceaea;
+    border-width: var(--borderWidth);
+    border-color: var(--genBorderColor);
+    border-radius: var(--borderRadius);
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 28em;
+}
+
+.training-information-modal {
+    display: none;
+    /* position: fixed; */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 58em;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: var(--borderRadius);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50em;
+    height: 20em;
+    border-radius: var(--borderRadius);
+}
+
+/* Close button */
+.close-btn-modal {
+    width: 9em;
+    position: absolute;
+    bottom: -5em;
+
+}
+
+p.modal-text {
+    text-align: center;
+    font-style: italic;
+    line-height: 1.6;
+
 }
