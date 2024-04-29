@@ -2,7 +2,16 @@
   --background: white;
   --elements-background: rgb(218, 218, 218);
   --borderRadius: 2em;
+  --genBorderColor: rgb(240, 159, 54);
+  --disBorderColor: rgb(81, 188, 250);
+  --imgBorderColor: #C11B7F;
+  --borderWidth: 0.3em;
+  --boxShadow: 0.2em 0.2em grey;
+}
 
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #eceaea;
 }
 
 .discriminator-lower-container{
@@ -10,33 +19,101 @@
   align-items: center;
   justify-content: space-evenly;
   background-color: var(--background);
-  border : 1px solid black;
   height: 50em;
+  min-width: 50em;
   margin: 5em;
   border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
 }
 
 .lower-left-container{
   height: 100%;
   width: 20%;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lower-middle-container{
   height: 100%;
   width: 20%;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lower-right-container{
   height: 100%;
   width: 20%;  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.generator-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: var(--borderWidth) solid var(--genBorderColor);
+  border-radius: var(--borderRadius);
+  height: 10em;
+  min-width: 20em;
+  margin-top: 8em;
+}
+
+.training-pictures-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: var(--borderWidth) solid var(--imgBorderColor);
+  border-radius: var(--borderRadius);
+  height: 10em;
+  min-width: 15em;
+  margin-top: 4em;
+}
+
+.training-pictures-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.image-generator-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
+  min-width: 15em;
+  margin-top: 15em;
+  margin-bottom: 2em;
+  padding: 2em;
 }
 
 .discriminator-probability-container{
-  background-color: var(--elements-background);
-  border : 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: var(--borderWidth) solid var(--disBorderColor);
   border-radius: var(--borderRadius);
-  height: 40em;
+  height: 30em;
   padding: 1em;
+  min-width: 20em;
+  margin-top: 8em;
+}
+
+.probability-buttons-container{
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
+  margin: 1em;
+}
+
+.chosen-probability{
+  margin: 2em;
 }
 
 .summary-content-container{
@@ -50,10 +127,12 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
+
 table, th, td {
   border: 1px solid black;
   width: 40em;
 }
+
 th, td {
   padding: 10px;
   text-align: center;

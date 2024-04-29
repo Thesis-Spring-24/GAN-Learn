@@ -4,22 +4,36 @@ const trainingCorrectText = "Rigtigt! Det er et træningsbillede";
 const trainingWrongText = "Forkert! Det rigtige svar er 1, fordi det er et træningsbillede"
 
 const mainContent =
-  `<div class="lower-left-container">1</div>
+  `<div class="lower-left-container">
+  <div class="generator-container"> 
+  <h2>Generator</h2>
+  </div>
+  <div class="training-pictures-container"> 
+  <div class="training-pictures-box"> 
+  <h2>Træningsbilleder</h2>
+
+  </div>
+  </div>
+  </div>
 <div class="lower-middle-container">
-  2
+  <div class="image-generator-container">
   <div class="image-container">
     <img src="" width="150px" class="current-discriminator-image">
   </div>
-  <div>
-    <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
   </div>
+  <div>
+  <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
+</div>
 </div>
 <div class="lower-right-container">
-  3
   <div class="discriminator-probability-container">
+  <h2>Discriminator</h2>
+
     <h3>Sandsynlighed</h3>
+    <div class="probability-buttons-container">
     <button class="zero-button" onclick="handleProbabilityButton(0)">0</button>
     <button class="one-button" onclick="handleProbabilityButton(1)">1</button>
+    </div>
     <p class="chosen-probability">Valgt: </p>
     <button class="check-answer-button" onclick="handleAnswerButton()">Tjek svar</button>
     <div>
