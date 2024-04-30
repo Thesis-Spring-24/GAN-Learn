@@ -29,15 +29,24 @@ const mainContent =
   <h2>Discriminator</h2>
     <h3>Sandsynlighed</h3>
     <div class="probability-buttons-container">
+    <div class="computer-generated">
+    <p>Computer genereret</p> 
     <button class="zero-button" onclick="handleProbabilityButton(0)">0</button>
+    </div>
+    <div class="training-picture"> 
+    <p>Træningsbillede</p>
     <button class="one-button" onclick="handleProbabilityButton(1)">1</button>
+    </div>
     </div>
     <p class="chosen-probability">Valgt: </p>
     <button class="check-answer-button" onclick="handleAnswerButton()">Tjek svar</button>
     <div>
       <p class="feedback-on-answer"></p>
     </div>
-    <p class="number-of-correct">Antal rigtige:</p>
+  </div>
+  <div class="correct-and-level-container">
+  <p class="number-of-correct">Antal rigtige:</p>
+  <p class="current-level">Niveau: 1</p>
   </div>
 </div>
 `;

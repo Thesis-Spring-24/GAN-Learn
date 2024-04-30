@@ -108,15 +108,39 @@ body {
 }
 
 .probability-buttons-container{
-  /* display: flex;
+  display: flex;
   flex-direction: row;
-  justify-content: space-between; */
+  justify-content: space-between;
   margin: 1em;
+  width: 25em;
 }
 
-.number-of-correct{
-  margin-top: 3em;
+.computer-generated{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.training-picture{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.correct-and-level-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-self: flex-start; */
+  width: 15em;
+  margin-top: 6em;
+}
+
+/* .number-of-correct{
+  margin-top: 3em;
+} */
 
 .chosen-probability{
   margin: 2em;
