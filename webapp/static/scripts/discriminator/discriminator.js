@@ -102,10 +102,16 @@ function increaseLevel() {
   localStorage.setItem("currentLevel", currentLevel);
 }
 
+function showCurrentLevel() {
+  let documentCurrentLevel = document.querySelector(".current-level");
+  if (documentCurrentLevel !== null) {
+    documentCurrentLevel.innerHTML = `Niveau: ${currentLevel}`;
+  }
+}
+
 function handleFinish() {
   let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
   document.querySelector(".continue-button").addEventListener("click", resetLocalStorage);
-
 }
 
 function loadSummaryContent() {
@@ -123,6 +129,7 @@ function loadMainContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = mainContent;
   loadImage();
   setContentSummaryLoaded(false);
+  showCurrentLevel();
 }
 
 function loadTrainingContent() {
@@ -202,6 +209,7 @@ window.onload = function () {
   updateImageMap();
   updateContentSummaryLoaded();
   updateCurrentLevel();
+  showCurrentLevel();
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
