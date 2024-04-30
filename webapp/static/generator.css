@@ -13,8 +13,9 @@
 .activity-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    row-gap: 2em;
     width: 100em;
+    height: 48em;
     background-color: white;
     border-radius: var(--borderRadius);
 }
@@ -182,8 +183,14 @@
 }
 
 .drawing-history-container {
+    display: visible;
     background-color: var(--greyBackgroundColor);
     width: 90em;
+    height: 14em;
     align-self: center;
     border-radius: var(--borderRadius);
+}
+
+.clear-btn-generator-storage {
+    width: 5em;
 }

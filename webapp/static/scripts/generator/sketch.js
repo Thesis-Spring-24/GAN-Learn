@@ -264,6 +264,23 @@ function attemptsHistory(labelPrediction) {
         probability: labelPrediction.probability
     });
 
+    localStorage.setItem("drawingAttempts", JSON.stringify(drawingAttempts));
+
+    appendDrawingAttempts();
+
+    discriminatorImageDiv = document.querySelector(".discriminator-image")
+
+    // discriminatorImageDiv.innerHTML = "";
+
+    // Append the latest image attempt to the discriminator image container
+    const latestImage = new Image();
+    latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
+    latestImage.width = 250;
+    latestImage.height = 250;
+    discriminatorImageDiv.appendChild(latestImage);
+}
+
+function appendDrawingAttempts() {
     // Get the drawing history container element
     const historyDisplay = document.getElementById("drawing-history");
 
@@ -286,17 +303,6 @@ function attemptsHistory(labelPrediction) {
         // Append the image and div to the drawing history container
         historyDisplay.appendChild(attemptDiv);
     });
-
-    discriminatorImageDiv = document.querySelector(".discriminator-image")
-
-    // discriminatorImageDiv.innerHTML = "";
-
-    // Append the latest image attempt to the discriminator image container
-    const latestImage = new Image();
-    latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
-    latestImage.width = 250;
-    latestImage.height = 250;
-    discriminatorImageDiv.appendChild(latestImage);
 }
 
 
@@ -333,4 +339,15 @@ window.onload = () => {
 
     $submit.addEventListener("click", () => predict($canvas));
     $clear.addEventListener("click", clearCanvas);
+
+    // Get the drawing attempts from the local storage
+    drawingAttempts = JSON.parse(localStorage.getItem("drawingAttempts")) || [];
+    appendDrawingAttempts();
 };
+
+document.querySelector('.clear-btn-generator-storage').addEventListener("click", clearLocalStorage);
+
+function clearLocalStorage() {
+    localStorage.clear();
+    location.reload();
+}
