@@ -7,6 +7,10 @@ let answerSubmitted = false;
 let contentSummaryLoaded;
 let currentLevel = 1; // Initialize current level to 1
 
+let answered = 0;
+let correctAnswers = 0;
+
+
 const computerGenerated = 0;
 const trainingPicture = 1;
 const levelOne = 1;
@@ -30,14 +34,30 @@ function handleAnswerButton() {
 
     feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
     updateFeedbackOnAnswer();
+
     // updateProbability();
-    answerSubmitted = true;
+    // answerSubmitted = true;
 
     // Update submittedAnswer value for the current image in imageMap
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
     setImageMap();
+    updateNumbersOfCorrect();
+    answerSubmitted = true;
   }
 }
+
+function updateNumbersOfCorrect() {
+  let documentNumberOfCorrect = document.querySelector(".number-of-correct");
+  if (chosenProbability === correctAnswer && !answerSubmitted) {
+    correctAnswers++;
+  }
+  if (!answerSubmitted) {
+    answered++;
+  }
+
+  documentNumberOfCorrect.innerHTML = `Antal rigtige: ${correctAnswers} / ${answered}`;
+}
+
 
 function setImageMap() {
   localStorage.setItem("imageMap", JSON.stringify(imageMap));
@@ -89,6 +109,8 @@ function handleNextButton() {
 }
 
 function handleSummary() {
+  answered = 0;
+  correctAnswers = 0;
   loadSummaryContent();
   handleLevelSummary();
 }
@@ -210,6 +232,7 @@ window.onload = function () {
   updateContentSummaryLoaded();
   updateCurrentLevel();
   showCurrentLevel();
+
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");

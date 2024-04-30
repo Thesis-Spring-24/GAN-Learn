@@ -142,6 +142,11 @@ body {
   margin-top: 3em;
 } */
 
+.continue-button{
+  margin-top: 2em;
+
+}
+
 .chosen-probability{
   margin: 2em;
 }
