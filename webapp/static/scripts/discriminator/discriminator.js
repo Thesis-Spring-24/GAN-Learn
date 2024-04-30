@@ -74,6 +74,7 @@ function handleNextButton() {
 
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
     handleSummary();
+    handleFinish();
     return;
   }
 
@@ -99,6 +100,12 @@ function increaseLevel() {
     currentLevel = levelThree;
   }
   localStorage.setItem("currentLevel", currentLevel);
+}
+
+function handleFinish() {
+  let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
+  document.querySelector(".continue-button").addEventListener("click", resetLocalStorage);
+
 }
 
 function loadSummaryContent() {
@@ -184,6 +191,10 @@ function updateCurrentLevel() {
   if (storedCurrentLevel !== null) {
     currentLevel = parseInt(storedCurrentLevel);
   }
+}
+
+function handleBackToOverview() {
+  window.location.href = "/overview";
 }
 
 window.onload = function () {

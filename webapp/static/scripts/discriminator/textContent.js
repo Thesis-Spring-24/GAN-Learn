@@ -11,7 +11,6 @@ const mainContent =
   <div class="training-pictures-container"> 
   <div class="training-pictures-box"> 
   <h2>Træningsbilleder</h2>
-
   </div>
   </div>
   </div>
@@ -40,7 +39,8 @@ const mainContent =
     </div>
     <p class="number-of-correct">Antal rigtige:</p>
   </div>
-</div>`;
+</div>
+`;
 
 const summaryContent =
   `<div class="summary-content-container">
@@ -61,7 +61,9 @@ const summaryContent =
 
 const trainingContent =
   `<div class="training-content-container">
- HER KAN DU TRÆNE GENERATOREN
+  <div> 
+  <h2> HER KAN DU TRÆNE GENERATOREN <h2>
+  </div>
  <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre</button>
  </div>`;
 
