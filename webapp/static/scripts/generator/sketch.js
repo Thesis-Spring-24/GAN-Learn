@@ -8,7 +8,7 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "helicopter"; // Label to predict
+const labelToPredict = "strawberry"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
@@ -207,9 +207,9 @@ const predict = async () => {
 
             attemptsHistory(labelPrediction);
 
-            document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+            // document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
 
-            document.querySelector('.feedback-container').style.display = "block";
+            document.querySelector('.feedback-container').style.display = "flex";
 
             // Clear the canvas
             clearCanvas();
@@ -221,7 +221,7 @@ const predict = async () => {
 
             }
             setTimeout(() => {
-                document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
+                // document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
             }, 1000);
         }, 1000);
 

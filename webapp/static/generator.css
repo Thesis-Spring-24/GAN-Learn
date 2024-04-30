@@ -60,10 +60,12 @@
 
 .feedback-container {
     display: none;
+    flex-direction: column;
     border-radius: 20px;
     border-width: 5px;
     border-color: black;
     width: 12em;
+    align-items: center;
     align-self: end;
     position: absolute;
     top: 47%;
