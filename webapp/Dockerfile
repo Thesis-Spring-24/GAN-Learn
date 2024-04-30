@@ -10,6 +10,6 @@ COPY ./main.py /code
 COPY ./images /code/images
 COPY ./static /code/static
 
-EXPOSE 443
+# EXPOSE 443
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "443"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

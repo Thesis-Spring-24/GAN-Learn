@@ -70,8 +70,10 @@ const loadModel = async () => {
 const preprocess = async (cb) => {
     const { min, max } = getBoundingBox();
 
+    const preUrl = window.location.host + "/transform";
+
     // Resize to 28x28 pixel & crop
-    const imageBlob = await fetch("http://127.0.0.1:8000/transform", {
+    const imageBlob = await fetch(preUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
