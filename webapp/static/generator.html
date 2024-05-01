@@ -10,13 +10,20 @@
     crossorigin="anonymous" />
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="generator.css" />
 </head>
 
 <body>
   <div class="wrapper-div">
     <div class="header">
-      <h1 class="page-header">Generator</h1>
-      <h2>Overordnede kategori: Transportmidler</h2>
+      <h1>Generator</h1>
+      <p class="page-text">
+        I skal nu prøve rollen som Generator, hvor I skal blive gode til at generere tegninger. <br>
+        I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage på,
+        hvor tæt i er på at have tegnet det korrekte. <br>
+        Jeres opgave er at bliver gode generatore, der inden tiden er gået, gætter den rigtige kategori. <br>
+        Hint til overordnet kategori: Transportmidler
+      </p>
       <div class="timer-container">
         <h3 id="timer-display">Timer: 10:00</h3> <!-- Timer display -->
       </div>
@@ -30,39 +37,52 @@
       </div>
     </div>
 
-    <div class="upper-container">
-      <div class="generator-and-discriminator-container">
-        <div class="" id="generator">
-          <div class="role-header">
-            <h2>Generator <strong>(Tegn her)</strong></h2>
-          </div>
-          <main></main>
-          <div class="buttons-container">
-            <button class="btn btn-primary btn-block" id="predict" type="button">
-              Send til diskriminatoren
-            </button>
-            <button class="btn btn-light btn-block" id="clear">Clear</button>
-          </div>
-        </div>
-        <div>
-          <div class="role-header">
-            <h2>Discriminator</h2>
-          </div>
-          <div class="" id="discriminator">
-            <div class="discriminator-image"></div>
-          </div>
-        </div>
-        <div class="prediction-container">
-          <h2 id="prediction-display">Sandsynlighed: N/A</h2>
-          <h2 id="true-or-false">Vurdering: N/A</h2>
-        </div>
-      </div>
-    </div>
+    <div class="activity-container">
+      <div class="upper-container">
+        <div class="generator-and-discriminator-container">
+          <div class="" id="generator">
+            <div class="role-header">
+              <h2>Generator <strong>(Tegn her)</strong></h2>
+            </div>
+            <div class="canvas-container">
+              <main class="canvas"></main>¨
+              <button class="clear-btn" id="clear">Slet</button>
+            </div>
 
-    <div class="drawing-history-container">
-      <div id="drawing-history">
+
+          </div>
+          <div class="prediction-container">
+            <div class="feedback-container">
+              <p id="prediction-display">Sandsynlighed: N/A</p>
+              <p id="true-or-false">Vurdering: N/A</p>
+            </div>
+
+            <div class="moving-line gen-to-dis "></div>
+            <div class="moving-line dis-to-gen"></div>
+            <button class="send-btn" id="predict" type="button">Send</button>
+          </div>
+          <div>
+            <div class="role-header">
+              <h2>Discriminator</h2>
+            </div>
+            <div class="dis-container">
+              <div class="" id="discriminator">
+                <div class="discriminator-image"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      <div class="drawing-history-container">
+        <div id="drawing-history">
+        </div>
+      </div>
+
     </div>
+    <button class="back-btn">Tilbage</button>
+    <button class="clear-btn-generator-storage">Clear local storage</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite@0.0.1-alpha.8/dist/tf-tflite.min.js"></script>
@@ -74,9 +94,10 @@
   <script src="/libs/p5.min.js"></script>
   <script src="/libs/chart.min.js"></script>
 
-  <script src="/scripts/labels.js"></script>
-  <script src="/scripts/sketch.js"></script>
-  <script src="/scripts/timer.js"></script>
+  <script src="/scripts/generator/labels.js"></script>
+  <script src="/scripts/generator/sketch.js"></script>
+  <script src="/scripts/generator/timer.js"></script>
+  <script src="/scripts/generator/general.js"></script>
 </body>
 
 </html>

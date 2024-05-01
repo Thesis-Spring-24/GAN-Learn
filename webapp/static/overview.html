@@ -5,13 +5,18 @@
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="overview.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
   <title>My Web Page</title>
 </head>
 
 <body>
-  <h1>GAN</h1>
-  <p class="page-text">Her kan du udforske forskellige dele af et netværk, der kan generere billeder</p>
+  <div class="header">
+    <h1>GAN</h1>
+    <p class="page-text">Her kan du udforske forskellige dele af et netværk, der kan generere billeder</p>
+
+  </div>
 
   <div class="overview-container">
     <div class="activity-button-container">
@@ -26,13 +31,16 @@
     <div class="process-activity-container">
 
       <div class="training-img-container">
+        <div class="help-tooltip">
+          <i class="fa-regular fa-circle-question fa-2xl">
+          </i>
+          <span class="tooltiptext-icon">Hvis I trykker på datasættet, kan I se alle træningsbillederne</span>
 
+        </div>
         <div class="training-img-btn flower-dataset-div" id="flower-dataset-div" ondrop="dragDrop(event)"
           ondragover="allowDrop(event)" onclick='window.location.href = "/flowers"'>
           <img id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
             ondragstart="dragStart(event)" width="120" height="80">
-          <span class="tooltiptext">Tryk for at se datasættet <br> <br> Træk datasættet over i modellen for at
-            træne</span>
         </div>
 
         <div class="training-img-btn">
@@ -47,7 +55,13 @@
       <div class="line"></div>
 
       <div class="process-container">
-
+        <div class="description-container">
+          <i class="fa-regular fa-circle-question fa-2xl">
+          </i>
+          <span class="tooltiptext-icon">Her kan I prøve at træne en GAN model. For at gøre det skal I trække et
+            datasæt ind fra menuen til
+            venstre</span>
+        </div>
 
 
         <div class="model-overview">
@@ -79,12 +93,36 @@
             <button class="train-btn" id="train-btn">
               Træn
             </button>
+
             <div class="display-training-img-container">
-              <div class="displayLevelImg" id="displayFlowerLevel1"> </div>
-              <div class="displayLevelImg" id="displayFlowerLevel2"> </div>
-              <div class="displayLevelImg" id="displayFlowerLevel3"> </div>
-              <div class="displayLevelImg" id="displayFlowerLevel4"> </div>
-              <div class="displayLevelImg" id="displayFlowerLevel5"> </div>
+              <div class="container-img">
+                <div class="displayLevelImg" id="displayFlowerLevel1">
+                  <p class="training-level-text">Træning 1</p>
+                </div>
+              </div>
+              <div class="container-img">
+                <div class="displayLevelImg" id="displayFlowerLevel2">
+                  <p class="training-level-text">Træning 2</p>
+                </div>
+              </div>
+
+              <div class="container-img">
+                <div class="displayLevelImg" id="displayFlowerLevel3">
+                  <p class="training-level-text">Træning 3</p>
+                </div>
+              </div>
+
+              <div class="container-img">
+                <div class="displayLevelImg" id="displayFlowerLevel4">
+                  <p class="training-level-text">Træning 4</p>
+                </div>
+              </div>
+              <div class="container-img">
+                <div class="displayLevelImg" id="displayFlowerLevel5">
+                  <p class="training-level-text">Træning 5</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -117,5 +155,6 @@
 <script src="/scripts/overview/dataMaps.js"></script>
 <script src="/scripts/overview/model-overview.js"></script>
 <script src="/scripts/overview/textContentModal.js"></script>
+
 
 </html>

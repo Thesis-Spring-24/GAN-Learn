@@ -3,13 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>My Web App</title>
+  <title>GAN Learn</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-  <h1>Welcome to My Web App</h1>
+  <div class="page-container">
+    <div class="header">
+      <h1>GAN Learn</h1>
+    </div>
+    <div class="description-text-container">
+      <p class="description-text">Nu skal I igennem et forløb, hvor I skal lære om hvordan
+        kunstigt genererede billeder bliver skabt. <br>
+        Forløbet tager udgangspunkt i en specifik model kaldet et GAN netværk. <br>
+        Et GAN netværk består af to forskellige neurale netværk, der konkurrere mod hinanden. <br>
+        Det ene netværk kaldes Generatoren; dens job er at generere nye billeder. <br>
+        Det andet netværk kaldes Diskriminatoren; dens job er at vurdere, om det billede den ser,
+        er et rigtigt billede (fra træningssættet) eller om det er et billede, der kommer fra Generatoren. <br>
+        Ved skiftevis at træne Generatoren og Diskriminatoren bliver Generatoren langsomt bedre til at generere
+        billeder,
+        der ligner billederne fra træningssættet.
 
+      </p>
+      <button class="start-btn">Start</button>
+    </div>
+  </div>
 
+  <script src="/scripts/index.js"></script>
 
 </body>
 

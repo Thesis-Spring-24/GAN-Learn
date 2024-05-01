@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --borderRadius: 2em;
     --borderRadiusElements: 1em;
     --networkHeight: 9em;
@@ -13,15 +13,17 @@
     --arrowColor: grey;
     --backGroundColorElements: white;
     --genArrowColor: rgb(27, 179, 27);
-}
+} */
 
 h1 {
     text-align: center;
 }
 
-.page-text {
-    text-align: center;
+.header {
+    display: flex;
+    flex-direction: column;
 }
+
 
 .overview-container {
     display: flex;
@@ -69,7 +71,8 @@ h1 {
 
 .process-activity-container {
     background-color: white;
-    height: 56em;
+    height: 58em;
+    /* height: fit-content; */
     width: 75em;
     border-radius: var(--borderRadius);
     display: flex;
@@ -78,6 +81,38 @@ h1 {
     align-items: center;
 }
 
+.description-container {
+    height: 2em;
+    width: 2em;
+    align-self: flex-end;
+    position: relative;
+    top: 1em;
+    right: 3em;
+    display: inline-block;
+}
+
+.tooltiptext-icon {
+    visibility: hidden;
+    width: 18em;
+    top: -5px;
+    right: 105%;
+    margin-left: -60px;
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: var(--borderRadiusElements);
+    color: black;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.description-container:hover .tooltiptext-icon {
+    visibility: visible;
+}
+
+
+
+
 .generating-arrow {
     display: none;
     position: absolute;
@@ -85,7 +120,7 @@ h1 {
     left: 0;
     top: 10.3em;
     width: 22.5em;
-    height: 39em;
+    height: 42em;
     background-color: none;
     align-items: center;
     justify-content: center;
@@ -163,27 +198,38 @@ h1 {
     cursor: pointer;
 }
 
-.tooltiptext {
-    display: none;
-    white-space: pre-line;
+.help-tooltip {
+    height: 2em;
+    width: 2em;
+    align-self: flex-end;
+    position: relative;
+    top: -1em;
+    right: 1em;
+    display: inline-block;
 }
 
-.flower-dataset-div:hover .tooltiptext {
-    display: block;
-    position: absolute;
-    background-color: #f9f9f9;
+.help-tooltip.tooltiptext-icon {
+    visibility: hidden;
+    width: 18em;
+    top: -5px;
+    right: 105%;
+    margin-left: -60px;
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: var(--borderRadiusElements);
     color: black;
     text-align: center;
-    border-radius: 6px;
-    border-color: black;
-    padding: 5px 0;
+    position: absolute;
     z-index: 1;
-    width: 10em;
-    margin-left: 1em;
 }
 
+.help-tooltip:hover .tooltiptext-icon {
+    visibility: visible;
+}
+
+
 .line {
-    height: 48em;
+    height: 54em;
     width: 0.2em;
     background-color: #eceaea;
 }
@@ -191,6 +237,7 @@ h1 {
 .process-container {
     /* background-color: blue; */
     height: 56em;
+    height: fit-content;
     width: 58em;
     display: flex;
     flex-direction: column;
@@ -355,6 +402,7 @@ h1 {
 .training-overview {
     width: 55em;
     height: 13em;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     row-gap: 1em;
@@ -371,16 +419,32 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: #eceaea;
+    background-color: var(--greyBackgroundColor);
     border-radius: var(--borderRadius);
+    width: 50em;
+    height: 11em;
+    align-self: center;
+}
+
+.container-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .displayLevelImg {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 8em;
-    height: 8em;
+
+    width: 7em;
+    height: 7em;
+}
+
+.training-level-text {
+    margin-top: 0;
 }
 
 
@@ -391,7 +455,7 @@ h1 {
     flex-direction: column;
     justify-content: center;
     row-gap: 1em;
-    margin-top: 4em;
+    margin-top: 2.5em;
 
 }
 
@@ -423,6 +487,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     height: 28em;
+    height: fit-content;
 }
 
 .training-information-modal {
