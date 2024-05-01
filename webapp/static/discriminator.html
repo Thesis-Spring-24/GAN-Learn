@@ -18,17 +18,21 @@
 <body>
 
   <div>
+    <button onclick="resetLocalStorage()">Reset LocalStorage</button>
     <div class="discriminator-upper-container">
-      <h1>Discriminator aktivitet</h1>
-      <h3 class="page-text">
-        I har nu rollen som Diskriminator, og I skal blive gode til at kende forskel på computergenerede billeder og
-        træningsbilleder.
-        I får vist et billede af gangen, som enten af computergenereret af Generatoren eller er et træningsbillede. I
-        skal vurdere hvor billedet kommer fra ved at give en sandsynlighed mellem 0 (computergenereret) og 1
-        (træningsbillede).
-        Jeres opgave er at lære hvilke billeder der er computergenereret og hvilke der er træningsbilleder
-      </h3>
-      <button onclick="resetLocalStorage()">Reset LocalStorage</button>
+      <div class="header">
+        <h1>Discriminator aktivitet</h1>
+        <p class="page-text">
+          I har nu rollen som Diskriminator, og I skal blive gode til at kende forskel på computergenerede billeder og
+          træningsbilleder.
+          I får vist et billede af gangen, som enten af computergenereret af Generatoren eller er et træningsbillede. I
+          skal vurdere hvor billedet kommer fra ved at give en sandsynlighed mellem 0 (computergenereret) og 1
+          (træningsbillede).
+          Jeres opgave, som Diskriminator, er at lære hvilke billeder der er computergenereret og hvilke der er
+          træningsbilleder
+        </p>
+      </div>
+
     </div>
     <div class="discriminator-lower-container">
     </div>
