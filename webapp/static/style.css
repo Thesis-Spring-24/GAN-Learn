@@ -1,8 +1,8 @@
 :root {
   --borderRadius: 2em;
   --borderRadiusElements: 1em;
-  --networkHeight: 7em;
-  --networkWidth: 11em;
+  --networkHeight: 9em;
+  --networkWidth: 14em;
   --imgHeight: 6em;
   --imgWidth: 10em;
   --genBorderColor: rgb(240, 159, 54);
@@ -19,6 +19,7 @@
 .page-text {
   text-align: center;
   width: 50em;
+  align-self: center;
 }
 
 body {
