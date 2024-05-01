@@ -30,7 +30,7 @@ const mainContent =
     <h3>Sandsynlighed</h3>
     <div class="probability-buttons-container">
     <div class="computer-generated">
-    <p>Computer genereret</p> 
+    <p>Computergenereret</p> 
     <button class="zero-button" onclick="handleProbabilityButton(0)">0</button>
     </div>
     <div class="training-picture"> 

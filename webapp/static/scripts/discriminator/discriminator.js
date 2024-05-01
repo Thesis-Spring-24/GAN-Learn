@@ -9,6 +9,7 @@ let currentLevel = 1; // Initialize current level to 1
 
 let answered = 0;
 let correctAnswers = 0;
+let correctAndAnswered;
 
 
 const computerGenerated = 0;
@@ -47,15 +48,24 @@ function handleAnswerButton() {
 }
 
 function updateNumbersOfCorrect() {
+
+  // Problemet er at correctAnswers og answered bliver sat til 0 når siden genindlæses
+  // Tilføj variable alt efter hvor man kalder det fra
+  // Eller gem correctAnswers og answered i localStorage og hent det her
+
+
   let documentNumberOfCorrect = document.querySelector(".number-of-correct");
   if (chosenProbability === correctAnswer && !answerSubmitted) {
     correctAnswers++;
   }
-  if (!answerSubmitted) {
+  if (!answerSubmitted && chosenProbability !== null) {
+    console.log(chosenProbability);
     answered++;
   }
 
-  documentNumberOfCorrect.innerHTML = `Antal rigtige: ${correctAnswers} / ${answered}`;
+  correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
+  documentNumberOfCorrect.innerHTML = correctAndAnswered;
+  localStorage.setItem("correctAndAnswered", correctAndAnswered);
 }
 
 
@@ -106,11 +116,13 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
+
 }
 
 function handleSummary() {
   answered = 0;
   correctAnswers = 0;
+  chosenProbability = null;
   loadSummaryContent();
   handleLevelSummary();
 }
@@ -152,6 +164,8 @@ function loadMainContent() {
   loadImage();
   setContentSummaryLoaded(false);
   showCurrentLevel();
+  // correctAndAnswered = localStorage.getItem("correctAndAnswered");
+  updateNumbersOfCorrect();
 }
 
 function loadTrainingContent() {
@@ -249,7 +263,6 @@ window.onload = function () {
   }
 
   loadMainContent();
-
 }
 
 
