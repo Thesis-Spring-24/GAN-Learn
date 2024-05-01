@@ -28,13 +28,16 @@
     <div class="process-activity-container">
 
       <div class="training-img-container">
+        <div class="help-tooltip">
+          <i class="fa-regular fa-circle-question fa-2xl">
+          </i>
+          <span class="tooltiptext-icon">Hvis I trykker på datasættet, kan I se alle træningsbillederne</span>
 
+        </div>
         <div class="training-img-btn flower-dataset-div" id="flower-dataset-div" ondrop="dragDrop(event)"
           ondragover="allowDrop(event)" onclick='window.location.href = "/flowers"'>
           <img id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
             ondragstart="dragStart(event)" width="120" height="80">
-          <span class="tooltiptext">Tryk for at se datasættet <br> <br> Træk datasættet over i modellen for at
-            træne</span>
         </div>
 
         <div class="training-img-btn">
@@ -53,10 +56,8 @@
           <i class="fa-regular fa-circle-question fa-2xl">
           </i>
           <span class="tooltiptext-icon">Her kan I prøve at træne en GAN model. For at gøre det skal I trække et
-            træningssæt ind fra menuen til
+            datasæt ind fra menuen til
             venstre</span>
-          <!-- <p>Her kan I prøve at træne en GAN model. For at gøre det skal I trække et træningssæt ind fra menuen til
-            venstre</p> -->
         </div>
 
 

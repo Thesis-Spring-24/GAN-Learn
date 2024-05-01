@@ -69,8 +69,8 @@ h1 {
 
 .process-activity-container {
     background-color: white;
-    height: 56em;
-    height: fit-content;
+    height: 58em;
+    /* height: fit-content; */
     width: 75em;
     border-radius: var(--borderRadius);
     display: flex;
@@ -80,14 +80,11 @@ h1 {
 }
 
 .description-container {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     height: 2em;
     width: 2em;
     align-self: flex-end;
     position: relative;
-    top: -2em;
+    top: 1em;
     right: 3em;
     display: inline-block;
 }
@@ -199,27 +196,38 @@ h1 {
     cursor: pointer;
 }
 
-.tooltiptext {
-    display: none;
-    white-space: pre-line;
+.help-tooltip {
+    height: 2em;
+    width: 2em;
+    align-self: flex-end;
+    position: relative;
+    top: -1em;
+    right: 1em;
+    display: inline-block;
 }
 
-.flower-dataset-div:hover .tooltiptext {
-    display: block;
-    position: absolute;
-    background-color: #f9f9f9;
+.help-tooltip.tooltiptext-icon {
+    visibility: hidden;
+    width: 18em;
+    top: -5px;
+    right: 105%;
+    margin-left: -60px;
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: var(--borderRadiusElements);
     color: black;
     text-align: center;
-    border-radius: 6px;
-    border-color: black;
-    padding: 5px 0;
+    position: absolute;
     z-index: 1;
-    width: 10em;
-    margin-left: 1em;
 }
 
+.help-tooltip:hover .tooltiptext-icon {
+    visibility: visible;
+}
+
+
 .line {
-    height: 48em;
+    height: 54em;
     width: 0.2em;
     background-color: #eceaea;
 }
