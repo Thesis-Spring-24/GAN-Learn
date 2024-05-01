@@ -19,9 +19,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 2; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 4; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 6; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 4; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 8; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 12; // TODO: Tilpas til ønsket antal billede i level 3
 // ------------------- //
 
 function handleProbabilityButton(probability) {
