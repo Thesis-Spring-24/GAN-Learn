@@ -1,5 +1,5 @@
 const WIDTH = 500;
-const HEIGHT = 500;
+const HEIGHT = 350;
 const STROKE_WEIGHT = 3;
 const CROP_PADDING = (REPOS_PADDING = 2);
 
@@ -8,7 +8,7 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "helicopter"; // Label to predict
+const labelToPredict = "strawberry"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
@@ -194,21 +194,41 @@ const predict = async () => {
             index: labelIndex,
         };
 
-        // Display the prediction for the label on the user interface
-        displayPrediction(labelPrediction);
+        //start moving the line
+        document.querySelector('.moving-line.gen-to-dis').classList.add('moveLineRight');
+        //do not display feedback
+        document.querySelector('.feedback-container').style.display = "none";
+        //remove old attempt from discriminator
+        document.querySelector(".discriminator-image").innerHTML = "";
 
-        // Display the history of drawing attempts
-        attemptsHistory(labelPrediction);
+        setTimeout(() => {
+            document.querySelector('.moving-line.gen-to-dis').classList.remove('moveLineRight');
+            // Display the prediction for the label on the user interface
+            displayPrediction(labelPrediction);
 
-        // Clear the canvas
-        clearCanvas();
+            attemptsHistory(labelPrediction);
 
-        // Stop the timer if the probability is greater than the threshold
-        if (labelPrediction.probability > probabilityThreshold) {
-            stopTimer();
-            showModal();
+            // document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
 
-        }
+            document.querySelector('.feedback-container').style.display = "flex";
+
+            // Clear the canvas
+            clearCanvas();
+
+            // Stop the timer if the probability is greater than the threshold
+            if (labelPrediction.probability > probabilityThreshold) {
+                stopTimer();
+                showModal();
+
+            }
+            setTimeout(() => {
+                // document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
+            }, 1000);
+        }, 1000);
+
+
+
+
     });
 };
 
@@ -235,6 +255,7 @@ let drawingAttempts = [];
 
 // Display the history of drawing attempts
 function attemptsHistory(labelPrediction) {
+    console.log("attemptsHistory");
     // Get the canvas element
     const canvas = document.getElementById("defaultCanvas0");
 
@@ -244,6 +265,23 @@ function attemptsHistory(labelPrediction) {
         probability: labelPrediction.probability
     });
 
+    localStorage.setItem("drawingAttempts", JSON.stringify(drawingAttempts));
+
+    appendDrawingAttempts();
+
+    discriminatorImageDiv = document.querySelector(".discriminator-image")
+
+    // discriminatorImageDiv.innerHTML = "";
+
+    // Append the latest image attempt to the discriminator image container
+    const latestImage = new Image();
+    latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
+    latestImage.width = 250;
+    latestImage.height = 250;
+    discriminatorImageDiv.appendChild(latestImage);
+}
+
+function appendDrawingAttempts() {
     // Get the drawing history container element
     const historyDisplay = document.getElementById("drawing-history");
 
@@ -254,8 +292,8 @@ function attemptsHistory(labelPrediction) {
     drawingAttempts.forEach((attempt, index) => {
         const image = new Image();
         image.src = attempt.image;
-        image.width = 250; // Set the width of the image
-        image.height = 250; // Set the height of the image
+        image.width = 120; // Set the width of the image
+        image.height = 120; // Set the height of the image
 
         // Create a div to display probability
         const attemptDiv = document.createElement("div");
@@ -266,17 +304,6 @@ function attemptsHistory(labelPrediction) {
         // Append the image and div to the drawing history container
         historyDisplay.appendChild(attemptDiv);
     });
-
-    discriminatorImageDiv = document.querySelector(".discriminator-image")
-
-    discriminatorImageDiv.innerHTML = "";
-
-    // Append the latest image attempt to the discriminator image container
-    const latestImage = new Image();
-    latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
-    latestImage.width = 350;
-    latestImage.height = 350;
-    discriminatorImageDiv.appendChild(latestImage);
 }
 
 
@@ -313,4 +340,15 @@ window.onload = () => {
 
     $submit.addEventListener("click", () => predict($canvas));
     $clear.addEventListener("click", clearCanvas);
+
+    // Get the drawing attempts from the local storage
+    drawingAttempts = JSON.parse(localStorage.getItem("drawingAttempts")) || [];
+    appendDrawingAttempts();
 };
+
+document.querySelector('.clear-btn-generator-storage').addEventListener("click", clearLocalStorage);
+
+function clearLocalStorage() {
+    localStorage.clear();
+    location.reload();
+}
