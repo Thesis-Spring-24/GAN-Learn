@@ -1,5 +1,6 @@
 :root {
   --borderRadius: 2em;
+  --borderRadiusElements: 1em;
   --networkHeight: 7em;
   --networkWidth: 11em;
   --imgHeight: 6em;
