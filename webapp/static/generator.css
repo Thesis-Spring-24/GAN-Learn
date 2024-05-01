@@ -196,3 +196,7 @@
 .clear-btn-generator-storage {
     width: 5em;
 }
+
+.back-btn {
+    align-self: flex-end;
+}
