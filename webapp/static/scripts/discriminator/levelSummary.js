@@ -1,13 +1,13 @@
 let documentLevelHeader = document.querySelector(".level-header");
+let startRange = null;
+let endRange = null;
 
 // Håndtere når man trykker på continue-button
 
 function handleLevelSummary() {
+  findRange();
+
   let documentLevelHeader = document.querySelector(".level-header");
-
-  let startRange = 0;
-  let endRange = 12;
-
 
   // if (contentSummaryLoaded === true) {
 
@@ -43,6 +43,20 @@ function handleLevelSummary() {
   calculatePercentageCorrect();
   // }
 
+}
+
+function findRange() {
+  if ((currentLevel - 1) === levelOne) {
+    startRange = 0;
+    endRange = imagesLevelOne;
+  } else if ((currentLevel - 1) === levelTwo) {
+    startRange = imagesLevelOne;
+    endRange = imagesLevelTwo;
+  }
+  else if ((currentLevel - 1) == levelThree) {
+    startRange = 0;
+    endRange = imagesLevelThree;
+  }
 }
 
 function calculatePercentageCorrect() {
