@@ -15,6 +15,10 @@ const mainContent =
   </div>
   </div>
 <div class="lower-middle-container">
+<div class="correct-and-level-container">
+<h2 class="current-level">Niveau: 1</h2>
+<p class="number-of-correct">Antal rigtige:</p>
+</div>
   <div class="image-generator-container">
   <div class="image-container">
     <img src="" width="150px" class="current-discriminator-image">
@@ -43,10 +47,6 @@ const mainContent =
     <div>
       <p class="feedback-on-answer"></p>
     </div>
-  </div>
-  <div class="correct-and-level-container">
-  <p class="number-of-correct">Antal rigtige:</p>
-  <p class="current-level">Niveau: 1</p>
   </div>
 </div>
 `;
