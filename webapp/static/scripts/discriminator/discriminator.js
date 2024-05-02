@@ -9,8 +9,6 @@ let currentLevel = 1; // Initialize current level to 1
 
 let answered = 0;
 let correctAnswers = 0;
-let correctAndAnswered;
-
 
 const computerGenerated = 0;
 const trainingPicture = 1;
@@ -48,26 +46,41 @@ function handleAnswerButton() {
 }
 
 function updateNumbersOfCorrect() {
-
-  // Problemet er at correctAnswers og answered bliver sat til 0 når siden genindlæses
-  // Tilføj variable alt efter hvor man kalder det fra
-  // Eller gem correctAnswers og answered i localStorage og hent det her
-
+  correctAnswers = localStorage.getItem("correctAnswers") || 0;
+  answered = localStorage.getItem("answered") || 0;
 
   let documentNumberOfCorrect = document.querySelector(".number-of-correct");
   if (chosenProbability === correctAnswer && !answerSubmitted) {
-    correctAnswers++;
+    setCorrectAnswers(1);
   }
   if (!answerSubmitted && chosenProbability !== null) {
-    console.log(chosenProbability);
-    answered++;
+    setAnswered(1);
   }
 
-  correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
+  let correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
   documentNumberOfCorrect.innerHTML = correctAndAnswered;
-  localStorage.setItem("correctAndAnswered", correctAndAnswered);
 }
 
+
+function setAnswered(value) {
+  if (value === 1) {
+    answered++;
+  } else if (value === 0) {
+    answered = 0;
+  }
+  localStorage.setItem("answered", answered);
+}
+
+function setCorrectAnswers(value) {
+  if (value === 1) {
+    correctAnswers++;
+  } else if (value === 0) {
+    correctAnswers = 0;
+  }
+
+  localStorage.setItem("correctAnswers", correctAnswers);
+
+}
 
 function setImageMap() {
   localStorage.setItem("imageMap", JSON.stringify(imageMap));
@@ -116,12 +129,11 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
-
 }
 
 function handleSummary() {
-  answered = 0;
-  correctAnswers = 0;
+  setAnswered(0);
+  setCorrectAnswers(0);
   chosenProbability = null;
   loadSummaryContent();
   handleLevelSummary();
@@ -164,7 +176,6 @@ function loadMainContent() {
   loadImage();
   setContentSummaryLoaded(false);
   showCurrentLevel();
-  // correctAndAnswered = localStorage.getItem("correctAndAnswered");
   updateNumbersOfCorrect();
 }
 
