@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
-  <title>My Web Page</title>
+  <title>GAN Learn</title>
 </head>
 
 <body>
@@ -43,8 +43,10 @@
             ondragstart="dragStart(event)" width="120" height="80">
         </div>
 
-        <div class="training-img-btn">
-
+        <div class="training-img-btn skull-dataset-div" id="skull-dataset-div" ondrop="dragDrop(event)"
+          ondragover="allowDrop(event)" onclick='window.location.href = "/skulls"'>
+          <img id="skull-dataset" src="/assets/skullsBtn.png" alt="Skull" draggable="true"
+            ondragstart="dragStart(event)" width="120" height="80">
         </div>
 
         <div class="training-img-btn"></div>
@@ -96,29 +98,29 @@
 
             <div class="display-training-img-container">
               <div class="container-img">
-                <div class="displayLevelImg" id="displayFlowerLevel1">
+                <div class="displayLevelImg" id="displayImageLevel1">
                   <p class="training-level-text">Træning 1</p>
                 </div>
               </div>
               <div class="container-img">
-                <div class="displayLevelImg" id="displayFlowerLevel2">
+                <div class="displayLevelImg" id="displayImageLevel2">
                   <p class="training-level-text">Træning 2</p>
                 </div>
               </div>
 
               <div class="container-img">
-                <div class="displayLevelImg" id="displayFlowerLevel3">
+                <div class="displayLevelImg" id="displayImageLevel3">
                   <p class="training-level-text">Træning 3</p>
                 </div>
               </div>
 
               <div class="container-img">
-                <div class="displayLevelImg" id="displayFlowerLevel4">
+                <div class="displayLevelImg" id="displayImageLevel4">
                   <p class="training-level-text">Træning 4</p>
                 </div>
               </div>
               <div class="container-img">
-                <div class="displayLevelImg" id="displayFlowerLevel5">
+                <div class="displayLevelImg" id="displayImageLevel5">
                   <p class="training-level-text">Træning 5</p>
                 </div>
               </div>

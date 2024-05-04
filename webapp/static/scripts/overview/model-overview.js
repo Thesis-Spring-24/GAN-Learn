@@ -10,7 +10,7 @@ function trainModel() {
         flowerCountString = localStorage.getItem("flowerCount");
         if (flowerCount === null || flowerCount === "null") {
             flowerCount = 1;
-            displayFlowerTraining(flowerCount);
+            displayImageTraining(flowerCount, currentDataset);
             localStorage.setItem("flowerCount", flowerCount);
             startAnimation();
             displayModal();
@@ -18,7 +18,7 @@ function trainModel() {
         else if (flowerCount < 5) {
             flowerCount++;
 
-            displayFlowerTraining(flowerCount);
+            displayImageTraining(flowerCount, currentDataset);
             localStorage.setItem("flowerCount", flowerCount);
             startAnimation();
             displayModal();
@@ -27,24 +27,65 @@ function trainModel() {
             alert("Modellen er færdigtrænet")
         }
     }
+
+    if (currentDataset == "skull-dataset") {
+        console.log("now that it is skulls")
+        skullCountString = localStorage.getItem("skullCount");
+        console.log("skull count", skullCount)
+        if (skullCountString === null || skullCountString === "null") {
+            skullCount = 1;
+            displayImageTraining(skullCount, currentDataset);
+            localStorage.setItem("skullCount", skullCount);
+            startAnimation();
+            displayModal();
+        }
+        else if (skullCount < 5) {
+            skullCount++;
+
+            displayImageTraining(skullCount, currentDataset);
+            localStorage.setItem("skullCount", skullCount);
+            startAnimation();
+            displayModal();
+        }
+        else if (skullCount == 5) {
+            alert("Modellen er færdigtrænet")
+        }
+    }
 }
 
 //when pressing train a flower image is displayed in the training overview
-function displayFlowerTraining(flowerCount) {
-    console.log("in the display flower training method")
-    //get the path of the image
-    var path = flowerLevelList[flowerCount - 1];
-    console.log(path)
-    var img = document.createElement('img');
-    img.src = path;
-    img.width = 100;
+function displayImageTraining(trainingCount, currentdataset) {
+    if (currentdataset == "flower-dataset") {
+        //get the path of the image
+        var path = flowerLevelList[trainingCount - 1];
+        var img = document.createElement('img');
+        img.src = path;
+        img.width = 100;
 
-    let preName = "displayFlowerLevel";
-    let number = flowerCount.toString();
-    var id = preName.concat(number);
+        let preName = "displayImageLevel";
+        let number = trainingCount.toString();
+        var id = preName.concat(number);
 
-    //append the image
-    document.getElementById(id).appendChild(img);
+        //append the image
+        document.getElementById(id).appendChild(img);
+    }
+
+    if (currentdataset == "skull-dataset") {
+        //get the path of the image
+        var path = skullLevelList[trainingCount - 1];
+        var img = document.createElement('img');
+        img.src = path;
+        img.width = 100;
+
+        let preName = "displayImageLevel";
+        let number = trainingCount.toString();
+        var id = preName.concat(number);
+
+        //append the image
+        document.getElementById(id).appendChild(img);
+    }
+
+
 }
 
 function startAnimation() {

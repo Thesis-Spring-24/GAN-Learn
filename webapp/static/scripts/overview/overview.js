@@ -1,5 +1,7 @@
 var currentDataset;
 let flowerCount;
+let skullCount;
+let trainingCount;
 let generatorCount;
 let animationRunning = false;
 let dataSetInModel = localStorage.getItem("dataSetInModel");
@@ -23,7 +25,7 @@ function navigateToFlowers() {
 
 function clearTrainingOverview(flowerCount) {
     for (let i = flowerCount; i > 0; i--) {
-        let preName = "displayFlowerLevel";
+        let preName = "displayImageLevel";
         let number = i.toString();
         var id = preName.concat(number);
         document.getElementById(id).innerHTML = "";
@@ -153,11 +155,11 @@ function updateTrainingSet(currentDataSet) {
 function updateTrainingOverview(flowerCount, currentDataSet) {
     if (flowerCount == 1) {
         console.log("knows that flower count is 1")
-        displayFlowerTraining(1);
+        displayImageTraining(1);
     }
     if (flowerCount == 2) {
-        displayFlowerTraining(1);
-        displayFlowerTraining(2);
+        displayImageTraining(1);
+        displayImageTraining(2);
     }
 }
 
