@@ -23,6 +23,7 @@ function trainModel() {
             localStorage.setItem("trainingCount", trainingCount);
             startAnimation();
             displayModal();
+            clearGeneratedImage();
         }
         else if (trainingCount == 5) {
             alert("Modellen er færdigtrænet")

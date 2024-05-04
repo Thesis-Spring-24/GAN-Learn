@@ -33,6 +33,10 @@ async def overview():
 async def flowers():
     return FileResponse("./static/flowers.html")
 
+@app.get("/skulls")
+async def skulls():
+    return FileResponse("./static/skulls.html")
+
 # Allow all origins and headers for CORS
 app.add_middleware(
     CORSMiddleware,

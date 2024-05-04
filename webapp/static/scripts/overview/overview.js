@@ -28,7 +28,7 @@ function clearTrainingOverview(trainingCount) {
         let number = i.toString();
         var id = preName.concat(number);
         console.log(number)
-        document.getElementById(id).innerHTML = " <p class='training-level-text'>Træning" + number + "</p>";
+        document.getElementById(id).innerHTML = " <p class='training-level-text'>Træning " + number + "</p>";
     }
 }
 
@@ -134,14 +134,6 @@ function generateImg() {
     if (trainingCount > 0) {
         displayGeneratingArrow();
     }
-    // if (currentDataset == "flower-dataset") {
-    //     if (trainingCount == null) {
-    //         alert("Træn modellen først");
-    //     }
-    //     if (trainingCount > 0) {
-    //         displayGeneratingArrow();
-    //     }
-    // }
 }
 
 function clearLocalStorage() {
