@@ -185,6 +185,9 @@ h1 {
 }
 
 .training-img-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: var(--imgHeight);
     width: var(--imgWidth);
     border: solid;
