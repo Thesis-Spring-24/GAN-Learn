@@ -106,15 +106,12 @@ function handleNextButton() {
   console.log(`ImageNumber: ${imageNumber}`);
 
   if (imageNumber > imagesLevelOne && currentLevel === levelOne) {
-    increaseLevel();
     handleSummary();
     return;
   } else if (imageNumber > imagesLevelTwo && currentLevel === levelTwo) {
-    increaseLevel();
     handleSummary();
     return;
   }
-
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
     handleSummary();
     handleFinish();
@@ -144,6 +141,8 @@ function increaseLevel() {
     currentLevel = levelTwo;
   } else if (currentLevel === levelTwo) {
     currentLevel = levelThree;
+  } else if (currentLevel === levelThree) {
+    currentLevel = levelThree + 1;
   }
   localStorage.setItem("currentLevel", currentLevel);
 }
@@ -190,6 +189,7 @@ function handleContinueButton(nextContent) {
   }
   if (nextContent == "mainContent") {
     loadMainContent();
+    increaseLevel();
   }
 }
 

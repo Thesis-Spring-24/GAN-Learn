@@ -6,6 +6,9 @@ let endRange = null;
 
 function handleLevelSummary() {
   findRange();
+  console.log("currentLevel: " + currentLevel);
+  console.log("startRange: " + startRange);
+  console.log("endRange: " + endRange);
 
   let documentLevelHeader = document.querySelector(".level-header");
 
@@ -46,14 +49,14 @@ function handleLevelSummary() {
 }
 
 function findRange() {
-  if ((currentLevel - 1) === levelOne) {
+  if (currentLevel === levelOne) {
     startRange = 0;
     endRange = imagesLevelOne;
-  } else if ((currentLevel - 1) === levelTwo) {
+  } else if (currentLevel === levelTwo) {
     startRange = imagesLevelOne;
     endRange = imagesLevelTwo;
   }
-  else if ((currentLevel - 1) == levelThree) {
+  else if (currentLevel === levelThree) {
     startRange = 0;
     endRange = imagesLevelThree;
   }
