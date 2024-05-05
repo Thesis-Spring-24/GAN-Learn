@@ -68,7 +68,9 @@ const summaryContent =
   </table>
   </div>
   <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
-</div>`;
+  <div class="try-again-container"></div>
+  </div>
+`;
 
 const trainingContent =
   `<div class="training-content-container">
@@ -76,6 +78,7 @@ const trainingContent =
   <h2> HER KAN DU TRÆNE GENERATOREN <h2>
   </div>
  <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre</button>
+
  </div>`;
 
 
