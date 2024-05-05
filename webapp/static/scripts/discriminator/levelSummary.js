@@ -6,13 +6,7 @@ let endRange = null;
 
 function handleLevelSummary() {
   findRange();
-  console.log("currentLevel: " + currentLevel);
-  console.log("startRange: " + startRange);
-  console.log("endRange: " + endRange);
-
-  let documentLevelHeader = document.querySelector(".level-header");
-
-  // if (contentSummaryLoaded === true) {
+  handleHeaderSummary();
 
   Object.keys(imageMap).slice(startRange, endRange).forEach((key, index) => {
     let row = document.createElement('tr');
@@ -44,8 +38,14 @@ function handleLevelSummary() {
   });
 
   calculatePercentageCorrect();
-  // }
+}
 
+function handleHeaderSummary() {
+  let documentLevelHeader = document.querySelector(".level-header");
+  documentLevelHeader.textContent = `Niveau ${currentLevel} resultat`;
+  if (currentLevel === levelThree) {
+    documentLevelHeader.textContent = "Samlet resultat";
+  }
 }
 
 function findRange() {

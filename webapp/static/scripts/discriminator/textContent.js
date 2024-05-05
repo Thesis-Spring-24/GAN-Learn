@@ -53,7 +53,7 @@ const mainContent =
 
 const summaryContent =
   `<div class="summary-content-container">
-  <h2 class="level-header">Niveau 1 resultat</h2>
+  <h2 class="level-header"></h2>
   <p class="percentage-correct"></p>
   <table id="imageTable">
     <tr id="headerRow">
