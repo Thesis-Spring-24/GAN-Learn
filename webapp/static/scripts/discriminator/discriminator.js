@@ -156,7 +156,7 @@ function showCurrentLevel() {
 
 function handleFinish() {
   let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
-  document.querySelector(".continue-button").addEventListener("click", resetLocalStorage);
+  documentContinueButton.addEventListener("click", resetLocalStorage);
 }
 
 function loadSummaryContent() {
@@ -190,6 +190,7 @@ function handleContinueButton(nextContent) {
   if (nextContent == "mainContent") {
     loadMainContent();
     increaseLevel();
+    showCurrentLevel();
   }
 }
 
@@ -256,8 +257,6 @@ window.onload = function () {
   updateImageMap();
   updateContentSummaryLoaded();
   updateCurrentLevel();
-  showCurrentLevel();
-
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
