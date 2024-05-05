@@ -63,10 +63,10 @@ function findRange() {
 }
 
 function calculatePercentageCorrect() {
-  let correctCount = 0;
-  let totalCount = Object.keys(imageMap).length; // Todo: Skal ændres til antal billeder i level 1
+  let correctCount = 0; // Todo: Undersøg om correctAnswers kan bruges i stedet (fra localStorage)
+  let totalCount = endRange - startRange;
 
-  Object.keys(imageMap).forEach((key) => {
+  Object.keys(imageMap).slice(startRange, endRange).forEach((key) => {
     if (imageMap[key].correctAnswer === imageMap[key].submittedAnswer) {
       correctCount++;
     }
