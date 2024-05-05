@@ -89,10 +89,11 @@ body {
   align-items: center;
   border-radius: var(--borderRadius);
   border: var(--borderWidth) solid black;
-  min-width: 15em;
+  min-width: 13em;
   margin-top: 8em;
   margin-bottom: 2em;
   padding: 2em;
+  min-height: 11em;
 }
 
 .discriminator-probability-container{
