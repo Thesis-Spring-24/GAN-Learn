@@ -105,6 +105,7 @@ function handleNextButton() {
 
   console.log(`ImageNumber: ${imageNumber}`);
 
+  // TODO: Simplify the following code
   if (imageNumber > imagesLevelOne && currentLevel === levelOne) {
     handleSummary();
     return;
@@ -155,8 +156,11 @@ function showCurrentLevel() {
 }
 
 function handleFinish() {
-  let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
-  documentContinueButton.addEventListener("click", resetLocalStorage);
+  let documentContinueButton = document.querySelector(".continue-button");
+  documentContinueButton.remove();
+
+  // let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
+  // documentContinueButton.addEventListener("click", resetLocalStorage);
 }
 
 function loadSummaryContent() {
@@ -191,7 +195,8 @@ function handleContinueButton(nextContent) {
     loadMainContent();
     increaseLevel();
     showCurrentLevel();
-  }
+  } 
+  
 }
 
 function increaseImageNumber() {
@@ -261,15 +266,17 @@ window.onload = function () {
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
-
-  if ((currentLevel - 1) === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
+  // TODO: Simplify the following code
+  if (currentLevel === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
     handleSummary();
     return;
-  } else if ((currentLevel - 1) === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
+  } else if (currentLevel === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
     handleSummary();
     return;
-  } else if ((currentLevel - 1) === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
+  } else if (currentLevel === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
     handleSummary();
+    handleFinish();
+    return;
   }
 
   loadMainContent();
