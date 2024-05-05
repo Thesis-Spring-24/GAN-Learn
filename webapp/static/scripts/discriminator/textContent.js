@@ -55,6 +55,7 @@ const summaryContent =
   `<div class="summary-content-container">
   <h2 class="level-header"></h2>
   <p class="percentage-correct"></p>
+  <div class="summary-table-container">
   <table id="imageTable">
     <tr id="headerRow">
       <th>Nr.</th>
@@ -65,6 +66,7 @@ const summaryContent =
     <tbody id="tableBody">
     </tbody>
   </table>
+  </div>
   <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
 </div>`;
 

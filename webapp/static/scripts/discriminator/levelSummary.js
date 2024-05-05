@@ -38,6 +38,16 @@ function handleLevelSummary() {
   });
 
   calculatePercentageCorrect();
+
+  if (currentLevel === levelThree) {
+    handleFinalSummary();
+  }
+}
+
+function handleFinalSummary() {
+    let table = document.querySelector(".summary-table-container");
+    table.style.maxHeight = "50em";
+    table.style.overflowY = "scroll";
 }
 
 function handleHeaderSummary() {
