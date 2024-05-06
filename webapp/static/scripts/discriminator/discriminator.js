@@ -117,6 +117,8 @@ function handleNextButton() {
     handleSummary();
     setFinished(true);
     // handleFinish();
+    let documentContinueButton = document.querySelector(".continue-button");
+    documentContinueButton.textContent = "Samlet resultat";
     return;
   }
 
@@ -161,8 +163,6 @@ function showCurrentLevel() {
 }
 
 // function handleFinish() {
-//   let documentContinueButton = document.querySelector(".continue-button");
-//   documentContinueButton.remove();
 
 //   let documentTryAgainContainer = document.querySelector(".try-again-container");
 //   documentTryAgainContainer.innerHTML = `<button class="try-again-button" onclick="resetLocalStorage()">Prøv igen</button>`;

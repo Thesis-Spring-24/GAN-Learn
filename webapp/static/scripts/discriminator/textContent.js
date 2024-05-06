@@ -69,7 +69,6 @@ const summaryContent =
   </table>
   </div>
   <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
-  <div class="try-again-container"></div>
   </div>
 `;
 
