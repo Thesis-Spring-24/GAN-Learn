@@ -115,7 +115,8 @@ function handleNextButton() {
   }
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
     handleSummary();
-    handleFinish();
+    setFinished(true);
+    // handleFinish();
     return;
   }
 
@@ -127,6 +128,10 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
+}
+
+function setFinished(isFinished) {
+  localStorage.setItem("isFinished", isFinished);
 }
 
 function handleSummary() {
@@ -155,13 +160,13 @@ function showCurrentLevel() {
   }
 }
 
-function handleFinish() {
-  let documentContinueButton = document.querySelector(".continue-button");
-  documentContinueButton.remove();
+// function handleFinish() {
+//   let documentContinueButton = document.querySelector(".continue-button");
+//   documentContinueButton.remove();
 
-  let documentTryAgainContainer = document.querySelector(".try-again-container");
-  documentTryAgainContainer.innerHTML = `<button class="try-again-button" onclick="resetLocalStorage()">Prøv igen</button>`;
-}
+//   let documentTryAgainContainer = document.querySelector(".try-again-container");
+//   documentTryAgainContainer.innerHTML = `<button class="try-again-button" onclick="resetLocalStorage()">Prøv igen</button>`;
+// }
 
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
@@ -188,6 +193,12 @@ function loadTrainingContent() {
 }
 
 function handleContinueButton(nextContent) {
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
+    handleSummary();
+    return;
+  }
+
   if (nextContent == "trainingContent") {
     loadTrainingContent();
   }
@@ -215,11 +226,12 @@ function updateProbability() {
 }
 
 function resetLocalStorage() {
-  if (confirm("Er du sikker på du vil starte forfra?")) {
-    localStorage.clear();
-    location.reload();
-    console.log("LocalStorage cleared");
-  }
+  // if (confirm("Er du sikker på du vil starte forfra?")) {
+  localStorage.clear();
+  location.reload();
+  setFinished(false);
+  console.log("LocalStorage cleared");
+  // }
 }
 
 function updateContentSummaryLoaded() {
@@ -268,8 +280,13 @@ window.onload = function () {
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+
   // TODO: Simplify the following code
-  if (currentLevel === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
+  if (finished) {
+    handleSummary();
+    return;
+  } else if (currentLevel === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
     handleSummary();
     return;
   } else if (currentLevel === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
@@ -277,7 +294,6 @@ window.onload = function () {
     return;
   } else if (currentLevel === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
     handleSummary();
-    handleFinish();
     return;
   }
 

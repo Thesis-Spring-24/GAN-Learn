@@ -38,27 +38,35 @@ function handleLevelSummary() {
   });
 
   calculatePercentageCorrect();
-
-  if (currentLevel === levelThree) {
-    handleFinalSummary();
-  }
 }
 
 function handleFinalSummary() {
-    let table = document.querySelector(".summary-table-container");
-    table.style.maxHeight = "50em";
-    table.style.overflowY = "scroll";
+  let table = document.querySelector(".summary-table-container");
+  table.style.maxHeight = "50em";
+  table.style.overflowY = "scroll";
 }
 
 function handleHeaderSummary() {
   let documentLevelHeader = document.querySelector(".level-header");
   documentLevelHeader.textContent = `Niveau ${currentLevel} resultat`;
-  if (currentLevel === levelThree) {
+
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
     documentLevelHeader.textContent = "Samlet resultat";
+
+    let documentContinueButton = document.querySelector(".continue-button");
+    documentContinueButton.remove();
   }
 }
 
 function findRange() {
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
+    startRange = 0;
+    endRange = imagesLevelThree;
+    handleFinalSummary();
+    return;
+  }
   if (currentLevel === levelOne) {
     startRange = 0;
     endRange = imagesLevelOne;
@@ -67,7 +75,7 @@ function findRange() {
     endRange = imagesLevelTwo;
   }
   else if (currentLevel === levelThree) {
-    startRange = 0;
+    startRange = imagesLevelTwo;
     endRange = imagesLevelThree;
   }
 }
