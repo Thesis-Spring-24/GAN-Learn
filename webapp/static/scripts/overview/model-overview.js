@@ -34,6 +34,7 @@ function trainModel() {
 //when pressing train a flower image is displayed in the training overview
 function displayImageTraining(trainingCount, currentdataset) {
     var path;
+    console.log("current dataset", currentdataset)
     if (currentdataset == "flower-dataset") {
         //get the path of the image
         path = flowerLevelList[trainingCount - 1];
@@ -41,6 +42,9 @@ function displayImageTraining(trainingCount, currentdataset) {
     if (currentdataset == "skull-dataset") {
         //get the path of the image
         path = skullLevelList[trainingCount - 1];
+    }
+    if (currentdataset == "bird-dataset") {
+        path = birdLevelList[trainingCount - 1];
     }
 
     var img = document.createElement('img');

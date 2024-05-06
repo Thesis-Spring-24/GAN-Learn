@@ -49,7 +49,12 @@
             ondragstart="dragStart(event)" onclick='window.location.href = "/skulls"' width="120" height="80">
         </div>
 
-        <div class="training-img-btn"></div>
+        <div class="training-img-btn bird-dataset-div" id="bird-dataset-div" ondrop="dragDrop(event)"
+          ondragover="allowDrop(event)">
+          <img id="bird-dataset" src="/assets/birdsBtn.png" alt="Bird" draggable="true" ondragstart="dragStart(event)"
+            onclick='window.location.href = "/birds"' width="120" height="80">
+
+        </div>
 
         <button id="local-storage">Clear local storage</button>
 

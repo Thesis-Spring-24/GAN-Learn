@@ -81,7 +81,7 @@ function dragDrop(event) {
 
     }
     console.log("current Dataset", currentDataset);
-    console.log("flower count", trainingCount);
+    console.log("training count", trainingCount);
 }
 
 //displays the generated image
@@ -94,6 +94,9 @@ function displayImg(level) {
     }
     if (currentDataset == "skull-dataset") {
         imageMap = generatedSkullsMap;
+    }
+    if (currentDataset == "bird-dataset") {
+        imageMap = generatedBirdsMap;
     }
     var key = level - 1;
     var keyString = key.toString();
@@ -159,6 +162,9 @@ function updateTrainingSet(currentDataSet) {
     }
     if (currentDataSet == "skull-dataset") {
         document.getElementById("dataset-div").appendChild(document.getElementById("skull-dataset"));
+    }
+    if (currentDataSet == "bird-dataset") {
+        document.getElementById("dataset-div").appendChild(document.getElementById("bird-dataset"));
     }
 }
 
