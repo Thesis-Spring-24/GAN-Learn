@@ -54,6 +54,7 @@ const mainContent =
 const summaryContent =
   `<div class="summary-content-container">
   <h2 class="level-header"></h2>
+  <p> Herunder kan I se hvor mange og hvilke I fik rigtige: </p>
   <p class="percentage-correct"></p>
   <div class="summary-table-container">
   <table id="imageTable">
@@ -75,10 +76,9 @@ const summaryContent =
 const trainingContent =
   `<div class="training-content-container">
   <div> 
-  <h2> HER KAN DU TRÆNE GENERATOREN <h2>
+  <h1> Generatoren er nu blevet trænet, og er dermed blevet bedre! <h1>
   </div>
- <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre</button>
-
+ <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre til næste niveau</button>
  </div>`;
 
 

@@ -195,8 +195,8 @@ function handleContinueButton(nextContent) {
     loadMainContent();
     increaseLevel();
     showCurrentLevel();
-  } 
-  
+  }
+
 }
 
 function increaseImageNumber() {
