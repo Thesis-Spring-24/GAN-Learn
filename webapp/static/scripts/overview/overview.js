@@ -180,7 +180,9 @@ function updateTrainingOverview(trainingCount, currentDataSet) {
             //get the path of the image
             path = skullLevelList[i - 1];
         }
-
+        if (currentDataSet == "bird-dataset") {
+            path = birdLevelList[i - 1];
+        }
         var img = document.createElement('img');
         img.src = path;
         img.width = 100;
