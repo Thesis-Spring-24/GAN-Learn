@@ -7,8 +7,10 @@ let model;
 let clicked = false;
 let mousePosition = []
 
+let correctlyGuessed;
+
 // ----------------------------------------------------------------
-const labelToPredict = "lion"; // Label to predict
+const labelToPredict = "apple"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
@@ -197,7 +199,7 @@ const predict = async () => {
         //start moving the line
         document.querySelector('.moving-line.gen-to-dis').classList.add('moveLineRight');
         //do not display feedback
-        document.querySelector('.feedback-container').style.display = "none";
+        document.querySelector('.inner-feedback-container').style.display = "none";
         //remove old attempt from discriminator
         document.querySelector(".discriminator-image").innerHTML = "";
 
@@ -208,9 +210,11 @@ const predict = async () => {
 
             attemptsHistory(labelPrediction);
 
-            // document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+            showDataset();
 
-            document.querySelector('.feedback-container').style.display = "flex";
+            document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+
+            document.querySelector('.inner-feedback-container').style.display = "flex";
 
             // Clear the canvas
             clearCanvas();
@@ -218,11 +222,12 @@ const predict = async () => {
             // Stop the timer if the probability is greater than the threshold
             if (labelPrediction.probability > probabilityThreshold) {
                 stopTimer();
-                showModal();
+                // showModal();
+                document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
 
             }
             setTimeout(() => {
-                // document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
+                document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
             }, 1000);
         }, 1000);
 
@@ -231,6 +236,18 @@ const predict = async () => {
 
     });
 };
+
+function showDataset() {
+    correctlyGuessed = localStorage.getItem("correctlyGuessed");
+    if (correctlyGuessed == undefined || correctlyGuessed == null || correctlyGuessed < 3) {
+        console.log("should not show dataset");
+        return;
+    }
+    else {
+        console.log("should show dataset");
+        document.querySelector('.gen-training-data').style.display = "flex";
+    }
+}
 
 function showModal() {
     const modal = document.getElementById("myModal");
@@ -313,10 +330,22 @@ function displayPrediction(labelPrediction) {
     const trueOrFalse = document.getElementById("true-or-false");
 
     if (labelPrediction.probability > probabilityThreshold) {
-        trueOrFalse.innerHTML = `Vurdering: Sandt! Transportmidlet er: ${labelToPredict}`;
+        trueOrFalse.innerHTML = `Vurdering: Sandt!`;
+
+        correctlyGuessed = localStorage.getItem("correctlyGuessed");
+        console.log("correctlyguessed!", correctlyGuessed);
+        if (correctlyGuessed == undefined || correctlyGuessed == null) {
+            correctlyGuessed = 1;
+            localStorage.setItem("correctlyGuessed", correctlyGuessed);
+        } else {
+            correctlyGuessed++;
+            localStorage.setItem("correctlyGuessed", correctlyGuessed);
+        }
+
     } else {
         trueOrFalse.innerHTML = `Vurdering: Falsk`;
     }
+    console.log("correctlyguessed after label is shown", correctlyGuessed);
 }
 
 

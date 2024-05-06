@@ -11,7 +11,7 @@ function startTimer() {
 
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
-      alert("Timer finished!");
+      // alert("Timer finished!");
     }
   }, 1000); // Update timer every second
 }

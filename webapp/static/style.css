@@ -18,8 +18,10 @@
 
 .page-text {
   text-align: center;
-  width: 50em;
+  width: 42em;
   align-self: center;
+  font-size: large;
+  line-height: 1.6em;
 }
 
 .header {
@@ -27,6 +29,12 @@
   flex-direction: column;
   text-align: center;
   margin-bottom: 2em;
+  background-color: white;
+  border-radius: var(--borderRadius);
+  border-width: var(--borderWidth);
+  border: solid rgb(255, 0, 0);
+  width: 63em;
+  height: fit-content;
 }
 
 body {
