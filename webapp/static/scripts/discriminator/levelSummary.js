@@ -5,9 +5,13 @@ let endRange = null;
 // Håndtere når man trykker på continue-button
 
 function handleLevelSummary() {
-  findRange();
+  findRangeMap();
   handleHeaderSummary();
+  createTableContent();
+  calculateNumberOfCorrect();
+}
 
+function createTableContent() {
   Object.keys(imageMap).slice(startRange, endRange).forEach((key, index) => {
     let row = document.createElement('tr');
 
@@ -36,8 +40,6 @@ function handleLevelSummary() {
 
     tableBody.appendChild(row);
   });
-
-  calculateNumberOfCorrect();
 }
 
 function handleFinalSummary() {
@@ -59,7 +61,7 @@ function handleHeaderSummary() {
   }
 }
 
-function findRange() {
+function findRangeMap() {
   finished = localStorage.getItem("isFinished") === "true" ? true : false;
   if (finished) {
     startRange = 0;
