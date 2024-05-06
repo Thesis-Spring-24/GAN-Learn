@@ -141,6 +141,8 @@
     height: fit-content;
     border: 2px solid black;
     border-radius: var(--borderRadiusElements);
+    margin-right: 1em;
+
 }
 
 
