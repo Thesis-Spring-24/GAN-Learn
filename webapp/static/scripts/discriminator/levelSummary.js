@@ -37,7 +37,7 @@ function handleLevelSummary() {
     tableBody.appendChild(row);
   });
 
-  calculatePercentageCorrect();
+  calculateNumberOfCorrect();
 }
 
 function handleFinalSummary() {
@@ -80,8 +80,8 @@ function findRange() {
   }
 }
 
-function calculatePercentageCorrect() {
-  let correctCount = 0; // Todo: Undersøg om correctAnswers kan bruges i stedet (fra localStorage)
+function calculateNumberOfCorrect() {
+  let correctCount = 0;
   let totalCount = endRange - startRange;
 
   Object.keys(imageMap).slice(startRange, endRange).forEach((key) => {
@@ -90,11 +90,8 @@ function calculatePercentageCorrect() {
     }
   });
 
-  let percentageCorrect = (correctCount / totalCount) * 100;
-  percentageCorrect = percentageCorrect.toFixed(2); // Round to 2 decimal places
-
-  let documentPercentageCorrect = document.querySelector(".percentage-correct");
-  documentPercentageCorrect.textContent = `Procent rigtige: ${percentageCorrect}%`;
+  let documentTotalNumberOfCorrect = document.querySelector(".total-number-of-correct");
+  documentTotalNumberOfCorrect.textContent = `Antal rigtige: ${correctCount} / ${totalCount}`;
 }
 
 function getAnswerType(answer) {

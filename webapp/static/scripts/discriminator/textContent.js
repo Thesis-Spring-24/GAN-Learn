@@ -55,7 +55,7 @@ const summaryContent =
   `<div class="summary-content-container">
   <h2 class="level-header"></h2>
   <p> Herunder kan I se hvor mange og hvilke I fik rigtige: </p>
-  <p class="percentage-correct"></p>
+  <p class="total-number-of-correct"></p>
   <div class="summary-table-container">
   <table id="imageTable">
     <tr id="headerRow">
