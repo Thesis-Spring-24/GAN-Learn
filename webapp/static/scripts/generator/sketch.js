@@ -9,6 +9,7 @@ let mousePosition = []
 
 let correctlyGuessed;
 
+
 // ----------------------------------------------------------------
 const labelToPredict = "apple"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
@@ -246,6 +247,7 @@ function showDataset() {
     else {
         console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
+        document.querySelector('.gen-training-data').classList.add('rotate-img');
     }
 }
 
@@ -378,6 +380,11 @@ window.onload = () => {
     if (correctlyGuessed >= 3) {
         document.querySelector('.gen-training-data').style.display = "flex";
     };
+
+    if (localStorage.getItem('sawTrainingData') == "true") {
+        showModal();
+    }
+
 }
 
 document.querySelector('.clear-btn-generator-storage').addEventListener("click", clearLocalStorage);

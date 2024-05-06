@@ -18,10 +18,14 @@
 
 .page-text {
   text-align: center;
-  width: 42em;
+  width: 52em;
   align-self: center;
-  font-size: large;
+  font-size: medium;
   line-height: 1.6em;
+}
+
+.page-text.list {
+  text-align: left;
 }
 
 .header {
@@ -32,9 +36,9 @@
   background-color: white;
   border-radius: var(--borderRadius);
   border-width: var(--borderWidth);
-  border: solid rgb(255, 0, 0);
+  border: solid black;
   width: 63em;
-  height: fit-content;
+  height: 22em;
 }
 
 body {
@@ -117,17 +121,22 @@ button {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
+  border-radius: var(--borderRadius);
   border: 1px solid #888;
-  width: 80%;
-  height: 30em;
+  justify-content: center;
+  width: 30em;
+  height: fit-content;
+
 }
 
 /* Close button */
 .close {
   color: #aaa;
-  float: right;
+  float: left;
+  align-self: flex-end;
   font-size: 28px;
   font-weight: bold;
+  padding-bottom: 1em;
 }
 
 .close:hover,

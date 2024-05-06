@@ -19,26 +19,29 @@
       <h1>Generator</h1>
       <p class="page-text">
         I skal nu prøve rollen som Generator, hvor I skal blive gode til at generere tegninger. <br>
-        I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage. <br>
-        En sandsynlighed på 1 fortæller, at I har tegnet noget, der ligner de træningsbilleder, som diskriminatoren er
-        trænet på. <br>
-        En sandsynlighed på 0 fortæller, at I har tegnet noget, der slet ikke ligner de træningsbilleder, som
-        diskriminatoren er trænet på. <br>
+        I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage:
+      <ul class="page-text list">
+        <li>Sandsynlighed 1: I har tegnet noget, der ligner de træningsbilleder, som diskriminatoren er
+          trænet på.</li>
+        <li>Sandsynlighed 0: I har tegnet noget, der slet ikke ligner de træningsbilleder, som
+          diskriminatoren er trænet på. </li>
+      </ul>
+      <p class="page-text">
         Jeres opgave er at bliver gode generatorere, der inden tiden er gået, kan tegne tegninger som diskriminatoren
         tror kommer fra træningsbillederne. <br>
-        <br>
       <p class="hint-text">Hint til overordnet kategori: Dyr</p>
+      </p>
       </p>
 
     </div>
     <!-- Modal -->
-    <!-- <div id="myModal" class="modal">
+    <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h1><strong>I gættede det rigtige, ræk hånden op!</strong> </h1>
-        <a class="external-link" href="https://forms.gle/AY5q11Zye5KmHr2f9" target="_blank">Spørgeskema</a>
+        <p>I har nu gennemført aktiviteten - I kan enten tegne videre og se, om I kan blive endnu
+          bedre generatorer eller I kan gå tilbage til oversigten, hvor næste aktivitet er unlocked </p>
       </div>
-    </div> -->
+    </div>
 
     <div class="activity-container">
       <div class="upper-container">
@@ -57,7 +60,10 @@
             <div class="training-set">
               <p>Træningsbilleder</p>
               <img class="gen-training-data" src="/assets/genTrainingImg.png" alt="img"
-                onclick='window.location.href = "/genTrainingImg"' width="120" height="80">
+                onclick='navigateToTrainingData()' width="120" height="80" title="Tryk for at se træningsbillederne">
+            </div>
+            <div class="history-container">
+              <p>Forsøg:</p>
             </div>
           </div>
           <div class="middle-container">
@@ -75,7 +81,6 @@
               <button class="send-btn" id="predict" type="button">Send</button>
               <div class="moving-line img-to-dis"></div>
             </div>
-
           </div>
           <div class="discriminator-container">
             <div class="timer-container">
@@ -100,7 +105,7 @@
       </div>
 
     </div>
-    <button class="back-btn">Tilbage</button>
+    <button class="back-btn">Tilbage til oversigt</button>
     <button class="clear-btn-generator-storage">Clear local storage</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
