@@ -24,7 +24,8 @@
         trænet på. <br>
         En sandsynlighed på 0 fortæller, at I har tegnet noget, der slet ikke ligner de træningsbilleder, som
         diskriminatoren er trænet på. <br>
-        Jeres opgave er at bliver gode generatorere, der inden tiden er gået, gætter den rigtige kategori. <br>
+        Jeres opgave er at bliver gode generatorere, der inden tiden er gået, kan tegne tegninger som diskriminatoren
+        tror kommer fra træningsbillederne. <br>
         <br>
       <p class="hint-text">Hint til overordnet kategori: Dyr</p>
       </p>
@@ -55,15 +56,17 @@
             </div>
             <div class="training-set">
               <p>Træningsbilleder</p>
-              <p>???</p>
-              <img class="gen-training-data" src="/assets/genTrainingImg" alt="img" width="120" height="80">
+              <img class="gen-training-data" src="/assets/genTrainingImg.png" alt="img"
+                onclick='window.location.href = "/genTrainingImg"' width="120" height="80">
             </div>
           </div>
           <div class="middle-container">
             <div class="feedback-container">
               <div class="inner-feedback-container">
-                <p id="prediction-display">Sandsynlighed: N/A</p>
-                <p id="true-or-false">Vurdering: N/A</p>
+                <p>Sandsynlighed: </p>
+                <p id="prediction-display">N/A</p>
+                <p>Vurdering: </p>
+                <p id="true-or-false">N/A</p>
               </div>
             </div>
             <div class="prediction-container">

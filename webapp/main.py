@@ -41,6 +41,10 @@ async def skulls():
 async def birds():
     return FileResponse("./static/birds.html")
 
+@app.get("/genTrainingImg")
+async def genTrainingImg():
+    return FileResponse("./static/genTrainingImg.html")
+
 # Allow all origins and headers for CORS
 app.add_middleware(
     CORSMiddleware,

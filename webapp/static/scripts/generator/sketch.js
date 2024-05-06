@@ -326,11 +326,11 @@ function appendDrawingAttempts() {
 
 function displayPrediction(labelPrediction) {
     const predictionDisplay = document.getElementById("prediction-display");
-    predictionDisplay.innerHTML = `Sandsynlighed: ${labelPrediction.probability}`;
+    predictionDisplay.innerHTML = `${labelPrediction.probability}`;
     const trueOrFalse = document.getElementById("true-or-false");
 
     if (labelPrediction.probability > probabilityThreshold) {
-        trueOrFalse.innerHTML = `Vurdering: Sandt!`;
+        trueOrFalse.innerHTML = `Træningsbillede`;
 
         correctlyGuessed = localStorage.getItem("correctlyGuessed");
         console.log("correctlyguessed!", correctlyGuessed);
@@ -343,7 +343,7 @@ function displayPrediction(labelPrediction) {
         }
 
     } else {
-        trueOrFalse.innerHTML = `Vurdering: Falsk`;
+        trueOrFalse.innerHTML = `Genereret billede`;
     }
     console.log("correctlyguessed after label is shown", correctlyGuessed);
 }
@@ -373,7 +373,12 @@ window.onload = () => {
     // Get the drawing attempts from the local storage
     drawingAttempts = JSON.parse(localStorage.getItem("drawingAttempts")) || [];
     appendDrawingAttempts();
-};
+
+    correctlyGuessed = localStorage.getItem("correctlyGuessed")
+    if (correctlyGuessed >= 3) {
+        document.querySelector('.gen-training-data').style.display = "flex";
+    };
+}
 
 document.querySelector('.clear-btn-generator-storage').addEventListener("click", clearLocalStorage);
 
