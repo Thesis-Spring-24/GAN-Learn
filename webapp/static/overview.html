@@ -23,14 +23,18 @@
       <div class="activity-button">
         <button class="activity-btn" id="gen-btn">Generator Aktivitet</button>
       </div>
-      <div class="activity-button discriminator">
-        <div class="overlay discriminator"></div>
-        <button class="activity-btn" id="dis-btn">Diskriminator Aktivitet</button>
+      <div class="activity-button discriminator ">
+        <div class="overlay discriminator">
+          <img src="assets/lock.png" alt="lock" width="150">
+        </div>
+        <button class="activity-btn lockedItem" id="dis-btn">Diskriminator Aktivitet</button>
       </div>
     </div>
 
     <div class="process-activity-container">
-      <div class="overlay process"></div>
+      <div class="overlay process">
+        <img src="assets/lock.png" alt="lock">
+      </div>
       <div class="training-img-container">
         <div class="help-tooltip">
           <i class="fa-regular fa-circle-question fa-2xl">
@@ -38,19 +42,19 @@
           <span class="tooltiptext-icon">Hvis I trykker på datasættet, kan I se alle træningsbillederne</span>
 
         </div>
-        <div class="training-img-btn flower-dataset-div" id="flower-dataset-div" ondrop="dragDrop(event)"
+        <div class="training-img-btn flower-dataset-div lockedItem" id="flower-dataset-div" ondrop="dragDrop(event)"
           ondragover="allowDrop(event)">
           <img class="img-btn" id="flower-dataset" src="/assets/flowerBtn.png" alt="Blomster" draggable="true"
             ondragstart="dragStart(event)" onclick='window.location.href = "/flowers"' width="120" height="80">
         </div>
 
-        <div class="training-img-btn skull-dataset-div" id="skull-dataset-div" ondrop="dragDrop(event)"
+        <div class="training-img-btn skull-dataset-div lockedItem" id="skull-dataset-div" ondrop="dragDrop(event)"
           ondragover="allowDrop(event)">
           <img class="img-btn" id="skull-dataset" src="/assets/skullsBtn.png" alt="Skull" draggable="true"
             ondragstart="dragStart(event)" onclick='window.location.href = "/skulls"' width="120" height="80">
         </div>
 
-        <div class="training-img-btn bird-dataset-div" id="bird-dataset-div" ondrop="dragDrop(event)"
+        <div class="training-img-btn bird-dataset-div lockedItem" id="bird-dataset-div" ondrop="dragDrop(event)"
           ondragover="allowDrop(event)">
           <img class="img-btn" id="bird-dataset" src="/assets/birdsBtn.png" alt="Bird" draggable="true"
             ondragstart="dragStart(event)" onclick='window.location.href = "/birds"' width="120" height="80">
@@ -75,8 +79,9 @@
         <div class="model-overview">
 
           <div class="left-side">
-            <button class="gen-box" id="gen-box"> Generator </button>
-            <div class="training-img-btn" id="dataset-div" ondrop="dragDrop(event)" ondragover="allowDrop(event)"></div>
+            <button class="gen-box lockedItem" id="gen-box"> Generator </button>
+            <div class="training-img-btn lockedItem" id="dataset-div" ondrop="dragDrop(event)"
+              ondragover="allowDrop(event)"></div>
           </div>
           <div class="line-container">
             <div class="moving-line gen-to-dis"></div>
@@ -89,7 +94,7 @@
           </div>
 
           <div class="right-side">
-            <button class="dis-box" id="dis-box">Diskriminator</button>
+            <button class="dis-box lockedItem" id="dis-box">Diskriminator</button>
 
           </div>
         </div>

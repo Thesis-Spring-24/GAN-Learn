@@ -171,6 +171,13 @@ function removeOverlayDiscriminator() {
 
 function removeOverLayProcess() {
     document.querySelector('.overlay.process').style.display = "none";
+    const container = document.querySelector('.process-activity-container');
+    const divs = container.querySelectorAll('div');
+    divs.forEach(div => {
+        div.classList.remove('lockedItem');
+    });
+    document.querySelector('.gen-box').classList.remove('lockedItem');
+    document.querySelector('.dis-box').classList.remove('lockedItem');
 }
 
 
