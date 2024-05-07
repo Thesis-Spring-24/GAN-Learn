@@ -185,6 +185,9 @@ h1 {
 }
 
 .training-img-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: var(--imgHeight);
     width: var(--imgWidth);
     border: solid;
@@ -194,8 +197,15 @@ h1 {
     background-color: var(--backGroundColorElements);
 }
 
-.training-img-btn:hover {
+.img-btn:hover {
     cursor: pointer;
+    box-shadow: var(--boxShadow);
+}
+
+#flower-dataset:hover {
+    cursor: pointer;
+
+
 }
 
 .help-tooltip {

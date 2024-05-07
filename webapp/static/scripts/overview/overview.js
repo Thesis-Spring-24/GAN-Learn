@@ -1,5 +1,6 @@
 var currentDataset;
-let flowerCount;
+let trainingCount;
+let skullCount;
 let generatorCount;
 let animationRunning = false;
 let dataSetInModel = localStorage.getItem("dataSetInModel");
@@ -21,12 +22,13 @@ function navigateToFlowers() {
     window.location.href = "/flowers";
 }
 
-function clearTrainingOverview(flowerCount) {
-    for (let i = flowerCount; i > 0; i--) {
-        let preName = "displayFlowerLevel";
+function clearTrainingOverview(trainingCount) {
+    for (let i = trainingCount; i > 0; i--) {
+        let preName = "displayImageLevel";
         let number = i.toString();
         var id = preName.concat(number);
-        document.getElementById(id).innerHTML = "";
+        console.log(number)
+        document.getElementById(id).innerHTML = " <p class='training-level-text'>Træning " + number + "</p>";
     }
 }
 
@@ -67,28 +69,40 @@ function dragDrop(event) {
     }
     else {
         //når træningsbillederne bliver trukket tilbage fra modellen, så skal billederne i training-overview fjernes
-        clearTrainingOverview(flowerCount);
+        clearTrainingOverview(trainingCount);
         clearGeneratedImage();
         currentDataset = null;
-        flowerCount = null;
+        trainingCount = null;
         localStorage.setItem("currentDataset", currentDataset);
-        localStorage.setItem("flowerCount", flowerCount);
+        localStorage.setItem("trainingCount", trainingCount);
 
         dataSetInModel = false;
         localStorage.setItem("dataSetInModel", dataSetInModel);
 
     }
     console.log("current Dataset", currentDataset);
-    console.log("flower count", flowerCount);
+    console.log("training count", trainingCount);
 }
 
 //displays the generated image
 function displayImg(level) {
+    currentDataset = localStorage.getItem("currentDataset");
+    let imageMap;
+
+    if (currentDataset == "flower-dataset") {
+        imageMap = generatedFlowersMap;
+    }
+    if (currentDataset == "skull-dataset") {
+        imageMap = generatedSkullsMap;
+    }
+    if (currentDataset == "bird-dataset") {
+        imageMap = generatedBirdsMap;
+    }
     var key = level - 1;
     var keyString = key.toString();
-    const randomIndex = Math.floor(Math.random() * generatedFlowersMap.get(keyString).length);
-    var listOfFlowers = generatedFlowersMap.get(keyString);
-    var path = listOfFlowers[randomIndex];
+    const randomIndex = Math.floor(Math.random() * imageMap.get(keyString).length);
+    var listOfImages = imageMap.get(keyString);
+    var path = listOfImages[randomIndex];
     var img = document.createElement('img');
     img.src = path;
     img.width = 100;
@@ -108,7 +122,7 @@ function displayGeneratingArrow() {
         document.querySelector(".generating-arrow").style.display = "none";
         document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
         document.getElementById("dis-box").style.border = "0.3em solid rgb(81, 188, 250)";
-        displayImg(flowerCount);
+        displayImg(trainingCount);
     }, 2000);
 }
 
@@ -117,13 +131,11 @@ function generateImg() {
     if (currentDataset == null) {
         alert("Du skal vælge træningsbilleder og træne modellen før du kan generere nye billelder");
     }
-    if (currentDataset == "flower-dataset") {
-        if (flowerCount == null) {
-            alert("Træn modellen først");
-        }
-        if (flowerCount > 0) {
-            displayGeneratingArrow();
-        }
+    if (trainingCount == null) {
+        alert("Træn modellen først");
+    }
+    if (trainingCount > 0) {
+        displayGeneratingArrow();
     }
 }
 
@@ -135,12 +147,12 @@ function clearLocalStorage() {
 window.onload = function () {
     //get the current dataset from local storage
     currentDataset = localStorage.getItem("currentDataset");
-    flowerCount = localStorage.getItem("flowerCount");
+    trainingCount = localStorage.getItem("trainingCount");
     console.log("data to be shown", currentDataset);
-    console.log("flower count from on load", flowerCount);
+    console.log("trainingcount from on load", trainingCount);
     updateTrainingSet(currentDataset);
-    updateTrainingOverview(flowerCount, currentDataset);
-    updateGeneratedImage(flowerCount);
+    updateTrainingOverview(trainingCount, currentDataset);
+    updateGeneratedImage(trainingCount);
 }
 
 //place the correct image in 'training images' in the model overview
@@ -148,28 +160,52 @@ function updateTrainingSet(currentDataSet) {
     if (currentDataSet == "flower-dataset") {
         document.getElementById("dataset-div").appendChild(document.getElementById("flower-dataset"));
     }
+    if (currentDataSet == "skull-dataset") {
+        document.getElementById("dataset-div").appendChild(document.getElementById("skull-dataset"));
+    }
+    if (currentDataSet == "bird-dataset") {
+        document.getElementById("dataset-div").appendChild(document.getElementById("bird-dataset"));
+    }
 }
 
-function updateTrainingOverview(flowerCount, currentDataSet) {
-    if (flowerCount == 1) {
-        console.log("knows that flower count is 1")
-        displayFlowerTraining(1);
-    }
-    if (flowerCount == 2) {
-        displayFlowerTraining(1);
-        displayFlowerTraining(2);
+function updateTrainingOverview(trainingCount, currentDataSet) {
+    for (let i = 1; i <= trainingCount; i++) {
+
+        var path;
+        if (currentDataSet == "flower-dataset") {
+            //get the path of the image
+            path = flowerLevelList[i - 1];
+        }
+        if (currentDataSet == "skull-dataset") {
+            //get the path of the image
+            path = skullLevelList[i - 1];
+        }
+        if (currentDataSet == "bird-dataset") {
+            path = birdLevelList[i - 1];
+        }
+        var img = document.createElement('img');
+        img.src = path;
+        img.width = 100;
+
+        let preName = "displayImageLevel";
+        let number = i.toString();
+        var id = preName.concat(number);
+
+        //append the image
+        document.getElementById(id).appendChild(img);
+
     }
 }
 
 //noget der ikke er håndteret: hvis man opdatere siden bliver der vist et nyt genereret billede og ikke det samme som før
-function updateGeneratedImage(flowerCount) {
-    console.log("type of flowercount", typeof flowerCount)
-    console.log("flower count", flowerCount)
-    if (flowerCount == "null" || flowerCount == null) {
+function updateGeneratedImage(trainingCount) {
+    console.log("type of trainingCount", typeof trainingCount)
+    console.log("training count", trainingCount)
+    if (trainingCount == "null" || trainingCount == null) {
         return;
     }
     else {
-        displayImg(flowerCount);
+        displayImg(trainingCount);
     }
 
 }

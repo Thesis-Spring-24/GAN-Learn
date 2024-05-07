@@ -15,7 +15,7 @@
     flex-direction: column;
     row-gap: 2em;
     width: 100em;
-    height: 48em;
+    height: 55em;
     background-color: white;
     border-radius: var(--borderRadius);
 }
@@ -26,6 +26,12 @@
     align-items: center;
     justify-content: center;
     width: 100em;
+}
+
+.generator-and-discriminator-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .canvas-container {
@@ -51,6 +57,27 @@
     border-radius: var(--borderRadius);
 }
 
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.training-set {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 14em;
+    height: 9em;
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--imgBorderColor);
+    border-radius: var(--borderRadiusElements);
+
+
+}
+
 
 .prediction-container {
     display: flex;
@@ -68,7 +95,7 @@
     align-items: center;
     align-self: end;
     position: absolute;
-    top: 47%;
+    top: 24em;
 
 }
 
@@ -84,14 +111,14 @@
 }
 
 .moving-line.gen-to-dis {
-    top: 70%;
+    top: 60%;
 }
 
 /*Adds the arrowhead*/
 .moving-line.gen-to-dis::after {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 57%;
     right: 0;
     /* Adjust the distance of the arrowhead from the end of the line */
     width: 0;
@@ -123,6 +150,28 @@
     border-right: 20px solid var(--arrowColor);
     /* Adjust the size and color of the arrowhead */
     transform: translateY(-50%);
+}
+
+.moving-line.img-to-dis::after {
+    content: '';
+    position: absolute;
+    top: 57%;
+    right: 0;
+    /* Adjust the distance of the arrowhead from the end of the line */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    /* Adjust the size and color of the arrowhead */
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid rgb(229, 222, 222);
+    /* Adjust the size and color of the arrowhead */
+    transform: translateY(-50%);
+}
+
+.moving-line.img-to-dis {
+    top: 31em;
+    background-image: linear-gradient(to right, rgb(229, 222, 222) 50%, transparent 50%);
+    border-left: 20px solid rgb(229, 222, 222);
 }
 
 .moveLineLeft {
@@ -159,14 +208,38 @@
 
 .send-btn {
     position: absolute;
-    top: 75%;
+    top: 32.5em;
     width: 5em;
+}
+
+.discriminator-container {
+    width: 38em;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 2em;
+}
+
+.role-header {
+    display: flex;
+    justify-content: center;
+}
+
+.role-header.dis {
+    position: absolute;
+    top: 21em;
+
 }
 
 .dis-container {
     display: flex;
     flex-direction: column;
     justify-content: left;
+    position: absolute;
+    top: 24em;
     width: 39em;
 }
 

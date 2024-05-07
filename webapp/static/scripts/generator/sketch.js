@@ -8,7 +8,7 @@ let clicked = false;
 let mousePosition = []
 
 // ----------------------------------------------------------------
-const labelToPredict = "strawberry"; // Label to predict
+const labelToPredict = "lion"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 

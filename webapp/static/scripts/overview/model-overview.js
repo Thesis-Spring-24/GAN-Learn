@@ -6,41 +6,53 @@ function trainModel() {
     if (currentDataset == null || currentDataset == "null") {
         alert("Træk et træningsbilleder over for at træne modellen");
     }
-    if (currentDataset == "flower-dataset") {
-        flowerCountString = localStorage.getItem("flowerCount");
-        if (flowerCount === null || flowerCount === "null") {
-            flowerCount = 1;
-            displayFlowerTraining(flowerCount);
-            localStorage.setItem("flowerCount", flowerCount);
-            startAnimation();
-            displayModal();
-        }
-        else if (flowerCount < 5) {
-            flowerCount++;
+    else {
+        trainingCountString = localStorage.getItem("trainingCount");
 
-            displayFlowerTraining(flowerCount);
-            localStorage.setItem("flowerCount", flowerCount);
+        if (trainingCount === null || trainingCount === "null") {
+            trainingCount = 1;
+            displayImageTraining(trainingCount, currentDataset);
+            localStorage.setItem("trainingCount", trainingCount);
             startAnimation();
             displayModal();
         }
-        else if (flowerCount == 5) {
+        else if (trainingCount < 5) {
+            trainingCount++;
+
+            displayImageTraining(trainingCount, currentDataset);
+            localStorage.setItem("trainingCount", trainingCount);
+            startAnimation();
+            displayModal();
+            clearGeneratedImage();
+        }
+        else if (trainingCount == 5) {
             alert("Modellen er færdigtrænet")
         }
     }
 }
 
 //when pressing train a flower image is displayed in the training overview
-function displayFlowerTraining(flowerCount) {
-    console.log("in the display flower training method")
-    //get the path of the image
-    var path = flowerLevelList[flowerCount - 1];
-    console.log(path)
+function displayImageTraining(trainingCount, currentdataset) {
+    var path;
+    console.log("current dataset", currentdataset)
+    if (currentdataset == "flower-dataset") {
+        //get the path of the image
+        path = flowerLevelList[trainingCount - 1];
+    }
+    if (currentdataset == "skull-dataset") {
+        //get the path of the image
+        path = skullLevelList[trainingCount - 1];
+    }
+    if (currentdataset == "bird-dataset") {
+        path = birdLevelList[trainingCount - 1];
+    }
+
     var img = document.createElement('img');
     img.src = path;
     img.width = 100;
 
-    let preName = "displayFlowerLevel";
-    let number = flowerCount.toString();
+    let preName = "displayImageLevel";
+    let number = trainingCount.toString();
     var id = preName.concat(number);
 
     //append the image
@@ -63,21 +75,21 @@ function displayModal() {
     document.querySelector(".training-information-modal").style.display = "flex";
     document.querySelector(".training-overview").style.display = "none";
     document.querySelector(".generating-overview").style.display = "none";
-    flowerCountString = localStorage.getItem("flowerCount");
-    flowerCount = parseInt(flowerCountString);
-    if (flowerCount == 1) {
+    trainingCountString = localStorage.getItem("trainingCount");
+    trainingCount = parseInt(trainingCountString);
+    if (trainingCount == 1) {
         document.querySelector(".modal-text").textContent = flowerCount1;
     }
-    if (flowerCount == 2) {
+    if (trainingCount == 2) {
         document.querySelector(".modal-text").textContent = flowerCount2;
     }
-    if (flowerCount == 3) {
+    if (trainingCount == 3) {
         document.querySelector(".modal-text").textContent = flowerCount3;
     }
-    if (flowerCount == 4) {
+    if (trainingCount == 4) {
         document.querySelector(".modal-text").textContent = flowerCount4;
     }
-    if (flowerCount == 5) {
+    if (trainingCount == 5) {
         document.querySelector(".modal-text").textContent = flowerCount5;
     }
 

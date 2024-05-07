@@ -20,37 +20,41 @@
       <p class="page-text">
         I skal nu prøve rollen som Generator, hvor I skal blive gode til at generere tegninger. <br>
         I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage på,
-        hvor tæt i er på at have tegnet det korrekte. <br>
+        hvor tæt i er på at have tegnet noget der minder om de træningsbilleder, som diskriminatoren er tegnet på. <br>
         Jeres opgave er at bliver gode generatore, der inden tiden er gået, gætter den rigtige kategori. <br>
-        Hint til overordnet kategori: Transportmidler
+        Hint til overordnet kategori: Dyr
       </p>
-      <div class="timer-container">
-        <h3 id="timer-display">Timer: 10:00</h3> <!-- Timer display -->
-      </div>
+
     </div>
     <!-- Modal -->
-    <div id="myModal" class="modal">
+    <!-- <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h1><strong>I gættede det rigtige, ræk hånden op!</strong> </h1>
         <a class="external-link" href="https://forms.gle/AY5q11Zye5KmHr2f9" target="_blank">Spørgeskema</a>
       </div>
-    </div>
+    </div> -->
 
     <div class="activity-container">
       <div class="upper-container">
+
         <div class="generator-and-discriminator-container">
-          <div class="" id="generator">
-            <div class="role-header">
-              <h2>Generator <strong>(Tegn her)</strong></h2>
+          <div class="left-side">
+            <div class="" id="generator">
+              <div class="role-header">
+                <h2>Generator <strong>(Tegn her)</strong></h2>
+              </div>
+              <div class="canvas-container">
+                <main class="canvas"></main>¨
+                <button class="clear-btn" id="clear">Slet</button>
+              </div>
             </div>
-            <div class="canvas-container">
-              <main class="canvas"></main>¨
-              <button class="clear-btn" id="clear">Slet</button>
+            <div class="training-set">
+              <p>Træningsbilleder</p>
+              <p>???</p>
             </div>
-
-
           </div>
+
           <div class="prediction-container">
             <div class="feedback-container">
               <p id="prediction-display">Sandsynlighed: N/A</p>
@@ -60,9 +64,13 @@
             <div class="moving-line gen-to-dis "></div>
             <div class="moving-line dis-to-gen"></div>
             <button class="send-btn" id="predict" type="button">Send</button>
+            <div class="moving-line img-to-dis"></div>
           </div>
-          <div>
-            <div class="role-header">
+          <div class="discriminator-container">
+            <div class="timer-container">
+              <h3 id="timer-display">Timer: 10:00</h3> <!-- Timer display -->
+            </div>
+            <div class="role-header dis">
               <h2>Discriminator</h2>
             </div>
             <div class="dis-container">
