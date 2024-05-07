@@ -21,6 +21,13 @@ body {
   justify-content: center;
 }
 
+.wrapper-lower-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .discriminator-lower-container{
   display: flex;
   align-items: center;
@@ -33,7 +40,7 @@ body {
   box-shadow: var(--boxShadow);
 }
 
-/* Arrows */
+/* --- Lines & arrows --- */
 
 .left-arrow-container{
   display: flex;
@@ -69,7 +76,8 @@ body {
 
 /*Adds the arrowhead*/
 .left-line.gen-to-picture::after,
-.left-line.training-to-picture::after {
+.left-line.training-to-picture::after,
+.right-line.picture-to-dis::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -97,24 +105,6 @@ body {
 .right-line.picture-to-dis{
   top: 47%;
 }
-
-/*Adds the arrowhead*/
-.right-line.picture-to-dis::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -4px;
-  /* Adjust the distance of the arrowhead from the end of the line */
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  /* Adjust the size and color of the arrowhead */
-  border-bottom: 10px solid transparent;
-  border-left: 20px solid var(--arrowColor);
-  /* Adjust the size and color of the arrowhead */
-  transform: translateY(-50%);
-}
-
 
 /* ----- */
 
