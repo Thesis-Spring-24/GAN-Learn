@@ -1,16 +1,17 @@
 let documentLevelHeader = document.querySelector(".level-header");
+let startRange = null;
+let endRange = null;
 
 // Håndtere når man trykker på continue-button
 
 function handleLevelSummary() {
-  let documentLevelHeader = document.querySelector(".level-header");
+  findRangeMap();
+  handleHeaderSummary();
+  createTableContent();
+  calculateNumberOfCorrect();
+}
 
-  let startRange = 0;
-  let endRange = 12;
-
-
-  // if (contentSummaryLoaded === true) {
-
+function createTableContent() {
   Object.keys(imageMap).slice(startRange, endRange).forEach((key, index) => {
     let row = document.createElement('tr');
 
@@ -39,27 +40,60 @@ function handleLevelSummary() {
 
     tableBody.appendChild(row);
   });
-
-  calculatePercentageCorrect();
-  // }
-
 }
 
-function calculatePercentageCorrect() {
-  let correctCount = 0;
-  let totalCount = Object.keys(imageMap).length; // Todo: Skal ændres til antal billeder i level 1
+function handleFinalSummary() {
+  let table = document.querySelector(".summary-table-container");
+  table.style.maxHeight = "50em";
+  table.style.overflowY = "scroll";
+}
 
-  Object.keys(imageMap).forEach((key) => {
+function handleHeaderSummary() {
+  let documentLevelHeader = document.querySelector(".level-header");
+  documentLevelHeader.textContent = `Niveau ${currentLevel} resultat`;
+
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
+    documentLevelHeader.textContent = "Samlet resultat";
+
+    let documentContinueButton = document.querySelector(".continue-button");
+    documentContinueButton.remove();
+  }
+}
+
+function findRangeMap() {
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
+    startRange = 0;
+    endRange = imagesLevelThree;
+    handleFinalSummary();
+    return;
+  }
+  if (currentLevel === levelOne) {
+    startRange = 0;
+    endRange = imagesLevelOne;
+  } else if (currentLevel === levelTwo) {
+    startRange = imagesLevelOne;
+    endRange = imagesLevelTwo;
+  }
+  else if (currentLevel === levelThree) {
+    startRange = imagesLevelTwo;
+    endRange = imagesLevelThree;
+  }
+}
+
+function calculateNumberOfCorrect() {
+  let correctCount = 0;
+  let totalCount = endRange - startRange;
+
+  Object.keys(imageMap).slice(startRange, endRange).forEach((key) => {
     if (imageMap[key].correctAnswer === imageMap[key].submittedAnswer) {
       correctCount++;
     }
   });
 
-  let percentageCorrect = (correctCount / totalCount) * 100;
-  percentageCorrect = percentageCorrect.toFixed(2); // Round to 2 decimal places
-
-  let documentPercentageCorrect = document.querySelector(".percentage-correct");
-  documentPercentageCorrect.textContent = `Procent rigtige: ${percentageCorrect}%`;
+  let documentTotalNumberOfCorrect = document.querySelector(".total-number-of-correct");
+  documentTotalNumberOfCorrect.textContent = `Antal rigtige: ${correctCount} / ${totalCount}`;
 }
 
 function getAnswerType(answer) {

@@ -9,8 +9,6 @@ let currentLevel = 1; // Initialize current level to 1
 
 let answered = 0;
 let correctAnswers = 0;
-let correctAndAnswered;
-
 
 const computerGenerated = 0;
 const trainingPicture = 1;
@@ -43,31 +41,82 @@ function handleAnswerButton() {
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
     setImageMap();
     updateNumbersOfCorrect();
+    updateArrow("answerSubmitted");
     answerSubmitted = true;
   }
 }
 
+function updateArrow(action) {
+  if (correctAnswer === null) return;
+
+  let generatorArrowLine = document.querySelector(".left-line.gen-to-picture");
+  let trainingArrow = document.querySelector(".left-line.training-to-picture");
+  let imageBorder = document.querySelector(".image-generator-container");
+
+  let arrowFullLength = "9.75em";
+  let arrowDefaultLength = "";
+
+  // Todo: Refactor this code
+  if (action === "answerSubmitted") {
+    if (correctAnswer === computerGenerated) {
+      generatorArrowLine.style.width = arrowFullLength;
+      generatorArrowLine.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
+      generatorArrowLine.classList.add("active");
+      imageBorder.style.borderColor = "var(--genBorderColor)";
+
+    } else if (correctAnswer === trainingPicture) {
+      trainingArrow.style.width = arrowFullLength;
+      trainingArrow.style.backgroundImage = "linear-gradient(to right, var(--imgBorderColor) 100%, transparent 50%)";
+      trainingArrow.classList.add("active");
+      imageBorder.style.borderColor = "var(--imgBorderColor)";
+    }
+  } else if (action === "nextImage") {
+    generatorArrowLine.style.width = arrowDefaultLength;
+    generatorArrowLine.classList.remove("active");
+    trainingArrow.style.width = arrowDefaultLength;
+    trainingArrow.classList.remove("active");
+    imageBorder.style.borderColor = "";
+    generatorArrowLine.style.backgroundImage = "";
+    trainingArrow.style.backgroundImage = "";
+  }
+}
+
 function updateNumbersOfCorrect() {
-
-  // Problemet er at correctAnswers og answered bliver sat til 0 når siden genindlæses
-  // Tilføj variable alt efter hvor man kalder det fra
-  // Eller gem correctAnswers og answered i localStorage og hent det her
-
+  correctAnswers = localStorage.getItem("correctAnswers") || 0;
+  answered = localStorage.getItem("answered") || 0;
 
   let documentNumberOfCorrect = document.querySelector(".number-of-correct");
   if (chosenProbability === correctAnswer && !answerSubmitted) {
-    correctAnswers++;
+    setCorrectAnswers(1);
   }
   if (!answerSubmitted && chosenProbability !== null) {
-    console.log(chosenProbability);
-    answered++;
+    setAnswered(1);
   }
 
-  correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
+  let correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
   documentNumberOfCorrect.innerHTML = correctAndAnswered;
-  localStorage.setItem("correctAndAnswered", correctAndAnswered);
 }
 
+
+function setAnswered(value) {
+  if (value === 1) {
+    answered++;
+  } else if (value === 0) {
+    answered = 0;
+  }
+  localStorage.setItem("answered", answered);
+}
+
+function setCorrectAnswers(value) {
+  if (value === 1) {
+    correctAnswers++;
+  } else if (value === 0) {
+    correctAnswers = 0;
+  }
+
+  localStorage.setItem("correctAnswers", correctAnswers);
+
+}
 
 function setImageMap() {
   localStorage.setItem("imageMap", JSON.stringify(imageMap));
@@ -92,19 +141,20 @@ function handleNextButton() {
 
   console.log(`ImageNumber: ${imageNumber}`);
 
+  // TODO: Simplify the following code
   if (imageNumber > imagesLevelOne && currentLevel === levelOne) {
-    increaseLevel();
     handleSummary();
     return;
   } else if (imageNumber > imagesLevelTwo && currentLevel === levelTwo) {
-    increaseLevel();
     handleSummary();
     return;
   }
-
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
     handleSummary();
-    handleFinish();
+    setFinished(true);
+    // handleFinish();
+    let documentContinueButton = document.querySelector(".continue-button");
+    documentContinueButton.textContent = "Samlet resultat";
     return;
   }
 
@@ -116,12 +166,16 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
+  updateArrow("nextImage");
+}
 
+function setFinished(isFinished) {
+  localStorage.setItem("isFinished", isFinished);
 }
 
 function handleSummary() {
-  answered = 0;
-  correctAnswers = 0;
+  setAnswered(0);
+  setCorrectAnswers(0);
   chosenProbability = null;
   loadSummaryContent();
   handleLevelSummary();
@@ -132,6 +186,8 @@ function increaseLevel() {
     currentLevel = levelTwo;
   } else if (currentLevel === levelTwo) {
     currentLevel = levelThree;
+  } else if (currentLevel === levelThree) {
+    currentLevel = levelThree + 1;
   }
   localStorage.setItem("currentLevel", currentLevel);
 }
@@ -143,10 +199,11 @@ function showCurrentLevel() {
   }
 }
 
-function handleFinish() {
-  let documentContinueButton = document.querySelector(".continue-button").innerHTML = "Prøv igen";
-  document.querySelector(".continue-button").addEventListener("click", resetLocalStorage);
-}
+// function handleFinish() {
+
+//   let documentTryAgainContainer = document.querySelector(".try-again-container");
+//   documentTryAgainContainer.innerHTML = `<button class="try-again-button" onclick="resetLocalStorage()">Prøv igen</button>`;
+// }
 
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
@@ -164,7 +221,6 @@ function loadMainContent() {
   loadImage();
   setContentSummaryLoaded(false);
   showCurrentLevel();
-  // correctAndAnswered = localStorage.getItem("correctAndAnswered");
   updateNumbersOfCorrect();
 }
 
@@ -174,12 +230,21 @@ function loadTrainingContent() {
 }
 
 function handleContinueButton(nextContent) {
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
+  if (finished) {
+    handleSummary();
+    return;
+  }
+
   if (nextContent == "trainingContent") {
     loadTrainingContent();
   }
   if (nextContent == "mainContent") {
     loadMainContent();
+    increaseLevel();
+    showCurrentLevel();
   }
+
 }
 
 function increaseImageNumber() {
@@ -198,9 +263,12 @@ function updateProbability() {
 }
 
 function resetLocalStorage() {
+  // if (confirm("Er du sikker på du vil starte forfra?")) {
   localStorage.clear();
   location.reload();
+  setFinished(false);
   console.log("LocalStorage cleared");
+  // }
 }
 
 function updateContentSummaryLoaded() {
@@ -245,21 +313,25 @@ window.onload = function () {
   updateImageMap();
   updateContentSummaryLoaded();
   updateCurrentLevel();
-  showCurrentLevel();
-
 
   let tableBody = document.querySelector("#tableBody");
   let headerRow = document.querySelector("#headerRow");
 
+  finished = localStorage.getItem("isFinished") === "true" ? true : false;
 
-  if ((currentLevel - 1) === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
+  // TODO: Simplify the following code
+  if (finished) {
     handleSummary();
     return;
-  } else if ((currentLevel - 1) === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
+  } else if (currentLevel === levelOne && imageNumber > imagesLevelOne && contentSummaryLoaded === true) {
     handleSummary();
     return;
-  } else if ((currentLevel - 1) === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
+  } else if (currentLevel === levelTwo && imageNumber > imagesLevelTwo && contentSummaryLoaded === true) {
     handleSummary();
+    return;
+  } else if (currentLevel === levelThree && imageNumber > imagesLevelThree && contentSummaryLoaded === true) {
+    handleSummary();
+    return;
   }
 
   loadMainContent();

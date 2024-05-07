@@ -14,7 +14,15 @@ const mainContent =
   </div>
   </div>
   </div>
+  <div class="left-arrow-container">
+  <div class="left-line gen-to-picture"></div>
+  <div class="left-line training-to-picture"></div>
+  </div>
 <div class="lower-middle-container">
+<div class="correct-and-level-container">
+<h2 class="current-level">Niveau: 1</h2>
+<p class="number-of-correct">Antal rigtige:</p>
+</div>
   <div class="image-generator-container">
   <div class="image-container">
     <img src="" width="150px" class="current-discriminator-image">
@@ -23,6 +31,9 @@ const mainContent =
   <div>
   <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
 </div>
+</div>
+<div class="right-arrow-container">
+<div class="right-line picture-to-dis"></div>
 </div>
 <div class="lower-right-container">
   <div class="discriminator-probability-container">
@@ -44,17 +55,15 @@ const mainContent =
       <p class="feedback-on-answer"></p>
     </div>
   </div>
-  <div class="correct-and-level-container">
-  <p class="number-of-correct">Antal rigtige:</p>
-  <p class="current-level">Niveau: 1</p>
-  </div>
 </div>
 `;
 
 const summaryContent =
   `<div class="summary-content-container">
-  <h2 class="level-header">Niveau 1 resultat</h2>
-  <p class="percentage-correct"></p>
+  <h2 class="level-header"></h2>
+  <p> Herunder kan I se hvor mange og hvilke I fik rigtige: </p>
+  <p class="total-number-of-correct"></p>
+  <div class="summary-table-container">
   <table id="imageTable">
     <tr id="headerRow">
       <th>Nr.</th>
@@ -65,15 +74,17 @@ const summaryContent =
     <tbody id="tableBody">
     </tbody>
   </table>
+  </div>
   <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
-</div>`;
+  </div>
+`;
 
 const trainingContent =
   `<div class="training-content-container">
   <div> 
-  <h2> HER KAN DU TRÆNE GENERATOREN <h2>
+  <h1> Generatoren er nu blevet trænet, og er dermed blevet bedre! <h1>
   </div>
- <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre</button>
+ <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre til næste niveau</button>
  </div>`;
 
 

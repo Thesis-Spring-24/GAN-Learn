@@ -14,17 +14,106 @@ body {
   background-color: #eceaea;
 }
 
+.discriminator-upper-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-lower-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .discriminator-lower-container{
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   background-color: var(--background);
   height: 50em;
-  min-width: 70em;
+  width: 90em;
   margin: 5em;
   border-radius: var(--borderRadius);
   box-shadow: var(--boxShadow);
 }
+
+/* --- Lines & arrows --- */
+
+.left-arrow-container{
+  display: flex;
+  flex-direction: column;
+  width: 10em;
+  height: 100%;
+}
+
+.right-arrow-container{
+  display: flex;
+  flex-direction: column;
+  width: 10em;
+  height: 100%;
+}
+
+.left-line {
+  width: 5em;
+  height: 4px;
+  position: relative;
+  transform: translateY(-50%);
+  /* Center the line vertically */
+  background-image: linear-gradient(to right, var(--arrowColor) 100%, transparent 50%);
+}
+
+.left-line.gen-to-picture{
+  top: 35%;
+}
+
+.left-line.training-to-picture{
+  top: 55%;
+}
+
+/*Adds the arrowhead*/
+.left-line.gen-to-picture::after,
+.left-line.training-to-picture::after,
+.right-line.picture-to-dis::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -4px;
+  /* Adjust the distance of the arrowhead from the end of the line */
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  /* Adjust the size and color of the arrowhead */
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid var(--arrowColor);
+  transform: translateY(-50%);
+}
+
+.left-line.gen-to-picture.active::after{
+  border-left: 20px solid var(--genBorderColor);
+}
+
+.left-line.training-to-picture.active::after{
+  border-left: 20px solid var(--imgBorderColor);
+}
+
+
+.right-line {
+  width: 9.75em;
+  height: 4px;
+  position: relative;
+  transform: translateY(-50%);
+  /* Center the line vertically */
+  background-image: linear-gradient(to right, var(--arrowColor) 100%, transparent 50%);
+}
+
+.right-line.picture-to-dis{
+  top: 47%;
+}
+
+/* ----- */
 
 .lower-left-container{
   height: 100%;
@@ -88,11 +177,12 @@ body {
   flex-direction: column;
   align-items: center;
   border-radius: var(--borderRadius);
-  border: var(--borderWidth) solid black;
-  min-width: 15em;
-  margin-top: 15em;
+  border: var(--borderWidth) solid grey;
+  min-width: 13em;
+  margin-top: 8em;
   margin-bottom: 2em;
   padding: 2em;
+  min-height: 11em;
 }
 
 .discriminator-probability-container{
@@ -131,16 +221,15 @@ body {
 
 .correct-and-level-container{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  /* align-self: flex-start; */
-  width: 15em;
-  margin-top: 6em;
+  align-items: center;
+  width: 100%;
 }
 
-/* .number-of-correct{
-  margin-top: 3em;
-} */
+.try-again-container{
+  margin: 1em;
+}
 
 .continue-button{
   margin-top: 2em;
