@@ -14,6 +14,10 @@ const mainContent =
   </div>
   </div>
   </div>
+  <div class="left-arrow-container">
+  <div class="left-line gen-to-picture"></div>
+  <div class="left-line training-to-picture"></div>
+  </div>
 <div class="lower-middle-container">
 <div class="correct-and-level-container">
 <h2 class="current-level">Niveau: 1</h2>
@@ -27,6 +31,9 @@ const mainContent =
   <div>
   <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
 </div>
+</div>
+<div class="right-arrow-container">
+<div class="right-line picture-to-dis"></div>
 </div>
 <div class="lower-right-container">
   <div class="discriminator-probability-container">
