@@ -4,6 +4,8 @@ let skullCount;
 let generatorCount;
 let animationRunning = false;
 let dataSetInModel = localStorage.getItem("dataSetInModel");
+let generatorActivityDone = false;
+let discriminatorActivityDone = false;
 
 document.getElementById("gen-btn").addEventListener("click", navigateToGenerator);
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
@@ -11,10 +13,14 @@ document.getElementById("generate-btn").addEventListener("click", generateImg);
 document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
 
 function navigateToGenerator() {
+    generatorActivityDone = true;
+    localStorage.setItem("generatorActivityDone", generatorActivityDone);
     window.location.href = "/generator";
 }
 
 function navigateToDiscriminator() {
+    discriminatorActivityDone = true;
+    localStorage.setItem("discriminatorActivityDone", discriminatorActivityDone);
     window.location.href = "/discriminator";
 }
 
@@ -148,12 +154,25 @@ window.onload = function () {
     //get the current dataset from local storage
     currentDataset = localStorage.getItem("currentDataset");
     trainingCount = localStorage.getItem("trainingCount");
-    console.log("data to be shown", currentDataset);
-    console.log("trainingcount from on load", trainingCount);
     updateTrainingSet(currentDataset);
     updateTrainingOverview(trainingCount, currentDataset);
     updateGeneratedImage(trainingCount);
+    if (localStorage.getItem("generatorActivityDone") == "true") {
+        removeOverlayDiscriminator();
+    }
+    if (localStorage.getItem("discriminatorActivityDone") == "true") {
+        removeOverLayProcess();
+    }
 }
+
+function removeOverlayDiscriminator() {
+    document.querySelector('.overlay.discriminator').style.display = "none";
+}
+
+function removeOverLayProcess() {
+    document.querySelector('.overlay.process').style.display = "none";
+}
+
 
 //place the correct image in 'training images' in the model overview
 function updateTrainingSet(currentDataSet) {
