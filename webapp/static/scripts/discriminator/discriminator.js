@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 2; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 3; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 4; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 4; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 8; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 12; // TODO: Tilpas til ønsket antal billede i level 3
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -49,20 +49,35 @@ function handleAnswerButton() {
 function updateArrow(action) {
   if (correctAnswer === null) return;
 
-  let generatorArrow = document.querySelector(".left-line.gen-to-picture");
+  let generatorArrowLine = document.querySelector(".left-line.gen-to-picture");
   let trainingArrow = document.querySelector(".left-line.training-to-picture");
+  let imageBorder = document.querySelector(".image-generator-container");
+
   let arrowFullLength = "9.75em";
   let arrowDefaultLength = "";
 
+  // Todo: Refactor this code
   if (action === "answerSubmitted") {
     if (correctAnswer === computerGenerated) {
-      generatorArrow.style.width = arrowFullLength;
+      generatorArrowLine.style.width = arrowFullLength;
+      generatorArrowLine.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
+      generatorArrowLine.classList.add("active");
+      imageBorder.style.borderColor = "var(--genBorderColor)";
+
     } else if (correctAnswer === trainingPicture) {
       trainingArrow.style.width = arrowFullLength;
+      trainingArrow.style.backgroundImage = "linear-gradient(to right, var(--imgBorderColor) 100%, transparent 50%)";
+      trainingArrow.classList.add("active");
+      imageBorder.style.borderColor = "var(--imgBorderColor)";
     }
   } else if (action === "nextImage") {
-    generatorArrow.style.width = arrowDefaultLength;
+    generatorArrowLine.style.width = arrowDefaultLength;
+    generatorArrowLine.classList.remove("active");
     trainingArrow.style.width = arrowDefaultLength;
+    trainingArrow.classList.remove("active");
+    imageBorder.style.borderColor = "";
+    generatorArrowLine.style.backgroundImage = "";
+    trainingArrow.style.backgroundImage = "";
   }
 }
 
