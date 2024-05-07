@@ -41,7 +41,28 @@ function handleAnswerButton() {
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
     setImageMap();
     updateNumbersOfCorrect();
+    updateArrow("answerSubmitted");
     answerSubmitted = true;
+  }
+}
+
+function updateArrow(action) {
+  if (correctAnswer === null) return;
+
+  let generatorArrow = document.querySelector(".left-line.gen-to-picture");
+  let trainingArrow = document.querySelector(".left-line.training-to-picture");
+  let arrowFullLength = "9.75em";
+  let arrowDefaultLength = "";
+
+  if (action === "answerSubmitted") {
+    if (correctAnswer === computerGenerated) {
+      generatorArrow.style.width = arrowFullLength;
+    } else if (correctAnswer === trainingPicture) {
+      trainingArrow.style.width = arrowFullLength;
+    }
+  } else if (action === "nextImage") {
+    generatorArrow.style.width = arrowDefaultLength;
+    trainingArrow.style.width = arrowDefaultLength;
   }
 }
 
@@ -130,6 +151,7 @@ function handleNextButton() {
   chosenProbability = null;
   updateFeedbackOnAnswer();
   updateProbability();
+  updateArrow("nextImage");
 }
 
 function setFinished(isFinished) {
