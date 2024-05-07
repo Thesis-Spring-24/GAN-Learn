@@ -239,16 +239,22 @@ const predict = async () => {
 };
 
 function showDataset() {
+    console.log("called Show dataset");
     correctlyGuessed = localStorage.getItem("correctlyGuessed");
-    if (correctlyGuessed == undefined || correctlyGuessed == null || correctlyGuessed < 3) {
-        console.log("should not show dataset");
-        return;
-    }
-    else {
+    // if (correctlyGuessed == undefined || correctlyGuessed == null || correctlyGuessed < 3) {
+    //     console.log("should not show dataset");
+    //     return;
+    // }
+    if (timerSeconds <= 0 || correctlyGuessed >= 3) {
         console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
         document.querySelector('.gen-training-data').classList.add('rotate-img');
     }
+    // if (correctlyGuessed >= 3) {
+    //     document.querySelector('.gen-training-data').style.display = "flex";
+    //     document.querySelector('.gen-training-data').classList.add('rotate-img');
+    // }
+
 }
 
 function showModal() {

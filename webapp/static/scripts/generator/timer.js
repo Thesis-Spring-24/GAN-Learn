@@ -9,8 +9,13 @@ function startTimer() {
     timerSeconds--;
     updateTimerDisplay();
 
+    if (timerSeconds == 210) {
+      document.querySelector('.hint-timer-text').style.display = 'block';
+    }
+
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
+      showDataset();
       // alert("Timer finished!");
     }
   }, 1000); // Update timer every second
