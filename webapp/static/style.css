@@ -38,7 +38,7 @@
   border-width: var(--borderWidth);
   border: solid black;
   width: 63em;
-  height: 22em;
+  height: fit-content;
 }
 
 body {
