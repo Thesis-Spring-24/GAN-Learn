@@ -59,7 +59,7 @@ h1 {
 .process-activity-container {
     position: relative;
     background-color: white;
-    height: 58em;
+    height: 62em;
     /* height: fit-content; */
     width: 75em;
     border-radius: var(--borderRadius);
@@ -258,6 +258,10 @@ h1 {
     justify-content: center;
     align-items: center;
     /* row-gap: 1.5em; */
+}
+
+.process-title {
+    margin-top: 2em;
 }
 
 .model-overview {
@@ -494,6 +498,7 @@ h1 {
     border-width: var(--borderWidth);
     border-color: var(--genBorderColor);
     border-radius: var(--borderRadius);
+    margin-bottom: 1em;
 }
 
 .bottom-container {

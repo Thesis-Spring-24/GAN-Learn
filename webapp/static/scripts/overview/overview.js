@@ -134,6 +134,11 @@ function displayGeneratingArrow() {
 
 //called when the 'generer' button is pressed, calls the displayImg function
 function generateImg() {
+    isTraining = localStorage.getItem("isTraining");
+    if (isTraining == true || isTraining == "true") {
+        alert("Vent til træningen er færdig");
+        return;
+    }
     if (currentDataset == null) {
         alert("Du skal vælge træningsbilleder og træne modellen før du kan generere nye billelder");
     }

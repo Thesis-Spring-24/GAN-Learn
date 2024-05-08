@@ -14,10 +14,16 @@
     min-height: 20em;
     background-color: white;
     border-radius: var(--borderRadius);
+
 }
 
 .description-text {
     text-align: center;
     line-height: 1.6em;
     font-size: medium;
+    margin-bottom: 5em;
+}
+
+.start-btn {
+    margin-bottom: 2em;
 }
