@@ -67,8 +67,10 @@ button {
   margin: 1em;
   background-color: white;
   flex-direction: column;
-  width: 10em;
-  min-height: 5em;
+  width: 9em;
+  height: 14em;
+  text-align: center;
+  white-space: wrap;
 }
 
 #drawing-history {
@@ -120,13 +122,17 @@ button {
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 20px;
+  padding: 3em;
   border-radius: var(--borderRadius);
   border: 1px solid #888;
   justify-content: center;
-  width: 30em;
+  width: 40em;
   height: fit-content;
+}
 
+.modal-content p {
+  font-size: x-large;
+  text-align: center;
 }
 
 /* Close button */

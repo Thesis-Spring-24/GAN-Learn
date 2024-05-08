@@ -11,7 +11,7 @@ let correctlyGuessed;
 
 
 // ----------------------------------------------------------------
-const labelToPredict = "rabbit"; // Label to predict
+const labelToPredict = "crab"; // Label to predict
 const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
@@ -249,6 +249,7 @@ function showDataset() {
         console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
         document.querySelector('.gen-training-data').classList.add('rotate-img');
+        document.querySelector('.help-icon').style.display = "none";
     }
     // if (correctlyGuessed >= 3) {
     //     document.querySelector('.gen-training-data').style.display = "flex";
@@ -301,8 +302,8 @@ function attemptsHistory(labelPrediction) {
     // Append the latest image attempt to the discriminator image container
     const latestImage = new Image();
     latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
-    latestImage.width = 250;
-    latestImage.height = 250;
+    latestImage.width = 450;
+    latestImage.height = 330;
     discriminatorImageDiv.appendChild(latestImage);
 }
 
@@ -322,7 +323,7 @@ function appendDrawingAttempts() {
 
         // Create a div to display probability
         const attemptDiv = document.createElement("div");
-        attemptDiv.textContent = `Forsøg ${index + 1}: Sandsynlighed: ${attempt.probability}`;
+        attemptDiv.innerHTML = `<pre>Sandsynlighed: \n${attempt.probability}\nVurdering: ${attempt.probability > probabilityThreshold ? "\nTræningsbillede" : "\nGenereret billede"}</pre>`;
         attemptDiv.className = "attempt";
         attemptDiv.appendChild(image);
 
@@ -389,6 +390,7 @@ window.onload = () => {
 
     if (localStorage.getItem('sawTrainingData') == "true") {
         showModal();
+        document.querySelector('.help-icon').style.display = "none";
     }
 
 }

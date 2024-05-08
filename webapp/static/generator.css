@@ -23,7 +23,7 @@
     flex-direction: column;
     row-gap: 0em;
     width: 100em;
-    height: 57em;
+    height: 58em;
     background-color: white;
     border-radius: var(--borderRadius);
 }
@@ -98,6 +98,35 @@
     border-style: solid;
     border-color: var(--imgBorderColor);
     border-radius: var(--borderRadiusElements);
+}
+
+.help-icon {
+    height: 2em;
+    width: 2em;
+    align-self: flex-end;
+    position: relative;
+    top: -1em;
+    right: 1em;
+    display: inline-block;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 18em;
+    top: -5px;
+    left: 150%;
+    margin-right: -75px;
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: var(--borderRadiusElements);
+    color: black;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
+
+.help-icon:hover .tooltiptext {
+    visibility: visible;
 }
 
 .rotate-img {
@@ -310,6 +339,7 @@
 
 .discriminator-image {
     display: flex;
+    height: 350px;
     align-items: center;
     justify-content: center;
 }
@@ -318,7 +348,7 @@
     display: visible;
     background-color: var(--greyBackgroundColor);
     width: 90em;
-    height: 14em;
+    height: 16em;
     align-self: center;
     border-radius: var(--borderRadius);
 }
