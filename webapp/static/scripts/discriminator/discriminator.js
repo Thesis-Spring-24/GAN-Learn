@@ -202,7 +202,7 @@ function increaseLevel() {
 function showCurrentLevel() {
   let documentCurrentLevel = document.querySelector(".current-level");
   if (documentCurrentLevel !== null) {
-    documentCurrentLevel.innerHTML = `Niveau: ${currentLevel}`;
+    documentCurrentLevel.innerHTML = `Runde: ${currentLevel}`;
   }
 }
 

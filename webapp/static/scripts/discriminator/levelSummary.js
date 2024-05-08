@@ -50,7 +50,7 @@ function handleFinalSummary() {
 
 function handleHeaderSummary() {
   let documentLevelHeader = document.querySelector(".level-header");
-  documentLevelHeader.textContent = `Niveau ${currentLevel} resultat`;
+  documentLevelHeader.textContent = `Runde ${currentLevel} resultat`;
 
   finished = localStorage.getItem("isFinished") === "true" ? true : false;
   if (finished) {

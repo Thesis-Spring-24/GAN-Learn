@@ -20,7 +20,7 @@ const mainContent =
   </div>
 <div class="lower-middle-container">
 <div class="correct-and-level-container">
-<h2 class="current-level">Niveau: 1</h2>
+<h2 class="current-level">Runde: 1</h2>
 <p class="number-of-correct">Antal rigtige:</p>
 </div>
   <div class="image-generator-container">
@@ -84,7 +84,7 @@ const trainingContent =
   <div> 
   <h1> Generatoren er nu blevet trænet, og er dermed blevet bedre! <h1>
   </div>
- <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre til næste niveau</button>
+ <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre til næste runde</button>
  </div>`;
 
 

@@ -35,7 +35,7 @@ body {
   background-color: var(--background);
   height: 50em;
   width: 90em;
-  margin: 5em;
+  margin: 1em;
   border-radius: var(--borderRadius);
   box-shadow: var(--boxShadow);
 }
