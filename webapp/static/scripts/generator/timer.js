@@ -1,6 +1,7 @@
 let timerInterval;
 let timerDisplay = document.getElementById("timer-display");
 let timerSeconds = 10 * 60; // 10 minutes in seconds
+let savedTime;
 
 function startTimer() {
   clearInterval(timerInterval); // Clear any existing timer
@@ -32,5 +33,7 @@ function formatTime(time) {
 }
 
 function stopTimer() {
+  savedTime = timerSeconds;
+  localStorage.setItem('savedTime', savedTime);
   clearInterval(timerInterval);
 }

@@ -11,8 +11,8 @@ let correctlyGuessed;
 
 
 // ----------------------------------------------------------------
-const labelToPredict = "crab"; // Label to predict
-const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
+const labelToPredict = "apple"; // Label to predict
+const probabilityThreshold = 0.20; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
 // Coordinates of the current drawn stroke [[x1, x2, ..., xn], [y1, y2, ..., yn]]
@@ -36,7 +36,11 @@ function setup() {
 function mouseDown() {
     clicked = true;
     mousePosition = [mouseX, mouseY];
-    startTimer();
+
+    savedTime = localStorage.getItem('savedTime');
+    if (!savedTime) {
+        startTimer();
+    }
 }
 
 function mouseMoved() {
@@ -220,8 +224,9 @@ const predict = async () => {
             // Clear the canvas
             clearCanvas();
 
+            correctlyGuessed = localStorage.getItem("correctlyGuessed");
             // Stop the timer if the probability is greater than the threshold
-            if (labelPrediction.probability > probabilityThreshold) {
+            if (labelPrediction.probability > probabilityThreshold && correctlyGuessed >= 3) {
                 stopTimer();
                 // showModal();
                 document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
@@ -241,21 +246,13 @@ const predict = async () => {
 function showDataset() {
     console.log("called Show dataset");
     correctlyGuessed = localStorage.getItem("correctlyGuessed");
-    // if (correctlyGuessed == undefined || correctlyGuessed == null || correctlyGuessed < 3) {
-    //     console.log("should not show dataset");
-    //     return;
-    // }
+
     if (timerSeconds <= 0 || correctlyGuessed >= 3) {
         console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
         document.querySelector('.gen-training-data').classList.add('rotate-img');
         document.querySelector('.help-icon').style.display = "none";
     }
-    // if (correctlyGuessed >= 3) {
-    //     document.querySelector('.gen-training-data').style.display = "flex";
-    //     document.querySelector('.gen-training-data').classList.add('rotate-img');
-    // }
-
 }
 
 function showModal() {
@@ -296,8 +293,6 @@ function attemptsHistory(labelPrediction) {
     appendDrawingAttempts();
 
     discriminatorImageDiv = document.querySelector(".discriminator-image")
-
-    // discriminatorImageDiv.innerHTML = "";
 
     // Append the latest image attempt to the discriminator image container
     const latestImage = new Image();
@@ -393,6 +388,17 @@ window.onload = () => {
         document.querySelector('.help-icon').style.display = "none";
     }
 
+    checkTimer();
+
+}
+
+function checkTimer() {
+    savedTime = localStorage.getItem('savedTime');
+    if (savedTime) {
+        timerSeconds = savedTime;
+        updateTimerDisplay();
+        // startTimer();
+    }
 }
 
 document.querySelector('.clear-btn-generator-storage').addEventListener("click", clearLocalStorage);
