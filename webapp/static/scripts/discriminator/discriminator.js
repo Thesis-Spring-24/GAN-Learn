@@ -49,9 +49,10 @@ function handleAnswerButton() {
 function updateArrow(action) {
   if (correctAnswer === null) return;
 
-  let generatorArrowLine = document.querySelector(".left-line.gen-to-picture");
+  let generatorArrow = document.querySelector(".left-line.gen-to-picture");
   let trainingArrow = document.querySelector(".left-line.training-to-picture");
   let imageBorder = document.querySelector(".image-generator-container");
+  let discriminatorArrow = document.querySelector(".right-line.picture-to-dis");
 
   let arrowFullLength = "9.75em";
   let arrowDefaultLength = "";
@@ -59,25 +60,31 @@ function updateArrow(action) {
   // Todo: Refactor this code
   if (action === "answerSubmitted") {
     if (correctAnswer === computerGenerated) {
-      generatorArrowLine.style.width = arrowFullLength;
-      generatorArrowLine.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
-      generatorArrowLine.classList.add("active");
+      generatorArrow.style.width = arrowFullLength;
+      generatorArrow.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
+      generatorArrow.classList.add("active");
       imageBorder.style.borderColor = "var(--genBorderColor)";
-
+      discriminatorArrow.style.backgroundImage = "linear-gradient(to left, var(--genBorderColor) 100%, transparent 50%)";
+      discriminatorArrow.classList.add("generator");
     } else if (correctAnswer === trainingPicture) {
       trainingArrow.style.width = arrowFullLength;
       trainingArrow.style.backgroundImage = "linear-gradient(to right, var(--imgBorderColor) 100%, transparent 50%)";
       trainingArrow.classList.add("active");
       imageBorder.style.borderColor = "var(--imgBorderColor)";
+      discriminatorArrow.style.backgroundImage = "linear-gradient(to left, var(--imgBorderColor) 100%, transparent 50%)";
+      discriminatorArrow.classList.add("training");
     }
   } else if (action === "nextImage") {
-    generatorArrowLine.style.width = arrowDefaultLength;
-    generatorArrowLine.classList.remove("active");
+    generatorArrow.style.width = arrowDefaultLength;
+    generatorArrow.classList.remove("active");
     trainingArrow.style.width = arrowDefaultLength;
     trainingArrow.classList.remove("active");
     imageBorder.style.borderColor = "";
-    generatorArrowLine.style.backgroundImage = "";
+    generatorArrow.style.backgroundImage = "";
     trainingArrow.style.backgroundImage = "";
+    discriminatorArrow.style.backgroundImage = "";
+    discriminatorArrow.classList.remove("generator");
+    discriminatorArrow.classList.remove("training");
   }
 }
 

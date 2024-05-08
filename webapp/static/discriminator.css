@@ -99,6 +99,14 @@ body {
   border-left: 20px solid var(--imgBorderColor);
 }
 
+.right-line.picture-to-dis.generator::after{
+  border-left: 20px solid var(--genBorderColor);
+}
+
+.right-line.picture-to-dis.training::after{
+  border-left: 20px solid var(--imgBorderColor);
+}
+
 
 .right-line {
   width: 9.75em;
