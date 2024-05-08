@@ -51,7 +51,7 @@ const mainContent =
     </div>
     <p class="chosen-probability">Valgt: </p>
     <button class="check-answer-button" onclick="handleAnswerButton()">Tjek svar</button>
-    <div>
+    <div class="container-feedback-on-answer">
       <p class="feedback-on-answer"></p>
     </div>
   </div>
