@@ -9,6 +9,15 @@ function handleLevelSummary() {
   handleHeaderSummary();
   createTableContent();
   calculateNumberOfCorrect();
+
+  if (finished) {
+    let documentTable = document.querySelector(".summary-table-container");
+    let documentContent = document.querySelector(".summary-content-container");
+    documentTable.remove();
+    let finalSummaryText = document.createElement('p');
+    finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
+    documentContent.append(finalSummaryText);
+  }
 }
 
 function createTableContent() {
@@ -39,18 +48,22 @@ function createTableContent() {
     row.appendChild(cell4);
 
     tableBody.appendChild(row);
+
+    let table = document.querySelector(".summary-table-container");
+    table.style.maxHeight = "50em";
+    table.style.overflowY = "scroll";
   });
 }
 
-function handleFinalSummary() {
-  let table = document.querySelector(".summary-table-container");
-  table.style.maxHeight = "50em";
-  table.style.overflowY = "scroll";
-}
+// function handleFinalSummary() {
+//   let table = document.querySelector(".summary-table-container");
+//   table.style.maxHeight = "50em";
+//   table.style.overflowY = "scroll";
+// }
 
 function handleHeaderSummary() {
   let documentLevelHeader = document.querySelector(".level-header");
-  documentLevelHeader.textContent = `Niveau ${currentLevel} resultat`;
+  documentLevelHeader.textContent = `Runde ${currentLevel} resultat`;
 
   finished = localStorage.getItem("isFinished") === "true" ? true : false;
   if (finished) {
@@ -66,7 +79,7 @@ function findRangeMap() {
   if (finished) {
     startRange = 0;
     endRange = imagesLevelThree;
-    handleFinalSummary();
+    // handleFinalSummary();
     return;
   }
   if (currentLevel === levelOne) {

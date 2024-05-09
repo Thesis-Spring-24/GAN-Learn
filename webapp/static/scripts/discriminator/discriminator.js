@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 4; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 8; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 12; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 10; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 25; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 40; // TODO: Tilpas til ønsket antal billede i level 3
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -49,9 +49,10 @@ function handleAnswerButton() {
 function updateArrow(action) {
   if (correctAnswer === null) return;
 
-  let generatorArrowLine = document.querySelector(".left-line.gen-to-picture");
+  let generatorArrow = document.querySelector(".left-line.gen-to-picture");
   let trainingArrow = document.querySelector(".left-line.training-to-picture");
   let imageBorder = document.querySelector(".image-generator-container");
+  let discriminatorArrow = document.querySelector(".right-line.picture-to-dis");
 
   let arrowFullLength = "9.75em";
   let arrowDefaultLength = "";
@@ -59,25 +60,31 @@ function updateArrow(action) {
   // Todo: Refactor this code
   if (action === "answerSubmitted") {
     if (correctAnswer === computerGenerated) {
-      generatorArrowLine.style.width = arrowFullLength;
-      generatorArrowLine.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
-      generatorArrowLine.classList.add("active");
+      generatorArrow.style.width = arrowFullLength;
+      generatorArrow.style.backgroundImage = "linear-gradient(to right, var(--genBorderColor) 100%, transparent 50%)";
+      generatorArrow.classList.add("active");
       imageBorder.style.borderColor = "var(--genBorderColor)";
-
+      discriminatorArrow.style.backgroundImage = "linear-gradient(to left, var(--genBorderColor) 100%, transparent 50%)";
+      discriminatorArrow.classList.add("generator");
     } else if (correctAnswer === trainingPicture) {
       trainingArrow.style.width = arrowFullLength;
       trainingArrow.style.backgroundImage = "linear-gradient(to right, var(--imgBorderColor) 100%, transparent 50%)";
       trainingArrow.classList.add("active");
       imageBorder.style.borderColor = "var(--imgBorderColor)";
+      discriminatorArrow.style.backgroundImage = "linear-gradient(to left, var(--imgBorderColor) 100%, transparent 50%)";
+      discriminatorArrow.classList.add("training");
     }
   } else if (action === "nextImage") {
-    generatorArrowLine.style.width = arrowDefaultLength;
-    generatorArrowLine.classList.remove("active");
+    generatorArrow.style.width = arrowDefaultLength;
+    generatorArrow.classList.remove("active");
     trainingArrow.style.width = arrowDefaultLength;
     trainingArrow.classList.remove("active");
     imageBorder.style.borderColor = "";
-    generatorArrowLine.style.backgroundImage = "";
+    generatorArrow.style.backgroundImage = "";
     trainingArrow.style.backgroundImage = "";
+    discriminatorArrow.style.backgroundImage = "";
+    discriminatorArrow.classList.remove("generator");
+    discriminatorArrow.classList.remove("training");
   }
 }
 
@@ -195,7 +202,7 @@ function increaseLevel() {
 function showCurrentLevel() {
   let documentCurrentLevel = document.querySelector(".current-level");
   if (documentCurrentLevel !== null) {
-    documentCurrentLevel.innerHTML = `Niveau: ${currentLevel}`;
+    documentCurrentLevel.innerHTML = `Runde: ${currentLevel}`;
   }
 }
 
@@ -258,8 +265,9 @@ function updateFeedbackOnAnswer() {
 }
 
 function updateProbability() {
+  let answerType = getAnswerType(chosenProbability);
   let documentChosenProbabilty = document.querySelector(".chosen-probability");
-  documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${chosenProbability}`;
+  documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${answerType} (${chosenProbability})`;
 }
 
 function resetLocalStorage() {
