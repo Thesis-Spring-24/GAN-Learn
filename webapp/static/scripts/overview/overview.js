@@ -61,8 +61,16 @@ function dragDrop(event) {
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
     var draggedElement = document.getElementById(data);
+    var datasetDiv = document.getElementById("dataset-div");
+
+    if (datasetDiv.children.length > 0 && !datasetDiv.contains(draggedElement)) {
+        console.log("dataset already has an image");
+        return
+    }
+
     event.target.appendChild(draggedElement);
-    document.getElementById("dataset-div").style.border = "0.3em solid  #C11B7F";
+    datasetDiv.style.border = "0.3em solid  #C11B7F";
+
     if (event.target.id == "dataset-div") {
         var draggedElementId = draggedElement.id;
         currentDataset = draggedElementId;
@@ -70,8 +78,6 @@ function dragDrop(event) {
 
         dataSetInModel = true;
         localStorage.setItem("dataSetInModel", dataSetInModel);
-
-
     }
     else {
         //når træningsbillederne bliver trukket tilbage fra modellen, så skal billederne i training-overview fjernes
@@ -104,6 +110,7 @@ function displayImg(level) {
     if (currentDataset == "bird-dataset") {
         imageMap = generatedBirdsMap;
     }
+
     var key = level - 1;
     var keyString = key.toString();
     const randomIndex = Math.floor(Math.random() * imageMap.get(keyString).length);

@@ -23,7 +23,7 @@ function trainModel() {
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
-            }, 10000);
+            }, 5000);
         }
         else if (trainingCount < 5) {
             trainingCount++;
@@ -36,7 +36,7 @@ function trainModel() {
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
-            }, 10000);
+            }, 5000);
         }
         else if (trainingCount == 5) {
             alert("Modellen er færdigtrænet")
