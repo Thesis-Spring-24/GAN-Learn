@@ -11,8 +11,8 @@ let correctlyGuessed;
 
 
 // ----------------------------------------------------------------
-const labelToPredict = "apple"; // Label to predict
-const probabilityThreshold = 0.20; // Threshold of when to consider a prediction as true
+const labelToPredict = "crab"; // Label to predict
+const probabilityThreshold = 0.70; // Threshold of when to consider a prediction as true
 // ----------------------------------------------------------------
 
 // Coordinates of the current drawn stroke [[x1, x2, ..., xn], [y1, y2, ..., yn]]
