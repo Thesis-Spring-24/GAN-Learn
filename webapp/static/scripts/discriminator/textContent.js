@@ -1,7 +1,10 @@
-const generatorCorrectText = "Rigtigt! Billedet er genereret";
-const generatorWrongText = "Forkert! Det rigtige svar er 0, fordi billedet er genereret";
-const trainingCorrectText = "Rigtigt! Det er et træningsbillede";
-const trainingWrongText = "Forkert! Det rigtige svar er 1, fordi det er et træningsbillede"
+const generated = `<span class="computer-generated-text">genereret</span>`;
+const training = `<span class="training-picture-text">træningsbillede</span>`;
+
+const generatorCorrectText = `Rigtigt! Billedet er ${generated}`;
+const generatorWrongText = `Forkert! Det rigtige svar er 0, fordi billedet er ${generated}`;
+const trainingCorrectText = `Rigtigt! Det er et ${training}`;
+const trainingWrongText = `Forkert! Det rigtige svar er 1, fordi det er et ${training}`;
 
 const mainContent =
   `<div class="lower-left-container">

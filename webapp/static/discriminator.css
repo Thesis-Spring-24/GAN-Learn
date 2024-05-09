@@ -276,11 +276,20 @@ th, td {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: 80%;
 }
 
 .feedback-on-answer{
   font-size: 18px;
+  font-weight: bold;
   width: fit-content;
   text-align: center;
+}
+
+.computer-generated-text{
+    color: var(--genBorderColor);
+}
+
+.training-picture-text{
+    color: var(--imgBorderColor);
 }
