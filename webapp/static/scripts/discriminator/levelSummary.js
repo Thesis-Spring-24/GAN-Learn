@@ -39,14 +39,18 @@ function createTableContent() {
     row.appendChild(cell4);
 
     tableBody.appendChild(row);
+
+    let table = document.querySelector(".summary-table-container");
+    table.style.maxHeight = "50em";
+    table.style.overflowY = "scroll";
   });
 }
 
-function handleFinalSummary() {
-  let table = document.querySelector(".summary-table-container");
-  table.style.maxHeight = "50em";
-  table.style.overflowY = "scroll";
-}
+// function handleFinalSummary() {
+//   let table = document.querySelector(".summary-table-container");
+//   table.style.maxHeight = "50em";
+//   table.style.overflowY = "scroll";
+// }
 
 function handleHeaderSummary() {
   let documentLevelHeader = document.querySelector(".level-header");
@@ -66,7 +70,7 @@ function findRangeMap() {
   if (finished) {
     startRange = 0;
     endRange = imagesLevelThree;
-    handleFinalSummary();
+    // handleFinalSummary();
     return;
   }
   if (currentLevel === levelOne) {

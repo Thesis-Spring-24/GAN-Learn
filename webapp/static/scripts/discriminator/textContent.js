@@ -31,9 +31,7 @@ const mainContent =
     <img src="" width="150px" class="current-discriminator-image">
   </div>
   </div>
-  <div>
-  <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
-</div>
+
 </div>
 <div class="right-arrow-container">
 <div class="right-line picture-to-dis"></div>
@@ -58,6 +56,9 @@ const mainContent =
       <p class="feedback-on-answer"></p>
     </div>
   </div>
+  <div>
+  <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
+</div>
 </div>
 `;
 

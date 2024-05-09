@@ -262,6 +262,10 @@ body {
   height: 100%;
 }
 
+.next-picture-button{
+  margin-top: 2em;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
