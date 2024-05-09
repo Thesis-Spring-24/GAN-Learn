@@ -208,7 +208,7 @@ body {
 .probability-buttons-container{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 1em;
   width: 25em;
 }
@@ -246,6 +246,7 @@ body {
 
 .chosen-probability{
   margin: 2em;
+  width: 13em;
 }
 
 .summary-content-container{

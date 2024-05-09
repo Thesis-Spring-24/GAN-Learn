@@ -265,8 +265,9 @@ function updateFeedbackOnAnswer() {
 }
 
 function updateProbability() {
+  let answerType = getAnswerType(chosenProbability);
   let documentChosenProbabilty = document.querySelector(".chosen-probability");
-  documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${chosenProbability}`;
+  documentChosenProbabilty.innerHTML = chosenProbability === null ? "Valgt: " : `Valgt: ${answerType} (${chosenProbability})`;
 }
 
 function resetLocalStorage() {
