@@ -1,8 +1,12 @@
+let isTraining = false;
+
 document.getElementById("train-btn").addEventListener("click", trainModel);
 document.querySelector(".close-btn-modal").addEventListener("click", handleClosingModal);
 
 //Called when the 'træn' button is pressed, starts the animation and calls the displayFlowerTraining function
 function trainModel() {
+    isTraining = true;
+    localStorage.setItem("isTraining", isTraining);
     if (currentDataset == null || currentDataset == "null") {
         alert("Træk et træningsbilleder over for at træne modellen");
     }
@@ -11,24 +15,34 @@ function trainModel() {
 
         if (trainingCount === null || trainingCount === "null") {
             trainingCount = 1;
-            displayImageTraining(trainingCount, currentDataset);
             localStorage.setItem("trainingCount", trainingCount);
             startAnimation();
-            displayModal();
+            setTimeout(() => {
+                stopAnimation();
+                displayImageTraining(trainingCount, currentDataset);
+                isTraining = false;
+                localStorage.setItem("isTraining", isTraining);
+                console.log("isTraining", isTraining);
+            }, 10000);
         }
         else if (trainingCount < 5) {
             trainingCount++;
-
-            displayImageTraining(trainingCount, currentDataset);
             localStorage.setItem("trainingCount", trainingCount);
             startAnimation();
-            displayModal();
             clearGeneratedImage();
+            setTimeout(() => {
+                stopAnimation();
+                displayImageTraining(trainingCount, currentDataset);
+                isTraining = false;
+                localStorage.setItem("isTraining", isTraining);
+                console.log("isTraining", isTraining);
+            }, 10000);
         }
         else if (trainingCount == 5) {
             alert("Modellen er færdigtrænet")
         }
     }
+
 }
 
 //when pressing train a flower image is displayed in the training overview
@@ -63,12 +77,16 @@ function startAnimation() {
     document.querySelector('.moving-line.gen-to-dis').classList.add('moveLineRight');
     document.querySelector('.moving-line.img-to-dis').classList.add('moveLineRight');
     document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+    setTimeout(() => {
+        stopAnimation();
+    }, 15000);
 }
 
 function stopAnimation() {
     document.querySelector('.moving-line.gen-to-dis').classList.remove('moveLineRight');
     document.querySelector('.moving-line.img-to-dis').classList.remove('moveLineRight');
     document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
+
 }
 
 function displayModal() {
