@@ -9,6 +9,15 @@ function handleLevelSummary() {
   handleHeaderSummary();
   createTableContent();
   calculateNumberOfCorrect();
+
+  if (finished) {
+    let documentTable = document.querySelector(".summary-table-container");
+    let documentContent = document.querySelector(".summary-content-container");
+    documentTable.remove();
+    let finalSummaryText = document.createElement('p');
+    finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
+    documentContent.append(finalSummaryText);
+  }
 }
 
 function createTableContent() {
