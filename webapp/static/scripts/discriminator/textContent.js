@@ -87,7 +87,7 @@ const trainingContent =
   <div> 
   <h1> Generatoren er nu blevet trænet, og er dermed blevet bedre! <h1>
   </div>
- <button class="continue-button" onclick="handleContinueButton('mainContent')">Videre til næste runde</button>
+ <button class="continue-button next-round" onclick="handleContinueButton('mainContent')">Videre til næste runde</button>
  </div>`;
 
 

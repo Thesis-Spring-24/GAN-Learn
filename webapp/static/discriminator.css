@@ -142,6 +142,7 @@ body {
 }
 
 .training-content-container{
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -241,7 +242,12 @@ body {
 
 .continue-button{
   margin-top: 2em;
+}
 
+.next-round{
+  position: absolute;
+  bottom: 40px;
+  right: -180px;
 }
 
 .chosen-probability{
