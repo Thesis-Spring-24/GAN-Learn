@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 1; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 2; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 3; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 10; // 10
+const imagesLevelTwo = 25; // 25
+const imagesLevelThree = 40; // 40
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -33,9 +33,6 @@ function handleAnswerButton() {
 
     feedbackOnAnswer = chosenProbability === correctAnswer ? getFeedbackText(true) : getFeedbackText(false);
     updateFeedbackOnAnswer();
-
-    // updateProbability();
-    // answerSubmitted = true;
 
     // Update submittedAnswer value for the current image in imageMap
     imageMap["image" + imageNumber].submittedAnswer = chosenProbability;
@@ -244,7 +241,6 @@ function handleContinueButton(nextContent) {
     increaseLevel();
     showCurrentLevel();
   }
-
 }
 
 function increaseImageNumber() {

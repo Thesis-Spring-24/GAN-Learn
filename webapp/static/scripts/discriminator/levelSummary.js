@@ -20,6 +20,11 @@ function handleFinished() {
   documentTable.remove();
 
   let documentContent = document.querySelector(".summary-content-container");
+  // TODO: Add level scores
+  // let levelScoresContainer = document.createElement('div');
+  // levelScoresContainer.className = "level-scores-container";
+
+
   let finalSummaryText = document.createElement('p');
   finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
   documentContent.append(finalSummaryText);
@@ -45,7 +50,6 @@ function handleFinished() {
 
   buttonsContainer.append(tryAgainButton);
   documentContent.append(buttonsContainer);
-
 }
 
 function createTableContent() {
@@ -90,7 +94,6 @@ function handleHeaderSummary() {
   finished = localStorage.getItem("isFinished") === "true" ? true : false;
   if (finished) {
     documentLevelHeader.textContent = "Samlet resultat";
-    documentLevelHeader.style.fontSize = "30px";
 
     let documentContinueButton = document.querySelector(".continue-button");
     documentContinueButton.remove();

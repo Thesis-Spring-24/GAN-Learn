@@ -267,8 +267,12 @@ body {
   font-size: 25px;
 }
 
-.next-picture-button{
+.next-picture-button {
   margin-top: 2em;
+}
+
+.level-header {
+  font-size: 30px;
 }
 
 table {
