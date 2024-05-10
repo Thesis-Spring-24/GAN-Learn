@@ -10,6 +10,11 @@
     align-items: center;
 }
 
+.draw-explanation {
+    padding-left: 1em;
+    align-self: flex-end;
+}
+
 .hint-text {
     font-size: large;
     line-height: 1.6em;
@@ -40,6 +45,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    height: 39em;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .canvas-container {
@@ -93,7 +101,7 @@
     justify-content: center;
     align-items: center;
     width: 14em;
-    height: 9em;
+    height: 8em;
     border-width: 3px;
     border-style: solid;
     border-color: var(--imgBorderColor);
@@ -333,13 +341,13 @@
     border: var(--borderWidth) solid var(--disBorderColor);
     border-radius: var(--borderRadius);
     width: 500px;
-    height: 350px;
+    height: 330px;
     background-color: white;
 }
 
 .discriminator-image {
     display: flex;
-    height: 350px;
+    height: 330px;
     align-items: center;
     justify-content: center;
 }

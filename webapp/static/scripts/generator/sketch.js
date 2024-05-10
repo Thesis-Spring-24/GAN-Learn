@@ -1,5 +1,5 @@
 const WIDTH = 500;
-const HEIGHT = 350;
+const HEIGHT = 330;
 const STROKE_WEIGHT = 3;
 const CROP_PADDING = (REPOS_PADDING = 2);
 
@@ -298,7 +298,7 @@ function attemptsHistory(labelPrediction) {
     const latestImage = new Image();
     latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
     latestImage.width = 450;
-    latestImage.height = 330;
+    latestImage.height = 315;
     discriminatorImageDiv.appendChild(latestImage);
 }
 
@@ -318,9 +318,14 @@ function appendDrawingAttempts() {
 
         // Create a div to display probability
         const attemptDiv = document.createElement("div");
-        attemptDiv.innerHTML = `<pre>Sandsynlighed: \n${attempt.probability}\nVurdering: ${attempt.probability > probabilityThreshold ? "\nTræningsbillede" : "\nGenereret billede"}</pre>`;
         attemptDiv.className = "attempt";
+
         attemptDiv.appendChild(image);
+
+        const textDiv = document.createElement("div");
+        textDiv.innerHTML = `<pre>Sandsynlighed: \n${attempt.probability}\nVurdering: ${attempt.probability > probabilityThreshold ? "\nTræningsbillede" : "\nGenereret billede"}</pre>`;
+        attemptDiv.appendChild(textDiv);
+
 
         // Append the image and div to the drawing history container
         historyDisplay.appendChild(attemptDiv);
