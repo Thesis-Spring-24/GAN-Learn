@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 10; // TODO: Tilpas til ønsket antal billede i level 1
-const imagesLevelTwo = 25; // TODO: Tilpas til ønsket antal billede i level 2
-const imagesLevelThree = 40; // TODO: Tilpas til ønsket antal billede i level 3
+const imagesLevelOne = 1; // TODO: Tilpas til ønsket antal billede i level 1
+const imagesLevelTwo = 2; // TODO: Tilpas til ønsket antal billede i level 2
+const imagesLevelThree = 3; // TODO: Tilpas til ønsket antal billede i level 3
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -159,7 +159,6 @@ function handleNextButton() {
   if (imageNumber > imagesLevelThree && currentLevel === levelThree) {
     handleSummary();
     setFinished(true);
-    // handleFinish();
     let documentContinueButton = document.querySelector(".continue-button");
     documentContinueButton.textContent = "Samlet resultat";
     return;
@@ -205,12 +204,6 @@ function showCurrentLevel() {
     documentCurrentLevel.innerHTML = `Runde: ${currentLevel}`;
   }
 }
-
-// function handleFinish() {
-
-//   let documentTryAgainContainer = document.querySelector(".try-again-container");
-//   documentTryAgainContainer.innerHTML = `<button class="try-again-button" onclick="resetLocalStorage()">Prøv igen</button>`;
-// }
 
 function loadSummaryContent() {
   document.querySelector(".discriminator-lower-container").innerHTML = summaryContent;
@@ -271,12 +264,12 @@ function updateProbability() {
 }
 
 function resetLocalStorage() {
-  // if (confirm("Er du sikker på du vil starte forfra?")) {
-  localStorage.clear();
-  location.reload();
-  setFinished(false);
-  console.log("LocalStorage cleared");
-  // }
+  if (confirm("Er du sikker på du vil starte forfra?")) {
+    localStorage.clear();
+    location.reload();
+    setFinished(false);
+    console.log("LocalStorage cleared");
+  }
 }
 
 function updateContentSummaryLoaded() {

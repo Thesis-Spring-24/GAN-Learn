@@ -11,13 +11,41 @@ function handleLevelSummary() {
   calculateNumberOfCorrect();
 
   if (finished) {
-    let documentTable = document.querySelector(".summary-table-container");
-    let documentContent = document.querySelector(".summary-content-container");
-    documentTable.remove();
-    let finalSummaryText = document.createElement('p');
-    finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
-    documentContent.append(finalSummaryText);
+    handleFinished();
   }
+}
+
+function handleFinished() {
+  let documentTable = document.querySelector(".summary-table-container");
+  documentTable.remove();
+
+  let documentContent = document.querySelector(".summary-content-container");
+  let finalSummaryText = document.createElement('p');
+  finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
+  documentContent.append(finalSummaryText);
+
+
+  let buttonsContainer = document.createElement('div');
+  buttonsContainer.className = "buttons-finish-container";
+
+  let backToOverviewButton = document.createElement('button');
+  backToOverviewButton.textContent = "Tilbage til oversigt";
+  backToOverviewButton.className = "back-to-overview-button";
+  backToOverviewButton.addEventListener('click', () => {
+    handleBackToOverview();
+  });
+
+  buttonsContainer.append(backToOverviewButton);
+  let tryAgainButton = document.createElement('button');
+  tryAgainButton.textContent = "Prøv igen";
+  tryAgainButton.className = "try-again-button";
+  tryAgainButton.addEventListener('click', () => {
+    resetLocalStorage();
+  });
+
+  buttonsContainer.append(tryAgainButton);
+  documentContent.append(buttonsContainer);
+
 }
 
 function createTableContent() {
@@ -55,12 +83,6 @@ function createTableContent() {
   });
 }
 
-// function handleFinalSummary() {
-//   let table = document.querySelector(".summary-table-container");
-//   table.style.maxHeight = "50em";
-//   table.style.overflowY = "scroll";
-// }
-
 function handleHeaderSummary() {
   let documentLevelHeader = document.querySelector(".level-header");
   documentLevelHeader.textContent = `Runde ${currentLevel} resultat`;
@@ -68,6 +90,7 @@ function handleHeaderSummary() {
   finished = localStorage.getItem("isFinished") === "true" ? true : false;
   if (finished) {
     documentLevelHeader.textContent = "Samlet resultat";
+    documentLevelHeader.style.fontSize = "30px";
 
     let documentContinueButton = document.querySelector(".continue-button");
     documentContinueButton.remove();
@@ -79,7 +102,6 @@ function findRangeMap() {
   if (finished) {
     startRange = 0;
     endRange = imagesLevelThree;
-    // handleFinalSummary();
     return;
   }
   if (currentLevel === levelOne) {

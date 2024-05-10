@@ -264,7 +264,7 @@ body {
 }
 
 .summary-content-container > p{
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .next-picture-button{
@@ -308,4 +308,12 @@ th, td {
 
 .training-picture-text{
     color: var(--imgBorderColor);
+}
+
+.buttons-finish-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 15em;
 }
