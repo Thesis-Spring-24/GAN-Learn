@@ -10,6 +10,19 @@
     align-items: center;
 }
 
+.header-generator {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.header-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    row-gap: 2em;
+}
+
 .draw-explanation {
     padding-left: 1em;
     align-self: flex-end;
@@ -64,6 +77,14 @@
     display: none;
     position: relative;
     top: -3em;
+    right: -5em;
+
+}
+
+.hint-timer-text-2 {
+    display: none;
+    position: relative;
+    top: -6.5em;
     right: -5em;
 
 }
@@ -362,6 +383,7 @@
 }
 
 .clear-btn-generator-storage {
+    display: none;
     width: 5em;
 }
 

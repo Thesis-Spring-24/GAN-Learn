@@ -10,8 +10,11 @@ function startTimer() {
     timerSeconds--;
     updateTimerDisplay();
 
-    if (timerSeconds == 210) {
+    if (timerSeconds == 300) {
       document.querySelector('.hint-timer-text').style.display = 'block';
+    }
+    if (timerSeconds == 90) {
+      document.querySelector('.hint-timer-text-2').style.display = 'block';
     }
 
     if (timerSeconds <= 0) {

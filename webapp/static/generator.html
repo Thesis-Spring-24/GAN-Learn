@@ -16,25 +16,37 @@
 
 <body>
   <div class="wrapper-div">
-    <div class="header">
-      <h1>Generator</h1>
-      <p class="page-text">
-        I skal nu prøve rollen som Generator, hvor I skal blive gode til at generere tegninger. <br>
-        I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage:
-      <ul class="page-text list">
-        <li>Sandsynlighed 1: I har tegnet noget, der ligner de træningsbilleder, som diskriminatoren er
-          trænet på.</li>
-        <li>Sandsynlighed 0: I har tegnet noget, der slet ikke ligner de træningsbilleder, som
-          diskriminatoren er trænet på. </li>
-      </ul>
-      <p class="page-text">
-        Jeres opgave er at bliver gode generatorere, der inden tiden er gået, kan tegne tegninger som diskriminatoren
-        tror kommer fra træningsbillederne. Hvis I tre gange for Diskriminatoren til at tro at jeres tegninger er fra
-        træningsbillederne, stopper tiden.<br>
-      <p class="hint-text">Hint til overordnet kategori: Dyr</p>
-      </p>
-      </p>
+    <div class="header header-generator">
+      <div class="header-image">
+        <img src="assets/examples/ex1.png" alt="">
+        <img src="assets/examples/ex4.png" alt="">
+        <img src="assets/examples/ex6.png" alt="">
+      </div>
+      <div class=header-text>
+        <h1>Generator</h1>
+        <p class="page-text">
+          I skal nu prøve rollen som Generator, hvor I skal blive gode til at generere tegninger. <br>
+          I skal tegne et gæt, sende det afsted til Diskriminatoren, og vil så få en sandsynlighed tilbage:
+        <ul class="page-text list">
+          <li>Sandsynlighed 1: I har tegnet noget, der ligner de træningsbilleder, som diskriminatoren er
+            trænet på.</li>
+          <li>Sandsynlighed 0: I har tegnet noget, der slet ikke ligner de træningsbilleder, som
+            diskriminatoren er trænet på. </li>
+        </ul>
+        <p class="page-text">
+          Jeres opgave er at bliver gode generatorere, der inden tiden er gået, kan tegne tegninger som diskriminatoren
+          tror kommer fra træningsbillederne. Hvis I tre gange for Diskriminatoren til at tro at jeres tegninger er fra
+          træningsbillederne, stopper tiden.<br>
+        <p class="hint-text">Hint til overordnet kategori: Dyr</p>
+        </p>
+        </p>
+      </div>
+      <div class="header-image">
+        <img src="assets/examples/ex2.png" alt="">
+        <img src="assets/examples/ex5.png" alt="">
+        <img src="assets/examples/ex3.png" alt="">
 
+      </div>
     </div>
     <!-- Modal -->
     <div id="myModal" class="modal">
@@ -58,7 +70,8 @@
               <div class="canvas-container">
                 <main class="canvas"></main>¨
                 <button class="clear-btn" id="clear">Slet</button>
-                <p class="hint-timer-text">Hint: Den lever i og omkring vand</p>
+                <p class="hint-timer-text">Hint: Den lever i og omkring havet</p>
+                <p class="hint-timer-text-2">Hint: Den har kløer </p>
               </div>
             </div>
             <div class="training-set">
