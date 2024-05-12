@@ -78,7 +78,8 @@ const preprocess = async (cb) => {
 
     // Resize to 28x28 pixel & crop
     //når der skal laves image: "/transform"
-    const imageBlob = await fetch("http://127.0.0.1:8000/transform", {
+    //når der skal køres lokalt: http://127.0.0.1:8000/transform
+    const imageBlob = await fetch("/transform", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
