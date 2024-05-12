@@ -439,7 +439,8 @@ h1 {
     justify-content: space-around;
     background-color: var(--greyBackgroundColor);
     border-radius: var(--borderRadius);
-    width: 50em;
+    min-width: 10em;
+    width: fit-content;
     height: 11em;
     align-self: center;
 }
