@@ -23,6 +23,9 @@ function trainModel() {
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
+
+                let documentGenerateButton = document.querySelector(".generate-btn");
+                documentGenerateButton.style.backgroundColor = "#4CAF50";                
             }, 8000);
         }
         else if (trainingCount < 5) {
