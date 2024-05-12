@@ -23,9 +23,7 @@ function trainModel() {
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
-
-                let documentGenerateButton = document.querySelector(".generate-btn");
-                documentGenerateButton.style.backgroundColor = "#4CAF50";                
+                generateButtonColor();                
             }, 8000);
         }
         else if (trainingCount < 5) {
@@ -45,6 +43,11 @@ function trainModel() {
             alert("Modellen er færdigtrænet")
         }
     }
+}
+
+function generateButtonColor() {
+    let documentGenerateButton = document.querySelector(".generate-btn");
+    documentGenerateButton.style.backgroundColor = "#4CAF50";
 }
 
 //when pressing train a flower image is displayed in the training overview

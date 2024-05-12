@@ -167,6 +167,9 @@ window.onload = function () {
     updateTrainingSet(currentDataset);
     updateTrainingOverview(trainingCount, currentDataset);
     //updateGeneratedImage(trainingCount);
+    if (trainingCount != null) {
+        generateButtonColor();
+    }
 }
 
 function removeOverlayDiscriminator() {
