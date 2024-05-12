@@ -30,7 +30,6 @@ function setup() {
     strokeWeight(STROKE_WEIGHT);
     stroke("black");
     background("#FFFFFF");
-    console.log("Canvas setup!");
 }
 
 function mouseDown() {
@@ -244,11 +243,9 @@ const predict = async () => {
 };
 
 function showDataset() {
-    console.log("called Show dataset");
     correctlyGuessed = localStorage.getItem("correctlyGuessed");
 
     if (timerSeconds <= 0 || correctlyGuessed >= 3) {
-        console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
         document.querySelector('.gen-training-data').classList.add('rotate-img');
         document.querySelector('.help-icon').style.display = "none";
@@ -278,7 +275,6 @@ let drawingAttempts = [];
 
 // Display the history of drawing attempts
 function attemptsHistory(labelPrediction) {
-    console.log("attemptsHistory");
     // Get the canvas element
     const canvas = document.getElementById("defaultCanvas0");
 
@@ -342,7 +338,6 @@ function displayPrediction(labelPrediction) {
         trueOrFalse.innerHTML = `Træningsbillede`;
 
         correctlyGuessed = localStorage.getItem("correctlyGuessed");
-        console.log("correctlyguessed!", correctlyGuessed);
         if (correctlyGuessed == undefined || correctlyGuessed == null) {
             correctlyGuessed = 1;
             localStorage.setItem("correctlyGuessed", correctlyGuessed);
@@ -354,7 +349,6 @@ function displayPrediction(labelPrediction) {
     } else {
         trueOrFalse.innerHTML = `Genereret billede`;
     }
-    console.log("correctlyguessed after label is shown", correctlyGuessed);
 }
 
 

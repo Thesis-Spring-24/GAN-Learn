@@ -9,6 +9,5 @@ function navigateToHome() {
 function navigateToTrainingData() {
     sawTrainingData = true;
     localStorage.setItem('sawTrainingData', sawTrainingData);
-    console.log('sawTrainingData:', sawTrainingData);
     window.location.href = '/genTrainingImg';
 }

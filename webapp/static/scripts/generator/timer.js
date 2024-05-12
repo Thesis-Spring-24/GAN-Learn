@@ -1,6 +1,6 @@
 let timerInterval;
 let timerDisplay = document.getElementById("timer-display");
-let timerSeconds = 7 * 60; // 10 minutes in seconds
+let timerSeconds = 10 * 60; // 10 minutes in seconds
 let savedTime;
 
 function startTimer() {
@@ -14,14 +14,12 @@ function startTimer() {
       document.querySelector('.hint-timer-text').style.display = 'inline';
     }
     if (timerSeconds == 90) {
-      console.log('displaying second hint')
       document.querySelector('.hint-timer-text-2').style.display = 'inline';
     }
 
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
       showDataset();
-      // alert("Timer finished!");
     }
   }, 1000); // Update timer every second
 }

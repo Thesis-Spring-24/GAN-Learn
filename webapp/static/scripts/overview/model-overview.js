@@ -23,32 +23,30 @@ function trainModel() {
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
-            }, 5000);
+            }, 8000);
         }
         else if (trainingCount < 5) {
             trainingCount++;
             localStorage.setItem("trainingCount", trainingCount);
-            startAnimation();
             clearGeneratedImage();
+            startAnimation();
             setTimeout(() => {
                 stopAnimation();
                 displayImageTraining(trainingCount, currentDataset);
                 isTraining = false;
                 localStorage.setItem("isTraining", isTraining);
                 console.log("isTraining", isTraining);
-            }, 5000);
+            }, 8000);
         }
         else if (trainingCount == 5) {
             alert("Modellen er færdigtrænet")
         }
     }
-
 }
 
 //when pressing train a flower image is displayed in the training overview
 function displayImageTraining(trainingCount, currentdataset) {
     var path;
-    console.log("current dataset", currentdataset)
     if (currentdataset == "flower-dataset") {
         //get the path of the image
         path = flowerLevelList[trainingCount - 1];
@@ -61,31 +59,48 @@ function displayImageTraining(trainingCount, currentdataset) {
         path = birdLevelList[trainingCount - 1];
     }
 
+    var div = document.createElement('div');
+    div.className = "container-img";
+
+    var imgDiv = document.createElement('div');
+    imgDiv.className = "displayLevelImg";
+
     var img = document.createElement('img');
     img.src = path;
     img.width = 100;
 
-    let preName = "displayImageLevel";
-    let number = trainingCount.toString();
-    var id = preName.concat(number);
+    imgDiv.appendChild(img);
 
-    //append the image
-    document.getElementById(id).appendChild(img);
+    var text = document.createElement('p');
+    text.textContent = "Træning " + trainingCount.toString();
+
+    imgDiv.appendChild(text);
+
+    div.appendChild(imgDiv);
+
+    document.querySelector(".display-training-img-container").appendChild(div);
+
 }
 
 function startAnimation() {
+    //do this for 4 seconds
     document.querySelector('.moving-line.gen-to-dis').classList.add('moveLineRight');
     document.querySelector('.moving-line.img-to-dis').classList.add('moveLineRight');
-    document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+    document.querySelector('.loader.dis').style.display = "flex";
+
     setTimeout(() => {
-        stopAnimation();
-    }, 15000);
+        //4 seconds have passed, do this:
+        document.querySelector('.loader.dis').style.display = "none";
+        document.querySelector('.moving-line.dis-to-gen').classList.add('moveLineLeft');
+        document.querySelector('.loader.gen').style.display = "flex";
+    }, 4000);
 }
 
 function stopAnimation() {
     document.querySelector('.moving-line.gen-to-dis').classList.remove('moveLineRight');
     document.querySelector('.moving-line.img-to-dis').classList.remove('moveLineRight');
     document.querySelector('.moving-line.dis-to-gen').classList.remove('moveLineLeft');
+    document.querySelector('.loader.gen').style.display = "none";
 
 }
 
