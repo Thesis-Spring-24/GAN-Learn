@@ -43,21 +43,21 @@ const mainContent =
     <div class="probability-buttons-container">
     <div class="computer-generated">
     <p>Computergenereret</p> 
-    <button class="zero-button" onclick="handleProbabilityButton(0)">0</button>
+    <button class="zero-button button-class" onclick="handleProbabilityButton(0)">0</button>
     </div>
     <div class="training-picture"> 
     <p>Træningsbillede</p>
-    <button class="one-button" onclick="handleProbabilityButton(1)">1</button>
+    <button class="one-button button-class" onclick="handleProbabilityButton(1)">1</button>
     </div>
     </div>
     <p class="chosen-probability">Valgt: </p>
-    <button class="check-answer-button" onclick="handleAnswerButton()">Tjek svar</button>
+    <button class="check-answer-button button-class" onclick="handleAnswerButton()">Tjek svar</button>
     <div class="container-feedback-on-answer">
       <p class="feedback-on-answer"></p>
     </div>
   </div>
   <div>
-  <button class="next-picture-button" onclick="handleNextButton()">Næste billede</button>
+  <button class="next-picture-button button-class" onclick="handleNextButton()">Næste billede</button>
 </div>
 </div>
 `;
@@ -79,7 +79,7 @@ const summaryContent =
     </tbody>
   </table>
   </div>
-  <button class="continue-button" onclick="handleContinueButton('trainingContent')">Videre</button>
+  <button class="continue-button button-class" onclick="handleContinueButton('trainingContent')">Videre</button>
   </div>
 `;
 
@@ -88,7 +88,7 @@ const trainingContent =
   <div> 
   <h1> Generatoren er nu blevet trænet, og er dermed blevet bedre! <h1>
   </div>
- <button class="continue-button next-round" onclick="handleContinueButton('mainContent')">Videre til næste runde</button>
+ <button class="continue-button next-round button-class" onclick="handleContinueButton('mainContent')">Videre til næste runde</button>
  </div>`;
 
 

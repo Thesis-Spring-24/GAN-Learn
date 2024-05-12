@@ -36,6 +36,7 @@ function handleFinished() {
   let backToOverviewButton = document.createElement('button');
   backToOverviewButton.textContent = "Tilbage til oversigt";
   backToOverviewButton.className = "back-to-overview-button";
+  backToOverviewButton.className = "button-class";
   backToOverviewButton.addEventListener('click', () => {
     handleBackToOverview();
   });
@@ -44,6 +45,7 @@ function handleFinished() {
   let tryAgainButton = document.createElement('button');
   tryAgainButton.textContent = "Prøv igen";
   tryAgainButton.className = "try-again-button";
+  tryAgainButton.className = "button-class";
   tryAgainButton.addEventListener('click', () => {
     resetLocalStorage();
   });

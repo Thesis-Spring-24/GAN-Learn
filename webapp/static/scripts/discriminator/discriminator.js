@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 10; // 10
-const imagesLevelTwo = 25; // 25
-const imagesLevelThree = 40; // 40
+const imagesLevelOne = 1; // 10
+const imagesLevelTwo = 2; // 25
+const imagesLevelThree = 3; // 40
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -261,7 +261,12 @@ function updateProbability() {
 
 function resetLocalStorage() {
   if (confirm("Er du sikker på du vil starte forfra?")) {
-    localStorage.clear();
+    localStorage.removeItem("correctAnswers");
+    localStorage.removeItem("answered");
+    localStorage.removeItem("imageMap");
+    localStorage.removeItem("imageNumber");
+    localStorage.removeItem("currentLevel");
+    localStorage.removeItem("isFinished");
     location.reload();
     setFinished(false);
     console.log("LocalStorage cleared");

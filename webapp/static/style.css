@@ -52,11 +52,20 @@ a {
 }
 
 button {
-  padding: 15px;
+  padding: 16px;
   cursor: pointer;
   font-size: 16px;
 }
 
+.button-class{
+  border-radius: 2em;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button-class:hover {
+  background-color: #d8d6d6;
+}
 
 /* .buttons-container {
   margin-top: 15px;
