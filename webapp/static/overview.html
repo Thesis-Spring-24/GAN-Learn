@@ -87,7 +87,9 @@
         <div class="model-overview">
 
           <div class="left-side">
-            <button class="gen-box lockedItem" id="gen-box"> Generator </button>
+            <button class="gen-box lockedItem" id="gen-box"> Generator
+              <div class="loader gen"></div>
+            </button>
             <div class="training-img-btn lockedItem" id="dataset-div" ondrop="dragDrop(event)"
               ondragover="allowDrop(event)"></div>
           </div>
@@ -102,7 +104,9 @@
           </div>
 
           <div class="right-side">
-            <button class="dis-box lockedItem" id="dis-box">Diskriminator</button>
+            <button class="dis-box lockedItem" id="dis-box">Diskriminator
+              <div class="loader dis"></div>
+            </button>
 
           </div>
         </div>
@@ -116,34 +120,6 @@
             </button>
 
             <div class="display-training-img-container">
-              <div class="container-img">
-                <div class="displayLevelImg" id="displayImageLevel1">
-                  <p class="training-level-text">Træning 1</p>
-                </div>
-              </div>
-              <div class="container-img">
-                <div class="displayLevelImg" id="displayImageLevel2">
-                  <p class="training-level-text">Træning 2</p>
-                </div>
-              </div>
-
-              <div class="container-img">
-                <div class="displayLevelImg" id="displayImageLevel3">
-                  <p class="training-level-text">Træning 3</p>
-                </div>
-              </div>
-
-              <div class="container-img">
-                <div class="displayLevelImg" id="displayImageLevel4">
-                  <p class="training-level-text">Træning 4</p>
-                </div>
-              </div>
-              <div class="container-img">
-                <div class="displayLevelImg" id="displayImageLevel5">
-                  <p class="training-level-text">Træning 5</p>
-                </div>
-              </div>
-
             </div>
           </div>
 
@@ -168,7 +144,7 @@
 <script src="/scripts/overview/overview.js"></script>
 <script src="/scripts/overview/dataMaps.js"></script>
 <script src="/scripts/overview/model-overview.js"></script>
-<script src="/scripts/overview/textContentModal.js"></script>
+
 
 
 </html>

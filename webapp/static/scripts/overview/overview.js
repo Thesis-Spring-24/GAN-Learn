@@ -29,13 +29,8 @@ function navigateToFlowers() {
 }
 
 function clearTrainingOverview(trainingCount) {
-    for (let i = trainingCount; i > 0; i--) {
-        let preName = "displayImageLevel";
-        let number = i.toString();
-        var id = preName.concat(number);
-        console.log(number)
-        document.getElementById(id).innerHTML = " <p class='training-level-text'>Træning " + number + "</p>";
-    }
+    document.querySelector(".display-training-img-container").innerHTML = "";
+
 }
 
 function clearGeneratedImage() {
@@ -49,8 +44,6 @@ function allowDrop(event) {
 function dragStart(event) {
     event.dataTransfer.setData("text", event.target.id);
     dataSetInModel = localStorage.getItem("dataSetInModel")
-    console.log("in drag start, dataSetInModel", dataSetInModel)
-    console.log(typeof dataSetInModel)
     if (dataSetInModel == false || dataSetInModel == undefined || dataSetInModel == "false") {
         document.getElementById("dataset-div").style.border = "0.3em dashed  #C11B7F";
     }
@@ -64,7 +57,6 @@ function dragDrop(event) {
     var datasetDiv = document.getElementById("dataset-div");
 
     if (datasetDiv.children.length > 0 && !datasetDiv.contains(draggedElement)) {
-        console.log("dataset already has an image");
         return
     }
 
@@ -92,8 +84,6 @@ function dragDrop(event) {
         localStorage.setItem("dataSetInModel", dataSetInModel);
 
     }
-    console.log("current Dataset", currentDataset);
-    console.log("training count", trainingCount);
 }
 
 //displays the generated image
@@ -164,17 +154,19 @@ function clearLocalStorage() {
 
 window.onload = function () {
     //get the current dataset from local storage
-    currentDataset = localStorage.getItem("currentDataset");
-    trainingCount = localStorage.getItem("trainingCount");
-    updateTrainingSet(currentDataset);
-    updateTrainingOverview(trainingCount, currentDataset);
-    updateGeneratedImage(trainingCount);
+
     if (localStorage.getItem("generatorActivityDone") == "true") {
+
         removeOverlayDiscriminator();
     }
     if (localStorage.getItem("discriminatorActivityDone") == "true") {
         removeOverLayProcess();
     }
+    currentDataset = localStorage.getItem("currentDataset");
+    trainingCount = localStorage.getItem("trainingCount");
+    updateTrainingSet(currentDataset);
+    updateTrainingOverview(trainingCount, currentDataset);
+    //updateGeneratedImage(trainingCount);
 }
 
 function removeOverlayDiscriminator() {
@@ -221,24 +213,33 @@ function updateTrainingOverview(trainingCount, currentDataSet) {
         if (currentDataSet == "bird-dataset") {
             path = birdLevelList[i - 1];
         }
+
+        var div = document.createElement('div');
+        div.className = "container-img";
+
+        var imgDiv = document.createElement('div');
+        imgDiv.className = "displayLevelImg";
+
         var img = document.createElement('img');
         img.src = path;
         img.width = 100;
 
-        let preName = "displayImageLevel";
-        let number = i.toString();
-        var id = preName.concat(number);
+        imgDiv.appendChild(img);
 
-        //append the image
-        document.getElementById(id).appendChild(img);
+        var text = document.createElement('p');
+        text.textContent = "Træning " + i.toString();
+
+        imgDiv.appendChild(text);
+
+        div.appendChild(imgDiv);
+
+        document.querySelector(".display-training-img-container").appendChild(div);
 
     }
 }
 
 //noget der ikke er håndteret: hvis man opdatere siden bliver der vist et nyt genereret billede og ikke det samme som før
 function updateGeneratedImage(trainingCount) {
-    console.log("type of trainingCount", typeof trainingCount)
-    console.log("training count", trainingCount)
     if (trainingCount == "null" || trainingCount == null) {
         return;
     }

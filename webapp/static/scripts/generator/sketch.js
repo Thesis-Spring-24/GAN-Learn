@@ -1,5 +1,5 @@
 const WIDTH = 500;
-const HEIGHT = 350;
+const HEIGHT = 330;
 const STROKE_WEIGHT = 3;
 const CROP_PADDING = (REPOS_PADDING = 2);
 
@@ -30,7 +30,6 @@ function setup() {
     strokeWeight(STROKE_WEIGHT);
     stroke("black");
     background("#FFFFFF");
-    console.log("Canvas setup!");
 }
 
 function mouseDown() {
@@ -245,11 +244,9 @@ const predict = async () => {
 };
 
 function showDataset() {
-    console.log("called Show dataset");
     correctlyGuessed = localStorage.getItem("correctlyGuessed");
 
     if (timerSeconds <= 0 || correctlyGuessed >= 3) {
-        console.log("should show dataset");
         document.querySelector('.gen-training-data').style.display = "flex";
         document.querySelector('.gen-training-data').classList.add('rotate-img');
         document.querySelector('.help-icon').style.display = "none";
@@ -279,7 +276,6 @@ let drawingAttempts = [];
 
 // Display the history of drawing attempts
 function attemptsHistory(labelPrediction) {
-    console.log("attemptsHistory");
     // Get the canvas element
     const canvas = document.getElementById("defaultCanvas0");
 
@@ -299,7 +295,7 @@ function attemptsHistory(labelPrediction) {
     const latestImage = new Image();
     latestImage.src = drawingAttempts[drawingAttempts.length - 1].image;
     latestImage.width = 450;
-    latestImage.height = 330;
+    latestImage.height = 315;
     discriminatorImageDiv.appendChild(latestImage);
 }
 
@@ -319,9 +315,14 @@ function appendDrawingAttempts() {
 
         // Create a div to display probability
         const attemptDiv = document.createElement("div");
-        attemptDiv.innerHTML = `<pre>Sandsynlighed: \n${attempt.probability}\nVurdering: ${attempt.probability > probabilityThreshold ? "\nTræningsbillede" : "\nGenereret billede"}</pre>`;
         attemptDiv.className = "attempt";
+
         attemptDiv.appendChild(image);
+
+        const textDiv = document.createElement("div");
+        textDiv.innerHTML = `<pre>Sandsynlighed: \n${attempt.probability}\nVurdering: ${attempt.probability > probabilityThreshold ? "\nTræningsbillede" : "\nGenereret billede"}</pre>`;
+        attemptDiv.appendChild(textDiv);
+
 
         // Append the image and div to the drawing history container
         historyDisplay.appendChild(attemptDiv);
@@ -338,7 +339,6 @@ function displayPrediction(labelPrediction) {
         trueOrFalse.innerHTML = `Træningsbillede`;
 
         correctlyGuessed = localStorage.getItem("correctlyGuessed");
-        console.log("correctlyguessed!", correctlyGuessed);
         if (correctlyGuessed == undefined || correctlyGuessed == null) {
             correctlyGuessed = 1;
             localStorage.setItem("correctlyGuessed", correctlyGuessed);
@@ -350,7 +350,6 @@ function displayPrediction(labelPrediction) {
     } else {
         trueOrFalse.innerHTML = `Genereret billede`;
     }
-    console.log("correctlyguessed after label is shown", correctlyGuessed);
 }
 
 

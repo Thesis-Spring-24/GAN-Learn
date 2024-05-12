@@ -10,14 +10,16 @@ function startTimer() {
     timerSeconds--;
     updateTimerDisplay();
 
-    if (timerSeconds == 210) {
-      document.querySelector('.hint-timer-text').style.display = 'block';
+    if (timerSeconds == 300) {
+      document.querySelector('.hint-timer-text').style.display = 'inline';
+    }
+    if (timerSeconds == 90) {
+      document.querySelector('.hint-timer-text-2').style.display = 'inline';
     }
 
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
       showDataset();
-      // alert("Timer finished!");
     }
   }, 1000); // Update timer every second
 }
