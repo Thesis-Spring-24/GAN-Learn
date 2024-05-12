@@ -17,9 +17,9 @@ const levelTwo = 2;
 const levelThree = 3;
 
 // VARIABLES TO CHANGE //  
-const imagesLevelOne = 1; // 10
-const imagesLevelTwo = 2; // 25
-const imagesLevelThree = 3; // 40
+const imagesLevelOne = 10; // 10
+const imagesLevelTwo = 25; // 25
+const imagesLevelThree = 40; // 40
 // ------------------- //
 
 function handleProbabilityButton(probability) {
@@ -99,8 +99,20 @@ function updateNumbersOfCorrect() {
 
   let correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
   documentNumberOfCorrect.innerHTML = correctAndAnswered;
+
+  saveScore(correctAndAnswered);
 }
 
+function saveScore(score) {
+  if (currentLevel === levelOne) {
+    localStorage.setItem("levelOneScore", score);
+  } else if (currentLevel === levelTwo) {
+    localStorage.setItem("levelTwoScore", score);
+  } else if (currentLevel === levelThree) {
+    localStorage.setItem("levelThreeScore", score);
+  }
+
+}
 
 function setAnswered(value) {
   if (value === 1) {
@@ -267,6 +279,9 @@ function resetLocalStorage() {
     localStorage.removeItem("imageNumber");
     localStorage.removeItem("currentLevel");
     localStorage.removeItem("isFinished");
+    localStorage.removeItem("levelOneScore");
+    localStorage.removeItem("levelTwoScore");
+    localStorage.removeItem("levelThreeScore");
     location.reload();
     setFinished(false);
     console.log("LocalStorage cleared");

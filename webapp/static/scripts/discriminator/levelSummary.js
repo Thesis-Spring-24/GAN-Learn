@@ -18,17 +18,28 @@ function handleLevelSummary() {
 function handleFinished() {
   let documentTable = document.querySelector(".summary-table-container");
   documentTable.remove();
-
   let documentContent = document.querySelector(".summary-content-container");
-  // TODO: Add level scores
-  // let levelScoresContainer = document.createElement('div');
-  // levelScoresContainer.className = "level-scores-container";
 
+  let levelScoresContainer = document.createElement('div');
+  levelScoresContainer.className = "level-scores-container";
+
+  let firstLevelScore = document.createElement('p');
+  firstLevelScore.textContent = `Runde 1: ${localStorage.getItem("levelOneScore")}`;
+  levelScoresContainer.append(firstLevelScore);
+
+  let secondLevelScore = document.createElement('p');
+  secondLevelScore.textContent = `Runde 2: ${localStorage.getItem("levelTwoScore")}`;
+  levelScoresContainer.append(secondLevelScore);
+
+  let thirdLevelScore = document.createElement('p');
+  thirdLevelScore.textContent = `Runde 3: ${localStorage.getItem("levelThreeScore")}`;
+  levelScoresContainer.append(thirdLevelScore);
+
+  documentContent.append(levelScoresContainer);
 
   let finalSummaryText = document.createElement('p');
   finalSummaryText.textContent = "I har nu gennemført discriminator aktiviteten! I kan nu gå tilbage til oversigten eller prøve igen";
   documentContent.append(finalSummaryText);
-
 
   let buttonsContainer = document.createElement('div');
   buttonsContainer.className = "buttons-finish-container";
