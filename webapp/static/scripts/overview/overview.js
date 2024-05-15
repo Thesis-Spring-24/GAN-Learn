@@ -10,7 +10,7 @@ let discriminatorActivityDone = false;
 document.getElementById("gen-btn").addEventListener("click", navigateToGenerator);
 document.getElementById("dis-btn").addEventListener("click", navigateToDiscriminator);
 document.getElementById("generate-btn").addEventListener("click", generateImg);
-document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
+//document.getElementById("local-storage").addEventListener("click", clearLocalStorage);
 
 function navigateToGenerator() {
     generatorActivityDone = true;
