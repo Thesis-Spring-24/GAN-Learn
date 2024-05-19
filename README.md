@@ -1,29 +1,8 @@
-# quickdraw-cnn
+# GAN Learn
 
-A convolutional neural network using Tensorflow and Google's Quick, Draw! [dataset](https://github.com/googlecreativelab/quickdraw-dataset) to recognize hand drawn images including a webapp to draw them.
-
-Read my [blog post](https://larswaechter.dev/blog/recognizing-hand-drawn-doodles/) for more information. You can find a webapp demo [here](https://quickdraw-cnn.fly.dev/).
-
-![Preview](./webapp.png)
+GAN Learn is a digital learning tool, which allows students to explore how the generative network called GAN can learn to generate fake images and get an understanding of the different tasks involved in a GAN network. The digital learning tool guides the students through different activities: “Generator activity”, “Discriminator activity” and “Process activity”. 
 
 ## Setup
-
-### cnn
-
-Switch to the `cnn` directory, create a new virtual environment and install the required packages:
-
-```
-python -m venv ./venv
-source ./venv/bin/activate
-source venv/Scripts/activate
-pip install -r requirements.txt
-```
-
-Then, launch Jupyter in the target directory:
-
-```
-jupyter notebook
-```
 
 ### webapp
 
