@@ -10,10 +10,10 @@ function startTimer() {
     timerSeconds--;
     updateTimerDisplay();
 
-    if (timerSeconds == 300) {
+    if (timerSeconds == 210) { // 3:30 minutes
       document.querySelector('.hint-timer-text').style.display = 'inline';
     }
-    if (timerSeconds == 90) {
+    if (timerSeconds == 90) { // 1:30 minutes
       document.querySelector('.hint-timer-text-2').style.display = 'inline';
     }
 
