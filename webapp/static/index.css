@@ -19,9 +19,13 @@
 
 .description-text {
     text-align: center;
-    line-height: 1.6em;
+    line-height: 1.8em;
     font-size: medium;
-    margin-bottom: 5em;
+    margin-bottom: 2em;
+}
+
+.model-img {
+    margin-bottom: 2em;
 }
 
 .start-btn {
