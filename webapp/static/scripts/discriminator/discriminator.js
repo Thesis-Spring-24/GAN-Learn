@@ -86,8 +86,8 @@ function updateArrow(action) {
 }
 
 function updateNumbersOfCorrect() {
-  correctAnswers = localStorage.getItem("correctAnswers") || 0;
-  answered = localStorage.getItem("answered") || 0;
+  correctAnswers = parseInt(localStorage.getItem("correctAnswers")) || correctAnswers;
+  answered = parseInt(localStorage.getItem("answered")) || answered;
 
   let documentNumberOfCorrect = document.querySelector(".number-of-correct");
   if (chosenProbability === correctAnswer && !answerSubmitted) {
@@ -100,7 +100,9 @@ function updateNumbersOfCorrect() {
   let correctAndAnswered = `Antal rigtige: ${correctAnswers} / ${answered}`;
   documentNumberOfCorrect.innerHTML = correctAndAnswered;
 
-  saveScore(correctAndAnswered);
+  if (answered !== 0) {
+    saveScore(correctAndAnswered);
+  }
 }
 
 function saveScore(score) {
